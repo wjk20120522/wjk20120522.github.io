@@ -12,3 +12,8 @@ tags: Android
 
 ######4大组件相关
 四大组件：Activity, Service, Content Provider, BroadcastReceiver.
+* Activity主要是用来显示UI界面的，用户可以看见并与之交互的
+* Service主要是在后台，处理些耗时之类的任务
+* Content Provider主要是提供应用程序间数据的共享
+* BroadcastReceiver接受来自系统的指定类型的广播，从而进行相应的处理
+
