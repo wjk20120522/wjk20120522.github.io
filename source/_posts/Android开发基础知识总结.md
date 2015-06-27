@@ -11,3 +11,4 @@ tags: Android
 3. adb常用命令: adb pull <remote> <local>, adb push <local> <remote>, adb install -r **.apk
 
 ######4大组件相关
+四大组件：Activity, Service, Content Provider, BroadcastReceiver.
