@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HotSpot在Java堆中对象分配、布局和访问的过程 | Learn By Doing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java是一门面向对象语言。程序中对象的创建(eg. 克隆，反序列化)非常常见。在语言层面上创建对象通常仅仅通过一个new关键字而已，而在虚拟机中，对象创建又是怎样的呢？
+主要过程有三个部分:
+
+对象的创建  
+对象的内存布局  
+对象的访问定位  
+
+对象的创建(1)执行类的加载过程虚拟机遇到一条new指令时，首先检查指令参数是否在常量池中，如果有一个类的符号引用则代表类被加载、解析过。如果没有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HotSpot在Java堆中对象分配、布局和访问的过程">
+<meta property="og:url" content="http://wjk20120522.github.io/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/index.html">
+<meta property="og:site_name" content="Learn By Doing">
+<meta property="og:description" content="Java是一门面向对象语言。程序中对象的创建(eg. 克隆，反序列化)非常常见。在语言层面上创建对象通常仅仅通过一个new关键字而已，而在虚拟机中，对象创建又是怎样的呢？
+主要过程有三个部分:
+
+对象的创建  
+对象的内存布局  
+对象的访问定位  
+
+对象的创建(1)执行类的加载过程虚拟机遇到一条new指令时，首先检查指令参数是否在常量池中，如果有一个类的符号引用则代表类被加载、解析过。如果没有">
+<meta property="og:updated_time" content="2015-04-04T07:06:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HotSpot在Java堆中对象分配、布局和访问的过程">
+<meta name="twitter:description" content="Java是一门面向对象语言。程序中对象的创建(eg. 克隆，反序列化)非常常见。在语言层面上创建对象通常仅仅通过一个new关键字而已，而在虚拟机中，对象创建又是怎样的呢？
+主要过程有三个部分:
+
+对象的创建  
+对象的内存布局  
+对象的访问定位  
+
+对象的创建(1)执行类的加载过程虚拟机遇到一条new指令时，首先检查指令参数是否在常量池中，如果有一个类的符号引用则代表类被加载、解析过。如果没有">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Learn By Doing</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Android Lover</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wjk20120522.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-HotSpot在Java堆中对象分配、布局和访问的过程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/" class="article-date">
+  <time datetime="2014-03-06T12:51:12.000Z" itemprop="datePublished">2014-03-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HotSpot在Java堆中对象分配、布局和访问的过程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java是一门面向对象语言。程序中对象的创建(eg. 克隆，反序列化)非常常见。在语言层面上创建对象通常仅仅通过一个new关键字而已，而在虚拟机中，对象创建又是怎样的呢？</p>
+<p>主要过程有三个部分:</p>
+<ul>
+<li>对象的创建  </li>
+<li>对象的内存布局  </li>
+<li>对象的访问定位  </li>
+</ul>
+<h3 id="对象的创建">对象的创建</h3><p>(1)<strong>执行类的加载过程</strong><br>虚拟机遇到一条new指令时，首先检查指令参数是否在常量池中，如果有一个类的符号引用则代表类被加载、解析过。如果没有，则先执行类的加载过程。具体的类加载过程可以查看<a href="http://wjk20120522.github.io/2015/04/05/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">虚拟机类加载机制</a><br>(2)<strong>为新生对象分配内存</strong><br>对象所需内存大小在类加载完成后可完全确定。<br>假设Java堆中内存绝对规整，那么分配内存就仅仅把用于分隔可用内存和已用内存指针挪动一段距离(Bump the Pointer);<br>如果Java内存并不规整，虚拟机必须维护一个列表记录哪些内存块可用(Free List)。<br><strong>Note:</strong>Java堆是否规整由所采用的垃圾回收器是否带有压缩整理功能决定。<br>分配内存时，需要考虑到修改指针的线程安全性.两种方案:</p>
+<ul>
+<li>在分配内存空间代码处进行同步处理</li>
+<li>把内存分配划分在各自线程的空间中，即每个线程预先在堆中分配一小块内存，成为本地线程分配缓冲(TLAB)</li>
+</ul>
+<p>(3)<strong>初始化内存空间</strong></p>
+<ul>
+<li>将除对象头的内存空间初始化为零值</li>
+<li>将类的元数据，对象hashcode，对象的gc分代年龄等信息放在对象头中(Object Header)</li>
+</ul>
+<p>上述工作完成后，便会执行<init>方法</init></p>
+<hr>
+<h3 id="对象的内存布局">对象的内存布局</h3><p>对象内存中存储的布局可以分为3块区域:对象头(Object Header)，实例数据(Instance Data)，对齐填充(Padding)</p>
+<ul>
+<li>对象头包括两部分信息。第一部分是存储对象自身运行时数据，如HashCode, GC分代年龄，偏向线程ID等。这部分成为“Mark Word”。第二部分是类型指针，即对象指向它的类元数据指针。如果是一个Java数组，还需要有块记录长度的数据。 </li>
+<li>实例数据存储顺序会受到虚拟机分配策略和字段定义顺序影响。虚拟机分配策略为:longs/doubles, ints, shorts/chars, bytes/booleans, oops(Ordinary Object Pointers). 满足这个前提下，父类定义变量灰出现在子类之前。</li>
+<li>HotSpot VM要求对象起始地址必须是8字节整数倍。</li>
+</ul>
+<hr>
+<h3 id="对象的访问定位">对象的访问定位</h3><p>目前主流的访问方式有使用句柄和直接指针两种</p>
+<ul>
+<li>使用句柄，Java会划出一块内存来作为句柄池。reference存储的就是对象的句柄地址。句柄中包含对象的实例数据和类型数据各自的地址信息。</li>
+<li>直接指针访问，reference存储的直接就是对象地址</li>
+</ul>
+<p>这两种访问各有优势。使用句柄最大好处是对象移动(垃圾回收时对象移动非常普遍)时只会改变句柄中的实例数据指针，而reference不需要修改。使用直接指针访问方式的最大好处就是速度更快。由于对象访问在Java中非常频繁，因此这类开销积少成多也是一项非常可观的执行成本。</p>
+<hr>
+<p>参考文献<br>深入理解Java虚拟机-周志明</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wjk20120522.github.io/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/" data-id="cibf2ljxx000dtpoi9n0gmgqf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/04/05/虚拟机类加载机制/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          虚拟机类加载机制
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/02/11/Java中equals测试/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java中equals测试</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Security/">Android Security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/">Ubuntu14.04 LTS 64下载并编译Android源码</a>
+          </li>
+        
+          <li>
+            <a href="/2014/05/10/Dalvik指令集/">Dalvik指令集</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/26/Android开发基础知识总结/">Android开发基础知识总结</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/05/虚拟机类加载机制/">虚拟机类加载机制</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/">HotSpot在Java堆中对象分配、布局和访问的过程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Jiankang Wang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

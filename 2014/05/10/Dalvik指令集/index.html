@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Dalvik指令集 | Learn By Doing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="主要介绍Dalvik指令集的一些基础知识，以后别人以及自己以后查阅.先介绍下Dalvik字节码的类型、方法与字段表示方法.
+类型Dalvik字节码只包含两种类型，基本类型与引用类型.
+
+
+
+语法
+含义
+
+
+
+
+V
+void
+
+
+Z
+boolean
+
+
+B
+byte
+
+
+S
+short
+
+
+C
+char
+
+
+I
+int
+
+
+J
+long
+
+
+F
+float
+
+
+D
+double
+
+
+L
+Java类类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dalvik指令集">
+<meta property="og:url" content="http://wjk20120522.github.io/2014/05/10/Dalvik指令集/index.html">
+<meta property="og:site_name" content="Learn By Doing">
+<meta property="og:description" content="主要介绍Dalvik指令集的一些基础知识，以后别人以及自己以后查阅.先介绍下Dalvik字节码的类型、方法与字段表示方法.
+类型Dalvik字节码只包含两种类型，基本类型与引用类型.
+
+
+
+语法
+含义
+
+
+
+
+V
+void
+
+
+Z
+boolean
+
+
+B
+byte
+
+
+S
+short
+
+
+C
+char
+
+
+I
+int
+
+
+J
+long
+
+
+F
+float
+
+
+D
+double
+
+
+L
+Java类类">
+<meta property="og:updated_time" content="2015-05-10T15:46:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dalvik指令集">
+<meta name="twitter:description" content="主要介绍Dalvik指令集的一些基础知识，以后别人以及自己以后查阅.先介绍下Dalvik字节码的类型、方法与字段表示方法.
+类型Dalvik字节码只包含两种类型，基本类型与引用类型.
+
+
+
+语法
+含义
+
+
+
+
+V
+void
+
+
+Z
+boolean
+
+
+B
+byte
+
+
+S
+short
+
+
+C
+char
+
+
+I
+int
+
+
+J
+long
+
+
+F
+float
+
+
+D
+double
+
+
+L
+Java类类">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Learn By Doing</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Android Lover</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wjk20120522.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Dalvik指令集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/05/10/Dalvik指令集/" class="article-date">
+  <time datetime="2014-05-10T14:44:47.000Z" itemprop="datePublished">2014-05-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Dalvik指令集
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>主要介绍Dalvik指令集的一些基础知识，以后别人以及自己以后查阅.<br>先介绍下Dalvik字节码的类型、方法与字段表示方法.</p>
+<h6 id="类型">类型</h6><p>Dalvik字节码只包含两种类型，基本类型与引用类型.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">语法</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">V</td>
+<td style="text-align:center">void</td>
+</tr>
+<tr>
+<td style="text-align:center">Z</td>
+<td style="text-align:center">boolean</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">byte</td>
+</tr>
+<tr>
+<td style="text-align:center">S</td>
+<td style="text-align:center">short</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">char</td>
+</tr>
+<tr>
+<td style="text-align:center">I</td>
+<td style="text-align:center">int</td>
+</tr>
+<tr>
+<td style="text-align:center">J</td>
+<td style="text-align:center">long</td>
+</tr>
+<tr>
+<td style="text-align:center">F</td>
+<td style="text-align:center">float</td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td style="text-align:center">double</td>
+</tr>
+<tr>
+<td style="text-align:center">L</td>
+<td style="text-align:center">Java类类型</td>
+</tr>
+<tr>
+<td style="text-align:center">[</td>
+<td style="text-align:center">数组类型</td>
+</tr>
+</tbody>
+</table>
+<h6 id="方法">方法</h6><p>方法的格式如下:<br>Lpackage/name/ObjectName;-&gt;MethodName(III)Z<br>其中,Lpackage/name/ObjectName是对应类的类型，与方法名MethodName用;相隔.括号中为函数参数，最后的Z为函数返回类型.</p>
+<h5 id="字段">字段</h5><p>与方法类似,格式如下:<br>Lpackage/name/ObjectName;-&gt;FieldName:Ljava/lang/String;</p>
+<h4 id="Dalvik指令集">Dalvik指令集</h4><p>下面介绍具体类型的指令。在介绍之前，先熟悉下指令特点</p>
+<ul>
+<li>参数从目标（destination）到源（source）的方式</li>
+<li>64位常规类型字节码添加 -wide后缀</li>
+<li>根据字节码布局与选项不同，一些字节码添加了字节码后缀以消除歧义。这些后缀通过在字节码主名称后添加斜杠“／”来分割开。</li>
+</ul>
+<h6 id="空指令">空指令</h6><p>无实际操作，一般用于指令对齐</p>
+<h6 id="数据操作指令">数据操作指令</h6><p>move vA, vB<br>move/from16 vAA, VBBBB<br>move/16  VAAAA,VBBBB<br>move-wide VA,VB<br>move-object VA,VB<br>move-result VAA<br>move-result-wide VAA<br>move-result-object VAA<br>move-exception VAA</p>
+<h6 id="返回指令">返回指令</h6>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wjk20120522.github.io/2014/05/10/Dalvik指令集/" data-id="cibf2ljxz000ftpoirq0zq90n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-Security/">Android Security</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Ubuntu14.04 LTS 64下载并编译Android源码
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/04/26/Android开发基础知识总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android开发基础知识总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Security/">Android Security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/">Ubuntu14.04 LTS 64下载并编译Android源码</a>
+          </li>
+        
+          <li>
+            <a href="/2014/05/10/Dalvik指令集/">Dalvik指令集</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/26/Android开发基础知识总结/">Android开发基础知识总结</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/05/虚拟机类加载机制/">虚拟机类加载机制</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/">HotSpot在Java堆中对象分配、布局和访问的过程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Jiankang Wang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
