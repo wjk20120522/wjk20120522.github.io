@@ -60,10 +60,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-HotSpot在Java堆中对象分配、布局和访问的过程" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Java中equals测试" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/" class="article-date">
-  <time datetime="2014-03-06T12:51:12.000Z" itemprop="datePublished">2014-03-06</time>
+    <a href="/2014/02/11/Java中equals测试/" class="article-date">
+  <time datetime="2014-02-11T05:07:22.000Z" itemprop="datePublished">2014-02-11</time>
 </a>
     
   </div>
@@ -74,7 +74,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/">HotSpot在Java堆中对象分配、布局和访问的过程</a>
+      <a class="article-title" href="/2014/02/11/Java中equals测试/">Java中equals测试</a>
     </h1>
   
 
@@ -82,45 +82,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Java是一门面向对象语言。程序中对象的创建(eg. 克隆，反序列化)非常常见。在语言层面上创建对象通常仅仅通过一个new关键字而已，而在虚拟机中，对象创建又是怎样的呢？</p>
-<p>主要过程有三个部分:</p>
+        <p>摘自Core Java<br>Java语言规范要求equals方法具有下面的特性：</p>
 <ul>
-<li>对象的创建  </li>
-<li>对象的内存布局  </li>
-<li>对象的访问定位  </li>
+<li>自反性：对应任何<strong>非空</strong>引用x, x.equals(x)返回true</li>
+<li>对称性：对应任何引用x和y,当且仅当y.equals(x)返回true, x.equals(y)才应该返回true</li>
+<li>传递性：对于任何引用x、y、和z，如果x.equals(y)返回true，y.equals(z)返回true， x.equals(z)也应该返回true</li>
+<li>一致性： 如果x和y引用的对象没有发生变化，返回调用x.equals(y)都一样返回同样的结果</li>
+<li>对应任何非空x, x.equals(null)应该返回false</li>
 </ul>
-<h3 id="对象的创建">对象的创建</h3><p>(1)<strong>执行类的加载过程</strong><br>虚拟机遇到一条new指令时，首先检查指令参数是否在常量池中，如果有一个类的符号引用则代表类被加载、解析过。如果没有，则先执行类的加载过程。具体的类加载过程可以查看<a href="http://wjk20120522.github.io/2015/04/05/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">虚拟机类加载机制</a><br>(2)<strong>为新生对象分配内存</strong><br>对象所需内存大小在类加载完成后可完全确定。<br>假设Java堆中内存绝对规整，那么分配内存就仅仅把用于分隔可用内存和已用内存指针挪动一段距离(Bump the Pointer);<br>如果Java内存并不规整，虚拟机必须维护一个列表记录哪些内存块可用(Free List)。<br><strong>Note:</strong>Java堆是否规整由所采用的垃圾回收器是否带有压缩整理功能决定。<br>分配内存时，需要考虑到修改指针的线程安全性.两种方案:</p>
+<p>比如只用instanceof就会出现问题。Employee.equals(Manager)用instanceof可能会返回true,但是Manager.equals(Employee)会返回false. 不满足对称性。</p>
+<p>书中给出了一个完美的equals方法建议：</p>
 <ul>
-<li>在分配内存空间代码处进行同步处理</li>
-<li>把内存分配划分在各自线程的空间中，即每个线程预先在堆中分配一小块内存，成为本地线程分配缓冲(TLAB)</li>
+<li>显示参数命名为otherObject, 稍后需要将它转换成另一个叫做other的变量</li>
+<li>检测this与otherObject是否引用同一个对象.  (优化)</li>
+<li>检测otherObject是否为null.  (优化)</li>
+<li>比较this与otherObject是否同属于一个类<br>  <strong>如果equals语义在每个子类中有所改变，使用getClass检测</strong><br>  <strong>如果所有子类都拥有统一的语义，就使用instanceof检测</strong></li>
+<li>将otherObject转换成相应的类类型变量</li>
+<li>最后对所有需要比较的域进行比较，基本域用==,对象域用equals.</li>
 </ul>
-<p>(3)<strong>初始化内存空间</strong></p>
-<ul>
-<li>将除对象头的内存空间初始化为零值</li>
-<li>将类的元数据，对象hashcode，对象的gc分代年龄等信息放在对象头中(Object Header)</li>
-</ul>
-<p>上述工作完成后，便会执行<init>方法</init></p>
-<hr>
-<h3 id="对象的内存布局">对象的内存布局</h3><p>对象内存中存储的布局可以分为3块区域:对象头(Object Header)，实例数据(Instance Data)，对齐填充(Padding)</p>
-<ul>
-<li>对象头包括两部分信息。第一部分是存储对象自身运行时数据，如HashCode, GC分代年龄，偏向线程ID等。这部分成为“Mark Word”。第二部分是类型指针，即对象指向它的类元数据指针。如果是一个Java数组，还需要有块记录长度的数据。 </li>
-<li>实例数据存储顺序会受到虚拟机分配策略和字段定义顺序影响。虚拟机分配策略为:longs/doubles, ints, shorts/chars, bytes/booleans, oops(Ordinary Object Pointers). 满足这个前提下，父类定义变量灰出现在子类之前。</li>
-<li>HotSpot VM要求对象起始地址必须是8字节整数倍。</li>
-</ul>
-<hr>
-<h3 id="对象的访问定位">对象的访问定位</h3><p>目前主流的访问方式有使用句柄和直接指针两种</p>
-<ul>
-<li>使用句柄，Java会划出一块内存来作为句柄池。reference存储的就是对象的句柄地址。句柄中包含对象的实例数据和类型数据各自的地址信息。</li>
-<li>直接指针访问，reference存储的直接就是对象地址</li>
-</ul>
-<p>这两种访问各有优势。使用句柄最大好处是对象移动(垃圾回收时对象移动非常普遍)时只会改变句柄中的实例数据指针，而reference不需要修改。使用直接指针访问方式的最大好处就是速度更快。由于对象访问在Java中非常频繁，因此这类开销积少成多也是一项非常可观的执行成本。</p>
-<hr>
-<p>参考文献<br>深入理解Java虚拟机-周志明</p>
+<p><strong>Note</strong>: 如果在子类中重新定义了equals， 就要在其中包含调用super.equals(other)</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wjk20120522.github.io/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/" data-id="cibf455cn000c17oiq3gmthfi" class="article-share-link">Share</a>
+      <a data-url="http://wjk20120522.github.io/2014/02/11/Java中equals测试/" data-id="cibf455ck000a17oiqkx97cge" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -134,7 +119,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -156,7 +141,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -166,10 +151,6 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2015/06/28/Android开发基础知识总结/">(no title)</a>
-          </li>
         
           <li>
             <a href="/2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/">Ubuntu14.04 LTS 64下载并编译Android源码</a>
@@ -185,6 +166,10 @@
         
           <li>
             <a href="/2014/04/05/虚拟机类加载机制/">虚拟机类加载机制</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/">HotSpot在Java堆中对象分配、布局和访问的过程</a>
           </li>
         
       </ul>
