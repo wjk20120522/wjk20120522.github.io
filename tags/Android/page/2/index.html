@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Learn By Doing</title>
+  <title>Tag: Android | Learn By Doing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Android | C++ | Python | USTC | security | Walle&apos;s blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Learn By Doing">
-<meta property="og:url" content="http://wjk20120522.github.io/page/2/index.html">
+<meta property="og:url" content="http://wjk20120522.github.io/tags/Android/page/2/index.html">
 <meta property="og:site_name" content="Learn By Doing">
 <meta property="og:description" content="Android | C++ | Python | USTC | security | Walle&apos;s blog">
 <meta name="twitter:card" content="summary">
@@ -60,114 +60,36 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Dalvik指令集" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/05/10/Dalvik指令集/" class="article-date">
-  <time datetime="2014-05-10T14:44:47.000Z" itemprop="datePublished">2014-05-10</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2014" class="archive-year">2014</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2014/04/26/Android开发基础知识总结/" class="archive-article-date">
+  <time datetime="2014-04-26T02:22:21.000Z" itemprop="datePublished">4月 26</time>
 </a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+      
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/05/10/Dalvik指令集/">Dalvik指令集</a>
+      <a class="archive-article-title" href="/2014/04/26/Android开发基础知识总结/">Android开发基础知识总结</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>主要介绍Dalvik指令集的一些基础知识，以后别人以及自己以后查阅.<br>先介绍下Dalvik字节码的类型、方法与字段表示方法.</p>
-<h6 id="类型">类型</h6><p>Dalvik字节码只包含两种类型，基本类型与引用类型.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">语法</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">V</td>
-<td style="text-align:center">void</td>
-</tr>
-<tr>
-<td style="text-align:center">Z</td>
-<td style="text-align:center">boolean</td>
-</tr>
-<tr>
-<td style="text-align:center">B</td>
-<td style="text-align:center">byte</td>
-</tr>
-<tr>
-<td style="text-align:center">S</td>
-<td style="text-align:center">short</td>
-</tr>
-<tr>
-<td style="text-align:center">C</td>
-<td style="text-align:center">char</td>
-</tr>
-<tr>
-<td style="text-align:center">I</td>
-<td style="text-align:center">int</td>
-</tr>
-<tr>
-<td style="text-align:center">J</td>
-<td style="text-align:center">long</td>
-</tr>
-<tr>
-<td style="text-align:center">F</td>
-<td style="text-align:center">float</td>
-</tr>
-<tr>
-<td style="text-align:center">D</td>
-<td style="text-align:center">double</td>
-</tr>
-<tr>
-<td style="text-align:center">L</td>
-<td style="text-align:center">Java类类型</td>
-</tr>
-<tr>
-<td style="text-align:center">[</td>
-<td style="text-align:center">数组类型</td>
-</tr>
-</tbody>
-</table>
-<h6 id="方法">方法</h6><p>方法的格式如下:<br>Lpackage/name/ObjectName;-&gt;MethodName(III)Z<br>其中,Lpackage/name/ObjectName是对应类的类型，与方法名MethodName用;相隔.括号中为函数参数，最后的Z为函数返回类型.</p>
-<h5 id="字段">字段</h5><p>与方法类似,格式如下:<br>Lpackage/name/ObjectName;-&gt;FieldName:Ljava/lang/String;</p>
-<h4 id="Dalvik指令集">Dalvik指令集</h4><p>下面介绍具体类型的指令。在介绍之前，先熟悉下指令特点</p>
-<ul>
-<li>参数从目标（destination）到源（source）的方式</li>
-<li>64位常规类型字节码添加 -wide后缀</li>
-<li>根据字节码布局与选项不同，一些字节码添加了字节码后缀以消除歧义。这些后缀通过在字节码主名称后添加斜杠“／”来分割开。</li>
-</ul>
-<h6 id="空指令">空指令</h6><p>无实际操作，一般用于指令对齐</p>
-<h6 id="数据操作指令">数据操作指令</h6><p>move vA, vB<br>move/from16 vAA, VBBBB<br>move/16  VAAAA,VBBBB<br>move-wide VA,VB<br>move-object VA,VB<br>move-result VAA<br>move-result-wide VAA<br>move-result-object VAA<br>move-exception VAA</p>
-<h6 id="返回指令">返回指令</h6>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wjk20120522.github.io/2014/05/10/Dalvik指令集/" data-id="cibf455cp000e17oiuff9w8e9" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-Security/">Android Security</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
 </article>
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
-    </nav>
+    </div></section>
   
 </section>
         
