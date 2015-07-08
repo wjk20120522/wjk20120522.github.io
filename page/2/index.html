@@ -60,10 +60,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Dalvik指令集" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Java中equals测试" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/05/10/Dalvik指令集/" class="article-date">
-  <time datetime="2014-05-10T14:44:47.000Z" itemprop="datePublished">2014-05-10</time>
+    <a href="/2014/02/11/Java中equals测试/" class="article-date">
+  <time datetime="2014-02-11T05:07:22.000Z" itemprop="datePublished">2014-02-11</time>
 </a>
     
   </div>
@@ -74,7 +74,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/05/10/Dalvik指令集/">Dalvik指令集</a>
+      <a class="article-title" href="/2014/02/11/Java中equals测试/">Java中equals测试</a>
     </h1>
   
 
@@ -82,81 +82,186 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>主要介绍Dalvik指令集的一些基础知识，以后别人以及自己以后查阅.<br>先介绍下Dalvik字节码的类型、方法与字段表示方法.</p>
-<h6 id="类型">类型</h6><p>Dalvik字节码只包含两种类型，基本类型与引用类型.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">语法</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">V</td>
-<td style="text-align:center">void</td>
-</tr>
-<tr>
-<td style="text-align:center">Z</td>
-<td style="text-align:center">boolean</td>
-</tr>
-<tr>
-<td style="text-align:center">B</td>
-<td style="text-align:center">byte</td>
-</tr>
-<tr>
-<td style="text-align:center">S</td>
-<td style="text-align:center">short</td>
-</tr>
-<tr>
-<td style="text-align:center">C</td>
-<td style="text-align:center">char</td>
-</tr>
-<tr>
-<td style="text-align:center">I</td>
-<td style="text-align:center">int</td>
-</tr>
-<tr>
-<td style="text-align:center">J</td>
-<td style="text-align:center">long</td>
-</tr>
-<tr>
-<td style="text-align:center">F</td>
-<td style="text-align:center">float</td>
-</tr>
-<tr>
-<td style="text-align:center">D</td>
-<td style="text-align:center">double</td>
-</tr>
-<tr>
-<td style="text-align:center">L</td>
-<td style="text-align:center">Java类类型</td>
-</tr>
-<tr>
-<td style="text-align:center">[</td>
-<td style="text-align:center">数组类型</td>
-</tr>
-</tbody>
-</table>
-<h6 id="方法">方法</h6><p>方法的格式如下:<br>Lpackage/name/ObjectName;-&gt;MethodName(III)Z<br>其中,Lpackage/name/ObjectName是对应类的类型，与方法名MethodName用;相隔.括号中为函数参数，最后的Z为函数返回类型.</p>
-<h5 id="字段">字段</h5><p>与方法类似,格式如下:<br>Lpackage/name/ObjectName;-&gt;FieldName:Ljava/lang/String;</p>
-<h4 id="Dalvik指令集">Dalvik指令集</h4><p>下面介绍具体类型的指令。在介绍之前，先熟悉下指令特点</p>
+        <p>摘自Core Java<br>Java语言规范要求equals方法具有下面的特性：</p>
 <ul>
-<li>参数从目标（destination）到源（source）的方式</li>
-<li>64位常规类型字节码添加 -wide后缀</li>
-<li>根据字节码布局与选项不同，一些字节码添加了字节码后缀以消除歧义。这些后缀通过在字节码主名称后添加斜杠“／”来分割开。</li>
+<li>自反性：对应任何<strong>非空</strong>引用x, x.equals(x)返回true</li>
+<li>对称性：对应任何引用x和y,当且仅当y.equals(x)返回true, x.equals(y)才应该返回true</li>
+<li>传递性：对于任何引用x、y、和z，如果x.equals(y)返回true，y.equals(z)返回true， x.equals(z)也应该返回true</li>
+<li>一致性： 如果x和y引用的对象没有发生变化，返回调用x.equals(y)都一样返回同样的结果</li>
+<li>对应任何非空x, x.equals(null)应该返回false</li>
 </ul>
-<h6 id="空指令">空指令</h6><p>无实际操作，一般用于指令对齐</p>
-<h6 id="数据操作指令">数据操作指令</h6><p>move vA, vB<br>move/from16 vAA, VBBBB<br>move/16  VAAAA,VBBBB<br>move-wide VA,VB<br>move-object VA,VB<br>move-result VAA<br>move-result-wide VAA<br>move-result-object VAA<br>move-exception VAA</p>
-<h6 id="返回指令">返回指令</h6>
+<p>比如只用instanceof就会出现问题。Employee.equals(Manager)用instanceof可能会返回true,但是Manager.equals(Employee)会返回false. 不满足对称性。</p>
+<p>书中给出了一个完美的equals方法建议：</p>
+<ul>
+<li>显示参数命名为otherObject, 稍后需要将它转换成另一个叫做other的变量</li>
+<li>检测this与otherObject是否引用同一个对象.  (优化)</li>
+<li>检测otherObject是否为null.  (优化)</li>
+<li>比较this与otherObject是否同属于一个类<br>  <strong>如果equals语义在每个子类中有所改变，使用getClass检测</strong><br>  <strong>如果所有子类都拥有统一的语义，就使用instanceof检测</strong></li>
+<li>将otherObject转换成相应的类类型变量</li>
+<li>最后对所有需要比较的域进行比较，基本域用==,对象域用equals.</li>
+</ul>
+<p><strong>Note</strong>: 如果在子类中重新定义了equals， 就要在其中包含调用super.equals(other)</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wjk20120522.github.io/2014/05/10/Dalvik指令集/" data-id="cibf455cp000e17oiuff9w8e9" class="article-share-link">Share</a>
+      <a data-url="http://wjk20120522.github.io/2014/02/11/Java中equals测试/" data-id="cibf455ck000a17oiqkx97cge" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-Security/">Android Security</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-对Fragment的一点理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/13/对Fragment的一点理解/" class="article-date">
+  <time datetime="2014-01-13T08:23:04.000Z" itemprop="datePublished">2014-01-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/01/13/对Fragment的一点理解/">对Fragment的一点理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="developer.android.com/training/basics/fragments">官方文档</a>上的内容：</p>
+<ul>
+<li>创建一个Fragment</li>
+<li>创建灵活UI</li>
+<li>与其它Fragment交互</li>
+</ul>
+<h6 id="创建一个Fragment">创建一个Fragment</h6><p>[Note]若应用需要运行在3.0版本一下，需要导入Support Library.<br>主要创建步骤：<br>(1)创建一个继承Fragment的类，就像是Activity.<br>(2)在XML中将Fragment添加在activity.<br>(3)在activity中加载这个布局.<br>这里,我们需要了解下Fragment的生命周期。如下图所示：<br><img src="http://7u2ido.com1.z0.glb.clouddn.com/Fragment_LifeCycle.png" alt="Fragment_LifeCycle"></p>
+<h6 id="创建灵活UI">创建灵活UI</h6><p>如果APP需要指出不同屏幕之间的适配，则需要重用fragment来优化用户体验。如在手机设备上一次只有一个fragment而Tablet上则可以放两个fragment.如下图：<br><img src="http://7u2ido.com1.z0.glb.clouddn.com/fragments-screen-mock.png" alt="Tablet VS phone"><br>FragmentManager提供了Activity运行时的Fragment的添加、删除、替换等操作。即通过FragmentManager对象获得一个FragmentTransaction对象，通过该对象的API进行各种操作。<br>值得注意的一点是：如果想在按Back按键后返回上一个碎片，则需要在commit之前调用addToBackStack()。</p>
+<h6 id="与其他Fragment交互">与其他Fragment交互</h6><p>两个Fragment之间不应直接通信，最好用他们所在的Activity作为沟通的桥梁。<br>Fragment与Activity通信：</p>
+<ul>
+<li>FragmentManager可以通过findFragmentById()获取对应Fragment</li>
+<li>Fragment可以通过调用getActivity()得知相关联的Activity</li>
+</ul>
+<h6 id="参考文献">参考文献</h6><ul>
+<li><a href="http://developer.android.com/training/basics/fragments/" target="_blank" rel="external">http://developer.android.com/training/basics/fragments/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wjk20120522.github.io/2014/01/13/对Fragment的一点理解/" data-id="cibf455ce000417oi75482kuj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android中的单位和尺寸" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/12/29/Android中的单位和尺寸/" class="article-date">
+  <time datetime="2013-12-29T06:22:32.000Z" itemprop="datePublished">2013-12-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/12/29/Android中的单位和尺寸/">Android中的单位和尺寸</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于Android手机有着各种尺寸和屏幕分辩率，在开发UI界面的时候，px和pt尺寸单位已经不能满足需要了。为了能够让界面在不同的手机上观感保持一致，Android引入了一套新的单位dp和sp.</p>
+<hr>
+<h3 id="px和pt">px和pt</h3><h4 id="px">px</h4><p>即pixel，像素的意思。屏幕上可以显示的最小元素单元。比如相同大小的两个手机，屏幕分辨率不同，则用px会使UI在两个手机上显示不同大小。</p>
+<h4 id="pt">pt</h4><p>即Point，磅数的意思。72 pt = 1 inch。一般作为字体的单位使用。</p>
+<p>在PC上，这两个单位可以很好的使用。但是，手机由于存在各种<strong>分辩率</strong>的问题，会导致UI显示极度不一致。</p>
+<hr>
+<h3 id="dp和sp">dp和sp</h3><h4 id="dp">dp</h4><p>即Density-independent Pixels，密度无关像素的意思。Android<a href="http://developer.android.com/guide/topics/resources/more-resources.html#Dimension" target="_blank" rel="external">开发者文档中</a>规定，这些单位与160dp相关。比如160dp的屏幕，1dp = 1px. 而320dp的屏幕，1dp = 2px。</p>
+<h4 id="sp">sp</h4><p>即Scale-independent Pixels，可伸缩像素的意思。与sp类似，不过主要是针对字体的大小。</p>
+<h3 id="使用法则">使用法则</h3><p>sp用作指定<strong>文字</strong>大小的单位，其余用dp.</p>
+<hr>
+<p>参考文献</p>
+<ol>
+<li><a href="http://developer.android.com/guide/topics/resources/more-resources.html#Dimension" target="_blank" rel="external">http://developer.android.com/guide/topics/resources/more-resources.html#Dimension</a></li>
+<li><a href="http://stackoverflow.com/questions/2025282/difference-between-px-dp-dip-and-sp-in-android" target="_blank" rel="external">http://stackoverflow.com/questions/2025282/difference-between-px-dp-dip-and-sp-in-android</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wjk20120522.github.io/2013/12/29/Android中的单位和尺寸/" data-id="cibf455d1000j17oir5jvu8rl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/12/19/hello-world/" class="article-date">
+  <time datetime="2013-12-19T01:12:52.000Z" itemprop="datePublished">2013-12-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/12/19/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to My world! This is supported by <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. The baic instructions are follows:</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wjk20120522.github.io/2013/12/19/hello-world/" data-id="cibf455ch000717oibg1ili0l" class="article-share-link">Share</a>
+      
+      
     </footer>
   </div>
   
@@ -166,7 +271,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
     </nav>
   
 </section>
