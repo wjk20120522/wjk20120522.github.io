@@ -17,3 +17,7 @@ tags: Android
 * Content Provider主要是提供应用程序间数据的共享
 * BroadcastReceiver接受来自系统的指定类型的广播，从而进行相应的处理
 
+###### Activity
+1. 生命周期： onCreate-> onStart-> onResume-> onPause-> onStop-> onDestroy
+2. 
+
