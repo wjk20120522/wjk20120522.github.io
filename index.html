@@ -270,7 +270,9 @@
 </ul>
 <h6 id="Activity">Activity</h6><ol>
 <li>生命周期： onCreate-&gt; onStart-&gt; onResume-&gt; onPause-&gt; onStop-&gt; onDestroy. Fragment也有类似的生命周期。</li>
-<li></li>
+<li><p>四种启动模式：<br> standard: 默认模式，在这个模式下默认创建一个新的实例。<br> singleTop: 可以有多个实例，但是不允许有两个相邻相同Activity。创建与栈顶相同Activity时不会创建新的实例，而会调用其onNewIntent方法<br> singleTask: 只有一个实例。在同一个应用程序中启动时若Activity不存在，则会在当前task创建一个新的实例，若存在，则会把task中其上activity删除掉并调用onNewIntent方法；若在别的应用程序中启动它，则会创建一个task，并在该task中启动这个Activity，并且这个Activity允许别的Activity与其共在一个task中。</p>
+<p> singleInstance: 只有一个实例，并且这个实例独自运行在一个task中，不允许有别的Activity存在。</p>
+</li>
 </ol>
 
       
