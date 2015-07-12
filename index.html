@@ -63,7 +63,7 @@
     <article id="post-深入理解EventBus" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/07/12/深入理解EventBus/" class="article-date">
-  <time datetime="2015-07-12T01:36:21.000Z" itemprop="datePublished">2015-07-12</time>
+  <time datetime="2015-07-12T02:00:56.000Z" itemprop="datePublished">2015-07-12</time>
 </a>
     
   </div>
@@ -75,8 +75,16 @@
         <p>由于目前的项目中用到了EventBus，想深入了解下，在网上查找了相关的资料，结合了自己的一点理解，整理了一下。如有错误，还请指出。</p>
 <h4 id="概述">概述</h4><ol>
 <li>EventBus的项目主页<a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">https://github.com/greenrobot/EventBus</a></li>
-<li>EventBus是一款针对Android优化的发布/订阅事件总线。主要功能是替代Intent，Handler，Broadcast在Fragment，Activity，Service，线程之间传递消息。优点是开销小，代码更优雅，发送者和接受者<strong>解耦</strong>。</li>
+<li>EventBus是一款针对Android优化的发布/订阅事件总线，采用了观察者模式。主要功能是替代Intent，Handler，Broadcast在Fragment，Activity，Service，线程之间传递消息。优点是开销小，代码更优雅，发送者和接受者<strong>解耦</strong>。</li>
 <li>整体的<a href="https://github.com/greenrobot/EventBus/blob/master/EventBus-Publish-Subscribe.png" target="_blank" rel="external">框架图</a></li>
+</ol>
+<h4 id="如何使用">如何使用</h4><ol>
+<li><p>Android Studio中添加依赖，在自己的Module下的build.gradle文件中添加依赖：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span> <span class="string">'de.greenrobot:eventbus:2.4.0'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义基本的Events，观察者可以注册某些Event，当发布者发布了对应的Event时，系统变会通知注册了这个Event的观察者，以便执行相应的动作。Event没有特别的继承要求，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageEvent</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">final</span> String message;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MessageEvent</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.message = message;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 
       
