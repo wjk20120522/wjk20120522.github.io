@@ -17,7 +17,7 @@ EventBus是一款针对Android优化的发布/订阅事件总线，采用了观�
 概述
 EventBus的项目主页https://github.com/greenrobot/EventBus
 EventBus是一款针对Android优化的发布/订阅事件总线，采用了观察者模式。主要功能是替代Intent，Handler，Broadcast在Frag">
-<meta property="og:updated_time" content="2015-07-12T02:16:30.000Z">
+<meta property="og:updated_time" content="2015-07-12T02:32:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解EventBus">
 <meta name="twitter:description" content="由于目前的项目中用到了EventBus，想深入了解下，在网上查找了相关的资料，结合了自己的一点理解，整理了一下。如有错误，还请指出。
@@ -96,6 +96,7 @@ EventBus是一款针对Android优化的发布/订阅事件总线，采用了观�
 <li>EventBus是一款针对Android优化的发布/订阅事件总线，采用了观察者模式。主要功能是替代Intent，Handler，Broadcast在Fragment，Activity，Service，线程之间传递消息。优点是开销小，代码更优雅，发送者和接受者<strong>解耦</strong>。</li>
 <li>整体的<a href="https://github.com/greenrobot/EventBus/blob/master/EventBus-Publish-Subscribe.png" target="_blank" rel="external">框架图</a></li>
 </ol>
+<hr>
 <h4 id="如何使用">如何使用</h4><ol>
 <li><p>Android Studio中添加依赖，在自己的Module下的build.gradle文件中添加依赖：</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span> <span class="string">'de.greenrobot:eventbus:2.4.0'</span></span><br></pre></td></tr></table></figure>
@@ -110,7 +111,15 @@ EventBus是一款针对Android优化的发布/订阅事件总线，采用了观�
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> MessageEvent(<span class="string">"hello"</span>));</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-
+<p>大致的使用方法就是这样，但是处理事件究竟在哪个线程执行呢？UI线程还是新的子线程？EventBus提供了四种不同的处理函数，这四个函数指定了该函数执行时需要在的线程：</p>
+<ul>
+<li>onEvent. 事件在哪个线程post出来的，onEvent处理函数便会在这个线程中运行</li>
+<li>onEventMainThread. 不论是在哪个线程中post出Event，处理函数都会在UI线程中执行。</li>
+<li>onEventBackgroundThread. 如果事件是UI发布出来的，则在子线程中执行，如果事件在子线程中发布出来的，则直接在该子线程中执行</li>
+<li>onEventAsyncThread. 处理函数只在新创建的子线程中执行。</li>
+</ul>
+<hr>
+<h4 id="源码分析">源码分析</h4>
       
     </div>
     <footer class="article-footer">
