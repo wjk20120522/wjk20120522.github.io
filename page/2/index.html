@@ -60,6 +60,74 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-虚拟机类加载机制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/04/05/虚拟机类加载机制/" class="article-date">
+  <time datetime="2014-04-05T08:23:04.000Z" itemprop="datePublished">2014-04-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/05/虚拟机类加载机制/">虚拟机类加载机制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>类从被加载到虚拟机内存中开始到从内存中卸载，主要的生命周期有：加载、验证、准备、解析、初始化、使用和卸载这七个阶段。</p>
+<h5 id="加载时机">加载时机</h5><ul>
+<li>加载<br>  Java虚拟机没有进行强制约束，可由具体实现自己把握</li>
+<li>初始化<br>  Java虚拟机严格规定了有且只有五种情形必须立即对类进行初始化:<pre><code><span class="params">(<span class="number">1</span>)</span>遇到new,getstatic,putstatic,invokestatic这４条指令时，如果类没有进行初始化则进行初始化
+<span class="params">(<span class="number">2</span>)</span>使用reflect包进行反射调用时，如果类没有初始化则进行初始化
+<span class="params">(<span class="number">3</span>)</span>如果类初始化时发现父类还没有过初始化，则需要先触发父类初始化
+<span class="params">(<span class="number">4</span>)</span>虚拟机启动时，用户制定一个要执行的类，虚拟机先初始化这个主类
+<span class="params">(<span class="number">5</span>)</span>当使用JDK1.<span class="number">7</span>动态语言支持时，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic,REF_putStatic,REF_invokeStatic方法句柄，并且这个方法句柄所对应的类没有进行过初始化，则需要先触发其初始化。
+</code></pre>  这5种行为称为对一个类进行主动引用，其余称为被动引用。被动引用不会引发类的初始化。</li>
+</ul>
+<hr>
+<h5 id="加载过程">加载过程</h5><hr>
+<ul>
+<li>加载<br>加载主要完成下面３件事:<pre><code><span class="params">(<span class="number">1</span>)</span>通过类的全限定名来获取定义此类的二进制字节流
+<span class="params">(<span class="number">2</span>)</span>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构
+<span class="params">(<span class="number">3</span>)</span>在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口
+</code></pre></li>
+<li>验证<br>这一阶段的目的是确保Class文件的字节流中包含的信息符合虚拟机的要求,不会危害虚拟机的安全<pre><code><span class="comment">(1)</span>文件格式验证:<span class="number">0</span>xCAFEBABE，主次版本号是否在虚拟机处理范围内...
+<span class="comment">(2)</span>元数据验证:这个类是否有父类，这个类是否继承了不允许继承的类...
+<span class="comment">(3)</span>字节码验证：通过数据流和控制流分析，确定程序语义是合法的，符合逻辑的
+<span class="comment">(4)</span>符号引用验证
+</code></pre></li>
+<li>准备<br>为类变量分配内存并设置类变量初始值的阶段</li>
+<li>解析<br>虚拟机将常量池内符号引用替换为直接引用的过程<pre><code><span class="comment">(1)</span>类或接口的解析
+<span class="comment">(2)</span>字段解析
+<span class="comment">(3)</span>类方法解析
+<span class="comment">(4)</span>接口方法解析
+</code></pre></li>
+<li>初始化<br>前面类加载过程中，除了在加载阶段用户应用程序可以通过自定义类加载器参与之外，其余动作完全由虚拟机主导和控制。到了初始化阶段，才真正开始执行类中定义的Java程序代码</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wjk20120522.github.io/2014/04/05/虚拟机类加载机制/" data-id="cibzqmult0001yeoi3k9b6cut" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-HotSpot在Java堆中对象分配、布局和访问的过程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/" class="article-date">
@@ -296,54 +364,9 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/12/19/hello-world/" class="article-date">
-  <time datetime="2013-12-19T01:12:52.000Z" itemprop="datePublished">2013-12-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/12/19/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to My world! This is supported by <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. The baic instructions are follows:</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wjk20120522.github.io/2013/12/19/hello-world/" data-id="cibzqmumb0008yeoifxnqchgv" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -356,7 +379,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Security/">Android Security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Security/">Android Security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -365,7 +388,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -375,6 +398,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/07/13/Android开发中常用工具的使用/">Android开发中常用工具的使用</a>
+          </li>
         
           <li>
             <a href="/2015/07/12/深入理解EventBus/">深入理解EventBus</a>
@@ -390,10 +417,6 @@
         
           <li>
             <a href="/2014/04/26/Android开发基础知识总结/">Android开发基础知识总结</a>
-          </li>
-        
-          <li>
-            <a href="/2014/04/05/虚拟机类加载机制/">虚拟机类加载机制</a>
           </li>
         
       </ul>
