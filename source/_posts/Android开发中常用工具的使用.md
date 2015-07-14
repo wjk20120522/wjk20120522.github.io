@@ -18,4 +18,12 @@ git checkout
 由于我们使用了sourceTree图形工具来简便Git操作，好多命令都已经封装好了，只要知道基本的用法在GUI上操作也比较方便。
 #### maven, gradle
 
+
 #### android studio
+Android Studio是Google开发d基于IDEA的IDE，所以理所当然继承它的很多功能，比如代码补全等非常nice的feature。我自己常用的一些快捷键如下：
+```
+ctrl + N 			快速打开某个类
+shift 双击			快速打开某个文件
+ctrl ＋ Q			查看某个API的说明文档
+```
+对了，可以开启自动import功能。
