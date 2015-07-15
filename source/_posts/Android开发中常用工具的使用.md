@@ -27,3 +27,18 @@ shift 双击			快速打开某个文件
 ctrl ＋ Q			查看某个API的说明文档
 ```
 对了，可以开启自动import功能。
+提供Android Studio编译速度的几个小技巧：
+* 在项目根目录下的gradle.properties里面加入下面配置：
+```
+org.gradle.daemon=true
+org.gradle.parallel=true
+org.gradle.jvmargs=-Xmx1024m
+```
+其中jvmargs根据各自机器可以调整。
+* 打开增量编译。在项目主Module下的build.gradle中加入：
+```
+dexOptions {
+	incremental true
+}
+```
+
