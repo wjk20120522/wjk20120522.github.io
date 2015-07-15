@@ -86,7 +86,16 @@
 <h4 id="git以及sourceTree">git以及sourceTree</h4><p>git的操作基本以前也学过，基本可以参考<a href="http://www.bootcss.com/p/git-guide/" target="_blank" rel="external">git使用简易指南</a><br>以前在命令行下用的最多的几条命令就是：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> clone</span><br><span class="line"><span class="label">git</span> <span class="keyword">add </span>*</span><br><span class="line"><span class="label">git</span> commit -m <span class="string">"message"</span></span><br><span class="line"><span class="label">git</span> <span class="keyword">push </span></span><br><span class="line"><span class="label">git</span> checkout</span><br></pre></td></tr></table></figure></p>
 <p>我觉得要想了解Git的工作原理，我们需要知道工作区(Working dir)，缓存区(Index)和Head之间的联系与区别。<br>由于我们使用了sourceTree图形工具来简便Git操作，好多命令都已经封装好了，只要知道基本的用法在GUI上操作也比较方便。</p>
 <h4 id="maven,_gradle">maven, gradle</h4><h4 id="android_studio">android studio</h4><p>Android Studio是Google开发d基于IDEA的IDE，所以理所当然继承它的很多功能，比如代码补全等非常nice的feature。我自己常用的一些快捷键如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctrl + N 			快速打开某个类</span><br><span class="line"><span class="built_in">shift</span> 双击			快速打开某个文件</span><br><span class="line">ctrl ＋ Q			查看某个API的说明文档</span><br></pre></td></tr></table></figure></p>
-<p>对了，可以开启自动import功能。</p>
+<p>对了，可以开启自动import功能。<br>提供Android Studio编译速度的几个小技巧：</p>
+<ul>
+<li>在项目根目录下的gradle.properties里面加入下面配置：<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">org<span class="class">.gradle</span><span class="class">.daemon</span>=true</span><br><span class="line">org<span class="class">.gradle</span><span class="class">.parallel</span>=true</span><br><span class="line">org<span class="class">.gradle</span><span class="class">.jvmargs</span>=-Xmx1024m</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>其中jvmargs根据各自机器可以调整。</p>
+<ul>
+<li>打开增量编译。在项目主Module下的build.gradle中加入：<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">dexOptions</span> &#123;</span><br><span class="line">	<span class="title">incremental</span> <span class="built_in">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
