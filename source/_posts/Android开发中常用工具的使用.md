@@ -41,4 +41,24 @@ dexOptions {
 	incremental true
 }
 ```
+对于那些刚从Eclipse转到Android Studio的程序员来说，必须要弄清楚两个概念，Project和Module。
+(1)在Android Studio中，Project真实含义是工作空间，Module为一个具体的项目。
+(2)在Eclipse中，我们可以同时对多个Project进行编辑，这些Project在同一个workspace中；在AS中，我们可以同时对多个Module进行编辑，这些Module在同一个Project中。
+故Eclipse的Project相当于AS中的Module，Eclipse中的Workspace相当于AS中的Project。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
