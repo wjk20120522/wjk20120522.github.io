@@ -15,7 +15,7 @@ git以及sourceTreegit的操作基本以前也学过，基本可以参考git使�
 <meta property="og:description" content="本文主要总结下自己在实习期间使用的一些工具，具体在使用过程碰到的一些问题以及自己的解决办法。
 git以及sourceTreegit的操作基本以前也学过，基本可以参考git使用简易指南以前在命令行下用的最多的几条命令就是：12345git clonegit add *git commit -m &quot;message&quot;git push git checkout
 我觉得要想了解Git的工作原理，我们需要知道">
-<meta property="og:updated_time" content="2015-07-15T12:49:35.000Z">
+<meta property="og:updated_time" content="2015-07-16T15:10:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发中常用工具的使用">
 <meta name="twitter:description" content="本文主要总结下自己在实习期间使用的一些工具，具体在使用过程碰到的一些问题以及自己的解决办法。
@@ -101,6 +101,7 @@ git以及sourceTreegit的操作基本以前也学过，基本可以参考git使�
 <li>打开增量编译。在项目主Module下的build.gradle中加入：<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">dexOptions</span> &#123;</span><br><span class="line">	<span class="title">incremental</span> <span class="built_in">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<p>对于那些刚从Eclipse转到Android Studio的程序员来说，必须要弄清楚两个概念，Project和Module。<br>(1)在Android Studio中，Project真实含义是工作空间，Module为一个具体的项目。<br>(2)在Eclipse中，我们可以同时对多个Project进行编辑，这些Project在同一个workspace中；在AS中，我们可以同时对多个Module进行编辑，这些Module在同一个Project中。<br>故Eclipse的Project相当于AS中的Module，Eclipse中的Workspace相当于AS中的Project。</p>
 
       
     </div>
