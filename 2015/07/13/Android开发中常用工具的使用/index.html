@@ -15,7 +15,7 @@ git以及sourceTreegit的操作基本以前也学过，基本可以参考git使�
 <meta property="og:description" content="本文主要总结下自己在实习期间使用的一些工具，具体在使用过程碰到的一些问题以及自己的解决办法。
 git以及sourceTreegit的操作基本以前也学过，基本可以参考git使用简易指南以前在命令行下用的最多的几条命令就是：12345git clonegit add *git commit -m &quot;message&quot;git push git checkout
 我觉得要想了解Git的工作原理，我们需要知道">
-<meta property="og:updated_time" content="2015-07-19T08:08:02.000Z">
+<meta property="og:updated_time" content="2015-07-19T14:59:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发中常用工具的使用">
 <meta name="twitter:description" content="本文主要总结下自己在实习期间使用的一些工具，具体在使用过程碰到的一些问题以及自己的解决办法。
@@ -90,8 +90,15 @@ git以及sourceTreegit的操作基本以前也学过，基本可以参考git使�
         <p>本文主要总结下自己在实习期间使用的一些工具，具体在使用过程碰到的一些问题以及自己的解决办法。</p>
 <h4 id="git以及sourceTree">git以及sourceTree</h4><p>git的操作基本以前也学过，基本可以参考<a href="http://www.bootcss.com/p/git-guide/" target="_blank" rel="external">git使用简易指南</a><br>以前在命令行下用的最多的几条命令就是：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> clone</span><br><span class="line"><span class="label">git</span> <span class="keyword">add </span>*</span><br><span class="line"><span class="label">git</span> commit -m <span class="string">"message"</span></span><br><span class="line"><span class="label">git</span> <span class="keyword">push </span></span><br><span class="line"><span class="label">git</span> checkout</span><br></pre></td></tr></table></figure></p>
 <p>我觉得要想了解Git的工作原理，我们需要知道工作区(Working dir)，缓存区(Index)和Head之间的联系与区别。<br>由于我们使用了sourceTree图形工具来简便Git操作，好多命令都已经封装好了，只要知道基本的用法在GUI上操作也比较方便。</p>
-<h4 id="maven,_gradle">maven, gradle</h4><p>现在Android Studio采用了gradle脚本进行构建。但是，工作环境中仍然有使用maven进行远程打包。所以，便在空闲时间学习了相关的知识内容。</p>
-<h4 id="android_studio">android studio</h4><p>Android Studio是Google开发d基于IDEA的IDE，所以理所当然继承它的很多功能，比如代码补全等非常nice的feature。我自己常用的一些快捷键如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctrl + N 			快速打开某个类</span><br><span class="line"><span class="built_in">shift</span> 双击			快速打开某个文件</span><br><span class="line">ctrl ＋ Q			查看某个API的说明文档</span><br></pre></td></tr></table></figure></p>
+<h4 id="maven,_gradle">maven, gradle</h4><p>现在Android Studio采用了gradle脚本进行构建，Gradle结合了Ant和maven的优点。但是，工作环境中仍然有使用maven进行远程打包。所以，便在空闲时间学习了相关的知识内容。</p>
+<h4 id="android_studio">android studio</h4><ul>
+<li>Android Studio是Google开发d基于IDEA的IDE，所以理所当然继承它的很多功能，比如代码补全，超强但重构功能和超强的代码分析等非常nice的feature。它使用Gradle管理依赖项，方便第三方库的引用和升级。</li>
+<li><p>对于那些刚从Eclipse转到Android Studio的程序员来说，必须要弄清楚两个概念，Project和Module。<br>(1)在Android Studio中，Project真实含义是工作空间，Module为一个具体的项目。<br>(2)在Eclipse中，我们可以同时对多个Project进行编辑，这些Project在同一个workspace中；在AS中，我们可以同时对多个Module进行编辑，这些Module在同一个Project中。<br>故Eclipse的Project相当于AS中的Module，Eclipse中的Workspace相当于AS中的Project。</p>
+</li>
+<li><p>我自己常用的一些快捷键如下：(Windows)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctrl + N 			快速打开某个类 </span><br><span class="line"><span class="built_in">shift</span> 双击			快速打开某个文件</span><br><span class="line">ctrl ＋ Q			查看某个API的说明文档</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>对了，可以开启自动import功能。<br>提供Android Studio编译速度的几个小技巧：</p>
 <ul>
 <li>在项目根目录下的gradle.properties里面加入下面配置：<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">org<span class="class">.gradle</span><span class="class">.daemon</span>=true</span><br><span class="line">org<span class="class">.gradle</span><span class="class">.parallel</span>=true</span><br><span class="line">org<span class="class">.gradle</span><span class="class">.jvmargs</span>=-Xmx1024m</span><br></pre></td></tr></table></figure>
@@ -102,7 +109,7 @@ git以及sourceTreegit的操作基本以前也学过，基本可以参考git使�
 <li>打开增量编译。在项目主Module下的build.gradle中加入：<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">dexOptions</span> &#123;</span><br><span class="line">	<span class="title">incremental</span> <span class="built_in">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>对于那些刚从Eclipse转到Android Studio的程序员来说，必须要弄清楚两个概念，Project和Module。<br>(1)在Android Studio中，Project真实含义是工作空间，Module为一个具体的项目。<br>(2)在Eclipse中，我们可以同时对多个Project进行编辑，这些Project在同一个workspace中；在AS中，我们可以同时对多个Module进行编辑，这些Module在同一个Project中。<br>故Eclipse的Project相当于AS中的Module，Eclipse中的Workspace相当于AS中的Project。</p>
+<p>至此，</p>
 
       
     </div>
