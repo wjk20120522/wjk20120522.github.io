@@ -17,13 +17,19 @@ git checkout
 我觉得要想了解Git的工作原理，我们需要知道工作区(Working dir)，缓存区(Index)和Head之间的联系与区别。
 由于我们使用了sourceTree图形工具来简便Git操作，好多命令都已经封装好了，只要知道基本的用法在GUI上操作也比较方便。
 #### maven, gradle
-现在Android Studio采用了gradle脚本进行构建。但是，工作环境中仍然有使用maven进行远程打包。所以，便在空闲时间学习了相关的知识内容。
+现在Android Studio采用了gradle脚本进行构建，Gradle结合了Ant和maven的优点。但是，工作环境中仍然有使用maven进行远程打包。所以，便在空闲时间学习了相关的知识内容。
 
 
 #### android studio
-Android Studio是Google开发d基于IDEA的IDE，所以理所当然继承它的很多功能，比如代码补全等非常nice的feature。我自己常用的一些快捷键如下：
+* Android Studio是Google开发d基于IDEA的IDE，所以理所当然继承它的很多功能，比如代码补全，超强但重构功能和超强的代码分析等非常nice的feature。它使用Gradle管理依赖项，方便第三方库的引用和升级。
+* 对于那些刚从Eclipse转到Android Studio的程序员来说，必须要弄清楚两个概念，Project和Module。
+(1)在Android Studio中，Project真实含义是工作空间，Module为一个具体的项目。
+(2)在Eclipse中，我们可以同时对多个Project进行编辑，这些Project在同一个workspace中；在AS中，我们可以同时对多个Module进行编辑，这些Module在同一个Project中。
+故Eclipse的Project相当于AS中的Module，Eclipse中的Workspace相当于AS中的Project。
+
+* 我自己常用的一些快捷键如下：(Windows)
 ```
-ctrl + N 			快速打开某个类
+ctrl + N 			快速打开某个类 
 shift 双击			快速打开某个文件
 ctrl ＋ Q			查看某个API的说明文档
 ```
@@ -42,12 +48,8 @@ dexOptions {
 	incremental true
 }
 ```
-对于那些刚从Eclipse转到Android Studio的程序员来说，必须要弄清楚两个概念，Project和Module。
-(1)在Android Studio中，Project真实含义是工作空间，Module为一个具体的项目。
-(2)在Eclipse中，我们可以同时对多个Project进行编辑，这些Project在同一个workspace中；在AS中，我们可以同时对多个Module进行编辑，这些Module在同一个Project中。
-故Eclipse的Project相当于AS中的Module，Eclipse中的Workspace相当于AS中的Project。
 
-
+至此，
 
 
 
