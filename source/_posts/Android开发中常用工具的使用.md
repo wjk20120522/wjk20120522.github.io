@@ -19,6 +19,33 @@ git checkout
 #### maven, gradle
 现在Android Studio采用了gradle脚本进行构建，Gradle结合了Ant和maven的优点。但是，工作环境中仍然有使用maven进行远程打包。所以，便在空闲时间学习了相关的知识内容。
 
+maven是项目自动化构建与依赖管理工具
+
+###### maven的安装和配置
+具体的安装步骤就不细说了，可以参考[官方文档](https://maven.apache.org/install.html)。
+安装后的目录结构为：
+```
+bin	包含mvn运行的脚本，用来配置Java命令
+boot 只有一个plexus-classworlds-*.jar的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，maven使用该框架加载自己的类库。
+conf 包含重要的文件settings.xml.可以全局定制maven的行为。
+lib	包含maven运行时需要的Java类库。
+LICENSE.txt	maven使用的软件许可证 Apache Licence Version 2.0
+NOTICE.txt
+README.txt
+```
+###### maven使用入门
+就像Make的Makefile,Ant的build.xml一样，Maven项目的核心是pom.xml。POM(Project Object Model,项目对象模型)定义了项目的基本信息，用于描述项目如何构建，声明项目依赖等等。
+1. 编写POM
+POM文件中重要的三个元素: groupId, artifactId, version, 这三个元素定义了一个项目基本的坐标。
+* groupId定义项目属于哪个组，一般与所在组织或公司关联
+* 定义当前maven项目在组中唯一的ID
+* 项目版本，SNAPSHOT说明还处于开发中，是不稳定版本
+
+maven最主要的命令：mvn clean compile, mvn clean test, mvn clean package, mvn clean install.
+test之前是会先执行compile的，执行package之前是会先执行test的，而类似地，install之前会执行package。
+
+###### 坐标和依赖
+maven坐标为各种构建引入了秩序，任何一个构建都必须明确定义自己的坐标，而一组maven坐标是通过一些元素定义的，如groupId, artifactId, version, packaging, classifier. 
 
 #### android studio
 * Android Studio是Google开发d基于IDEA的IDE，所以理所当然继承它的很多功能，比如代码补全，超强但重构功能和超强的代码分析等非常nice的feature。它使用Gradle管理依赖项，方便第三方库的引用和升级。
@@ -48,9 +75,6 @@ dexOptions {
 	incremental true
 }
 ```
-
-至此，
-
 
 
 

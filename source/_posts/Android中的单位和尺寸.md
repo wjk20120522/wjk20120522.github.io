@@ -18,9 +18,19 @@ tags: Android
 -------------------
 ### dp和sp
 #### dp
-即Density-independent Pixels，密度无关像素的意思。Android[开发者文档中](http://developer.android.com/guide/topics/resources/more-resources.html#Dimension)规定，这些单位与160dp相关。比如160dp的屏幕，1dp = 1px. 而320dp的屏幕，1dp = 2px。
+即Density-independent Pixels，密度无关像素的意思。Android[开发者文档中](http://developer.android.com/guide/topics/resources/more-resources.html#Dimension)规定，这些单位与160dp相关。比如160px的屏幕，1dp = 1px. 而320px的屏幕，1dp = 2px。
+Android应用一般提供了几个通用目录如drawable-ldpi, drawable-mdpi, drawable-hdpi等供存放不同分辨率的图片。
+一般有如下的性质：
+ldpi 	120dp 	
+mdpi 	160dp
+hdpi 	240dp
+xhdpi	320dp
+xxhdpi 	480dp
+xxxhdpi 640dp
+
+
 #### sp
-即Scale-independent Pixels，可伸缩像素的意思。与sp类似，不过主要是针对字体的大小。
+即Scale-independent Pixels，缩放无关的像素的意思。与sp类似，不过主要是针对字体的大小。
 
 ### 使用法则
 sp用作指定**文字**大小的单位，其余用dp.
