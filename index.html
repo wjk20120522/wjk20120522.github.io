@@ -108,7 +108,7 @@
 <li>消除多模块依赖配置重复<br>比如A，B模块都依赖了log4j,则需要在A，B的pom里面引入依赖如：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">artifactid</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">artifactid</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">version</span>&gt;</span>4.8.2<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>A,B在各自模块引入log4j依赖，可能会出现版本不一致等问题。maven提供了解决办法，使用继承机制以及dependencyManagement元素就能解决这个问题。<strong>dependencyManagement只会影响现有依赖的配置，但不会引入依赖</strong>。</p>
+<p>A,B在各自模块引入log4j依赖，可能会出现版本不一致等问题。maven提供了解决办法，使用继承机制以及dependencyManagement元素就能解决这个问题。<strong>dependencyManagement只会影响现有依赖的配置，但不会引入依赖</strong>。这样子模块可以按需引入依赖。</p>
 
       
     </div>
