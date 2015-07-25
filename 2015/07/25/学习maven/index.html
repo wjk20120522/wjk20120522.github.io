@@ -3,38 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>对Fragment的一点理解 | Learn By Doing</title>
+  <title>学习maven | Learn By Doing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="官方文档上的内容：
-
-创建一个Fragment
-创建灵活UI
-与其它Fragment交互
-
-创建一个Fragment[Note]若应用需要运行在3.0版本一下，需要导入Support Library.主要创建步骤：(1)创建一个继承Fragment的类，就像是Activity.(2)在XML中将Fragment添加在activity.(3)在activity中加载这个布局.这里,我们需要了解下Fr">
+  <meta name="description" content="maven是项目自动化构建与依赖管理工具
+maven的安装和配置具体的安装步骤就不细说了，可以参考官方文档。安装后的目录结构为：1234567bin	包含mvn运行的脚本，用来配置Java命令boot 只有一个plexus-classworlds-*.jar的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，maven使用该框架加载自己的类库。conf 包含重要的文件settings.xml">
 <meta property="og:type" content="article">
-<meta property="og:title" content="对Fragment的一点理解">
-<meta property="og:url" content="http://wjk20120522.github.io/2014/01/13/对Fragment的一点理解/index.html">
+<meta property="og:title" content="学习maven">
+<meta property="og:url" content="http://wjk20120522.github.io/2015/07/25/学习maven/index.html">
 <meta property="og:site_name" content="Learn By Doing">
-<meta property="og:description" content="官方文档上的内容：
-
-创建一个Fragment
-创建灵活UI
-与其它Fragment交互
-
-创建一个Fragment[Note]若应用需要运行在3.0版本一下，需要导入Support Library.主要创建步骤：(1)创建一个继承Fragment的类，就像是Activity.(2)在XML中将Fragment添加在activity.(3)在activity中加载这个布局.这里,我们需要了解下Fr">
-<meta property="og:image" content="http://7u2ido.com1.z0.glb.clouddn.com/Fragment_LifeCycle.png">
-<meta property="og:image" content="http://7u2ido.com1.z0.glb.clouddn.com/fragments-screen-mock.png">
-<meta property="og:updated_time" content="2015-04-04T07:06:10.000Z">
+<meta property="og:description" content="maven是项目自动化构建与依赖管理工具
+maven的安装和配置具体的安装步骤就不细说了，可以参考官方文档。安装后的目录结构为：1234567bin	包含mvn运行的脚本，用来配置Java命令boot 只有一个plexus-classworlds-*.jar的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，maven使用该框架加载自己的类库。conf 包含重要的文件settings.xml">
+<meta property="og:updated_time" content="2015-07-25T05:29:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对Fragment的一点理解">
-<meta name="twitter:description" content="官方文档上的内容：
-
-创建一个Fragment
-创建灵活UI
-与其它Fragment交互
-
-创建一个Fragment[Note]若应用需要运行在3.0版本一下，需要导入Support Library.主要创建步骤：(1)创建一个继承Fragment的类，就像是Activity.(2)在XML中将Fragment添加在activity.(3)在activity中加载这个布局.这里,我们需要了解下Fr">
+<meta name="twitter:title" content="学习maven">
+<meta name="twitter:description" content="maven是项目自动化构建与依赖管理工具
+maven的安装和配置具体的安装步骤就不细说了，可以参考官方文档。安装后的目录结构为：1234567bin	包含mvn运行的脚本，用来配置Java命令boot 只有一个plexus-classworlds-*.jar的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，maven使用该框架加载自己的类库。conf 包含重要的文件settings.xml">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -79,10 +62,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-对Fragment的一点理解" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-学习maven" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/01/13/对Fragment的一点理解/" class="article-date">
-  <time datetime="2014-01-13T08:23:04.000Z" itemprop="datePublished">2014-01-13</time>
+    <a href="/2015/07/25/学习maven/" class="article-date">
+  <time datetime="2015-07-25T05:26:00.000Z" itemprop="datePublished">2015-07-25</time>
 </a>
     
   </div>
@@ -93,7 +76,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      对Fragment的一点理解
+      学习maven
     </h1>
   
 
@@ -101,27 +84,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="developer.android.com/training/basics/fragments">官方文档</a>上的内容：</p>
+        <p>maven是项目自动化构建与依赖管理工具</p>
+<h4 id="maven的安装和配置">maven的安装和配置</h4><p>具体的安装步骤就不细说了，可以参考<a href="https://maven.apache.org/install.html" target="_blank" rel="external">官方文档</a>。<br>安装后的目录结构为：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">bin</span>	包含<span class="tag">mvn</span>运行的脚本，用来配置<span class="tag">Java</span>命令</span><br><span class="line"><span class="tag">boot</span> 只有一个<span class="tag">plexus-classworlds-</span>*<span class="class">.jar</span>的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，<span class="tag">maven</span>使用该框架加载自己的类库。</span><br><span class="line"><span class="tag">conf</span> 包含重要的文件<span class="tag">settings</span><span class="class">.xml</span>.可以全局定制<span class="tag">maven</span>的行为。</span><br><span class="line"><span class="tag">lib</span>	包含<span class="tag">maven</span>运行时需要的<span class="tag">Java</span>类库。</span><br><span class="line"><span class="tag">LICENSE</span><span class="class">.txt</span>	<span class="tag">maven</span>使用的软件许可证 <span class="tag">Apache</span> <span class="tag">Licence</span> <span class="tag">Version</span> 2<span class="class">.0</span></span><br><span class="line"><span class="tag">NOTICE</span><span class="class">.txt</span></span><br><span class="line"><span class="tag">README</span><span class="class">.txt</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="maven使用入门">maven使用入门</h4><p>就像Make的Makefile,Ant的build.xml一样，Maven项目的核心是pom.xml。POM(Project Object Model,项目对象模型)定义了项目的基本信息，用于描述项目如何构建，声明项目依赖等等。</p>
+<ol>
+<li>编写POM<br>POM文件中重要的三个元素: groupId, artifactId, version, 这三个元素定义了一个项目基本的坐标。</li>
+</ol>
 <ul>
-<li>创建一个Fragment</li>
-<li>创建灵活UI</li>
-<li>与其它Fragment交互</li>
+<li>groupId定义项目属于哪个组，一般与所在组织或公司关联</li>
+<li>定义当前maven项目在组中唯一的ID</li>
+<li>项目版本，SNAPSHOT说明还处于开发中，是不稳定版本</li>
 </ul>
-<h6 id="创建一个Fragment">创建一个Fragment</h6><p>[Note]若应用需要运行在3.0版本一下，需要导入Support Library.<br>主要创建步骤：<br>(1)创建一个继承Fragment的类，就像是Activity.<br>(2)在XML中将Fragment添加在activity.<br>(3)在activity中加载这个布局.<br>这里,我们需要了解下Fragment的生命周期。如下图所示：<br><img src="http://7u2ido.com1.z0.glb.clouddn.com/Fragment_LifeCycle.png" alt="Fragment_LifeCycle"></p>
-<h6 id="创建灵活UI">创建灵活UI</h6><p>如果APP需要指出不同屏幕之间的适配，则需要重用fragment来优化用户体验。如在手机设备上一次只有一个fragment而Tablet上则可以放两个fragment.如下图：<br><img src="http://7u2ido.com1.z0.glb.clouddn.com/fragments-screen-mock.png" alt="Tablet VS phone"><br>FragmentManager提供了Activity运行时的Fragment的添加、删除、替换等操作。即通过FragmentManager对象获得一个FragmentTransaction对象，通过该对象的API进行各种操作。<br>值得注意的一点是：如果想在按Back按键后返回上一个碎片，则需要在commit之前调用addToBackStack()。</p>
-<h6 id="与其他Fragment交互">与其他Fragment交互</h6><p>两个Fragment之间不应直接通信，最好用他们所在的Activity作为沟通的桥梁。<br>Fragment与Activity通信：</p>
-<ul>
-<li>FragmentManager可以通过findFragmentById()获取对应Fragment</li>
-<li>Fragment可以通过调用getActivity()得知相关联的Activity</li>
-</ul>
-<h6 id="参考文献">参考文献</h6><ul>
-<li><a href="http://developer.android.com/training/basics/fragments/" target="_blank" rel="external">http://developer.android.com/training/basics/fragments/</a></li>
-</ul>
+<p>maven最主要的命令：mvn clean compile, mvn clean test, mvn clean package, mvn clean install.<br>test之前是会先执行compile的，执行package之前是会先执行test的，而类似地，install之前会执行package。</p>
+<h4 id="坐标和依赖">坐标和依赖</h4><p>maven坐标为各种构建引入了秩序，任何一个构建都必须明确定义自己的坐标，而一组maven坐标是通过一些元素定义的，如groupId, artifactId, version, packaging, classifier. </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wjk20120522.github.io/2014/01/13/对Fragment的一点理解/" data-id="cibzqmum80005yeoiv4p3h31y" class="article-share-link">Share</a>
+      <a data-url="http://wjk20120522.github.io/2015/07/25/学习maven/" data-id="cicima1iz000099oi62plrhfb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -132,19 +112,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/02/11/Java中equals测试/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Java中equals测试
-        
-      </div>
-    </a>
   
-  
-    <a href="/2013/12/29/Android屏幕适配/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/07/13/Android开发中常用工具的使用/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Android屏幕适配</div>
+      <div class="article-nav-title">Android开发中常用工具的使用</div>
     </a>
   
 </nav>
