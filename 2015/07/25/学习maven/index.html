@@ -6,18 +6,18 @@
   <title>学习maven | Learn By Doing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="maven是项目自动化构建与依赖管理工具
-maven的安装和配置具体的安装步骤就不细说了，可以参考官方文档。安装后的目录结构为：1234567bin	包含mvn运行的脚本，用来配置Java命令boot 只有一个plexus-classworlds-*.jar的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，maven使用该框架加载自己的类库。conf 包含重要的文件settings.xml">
+maven的安装和配置具体的安装步骤就不细说了，可以参考官方文档。安装后的目录结构为：1234567bin		包含mvn运行的脚本，用来配置Java命令boot 	只有一个plexus-classworlds-*.jar的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，maven使用该框架加载自己的类库。conf 	包含重要的文件settings.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习maven">
 <meta property="og:url" content="http://wjk20120522.github.io/2015/07/25/学习maven/index.html">
 <meta property="og:site_name" content="Learn By Doing">
 <meta property="og:description" content="maven是项目自动化构建与依赖管理工具
-maven的安装和配置具体的安装步骤就不细说了，可以参考官方文档。安装后的目录结构为：1234567bin	包含mvn运行的脚本，用来配置Java命令boot 只有一个plexus-classworlds-*.jar的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，maven使用该框架加载自己的类库。conf 包含重要的文件settings.xml">
-<meta property="og:updated_time" content="2015-07-25T05:29:06.000Z">
+maven的安装和配置具体的安装步骤就不细说了，可以参考官方文档。安装后的目录结构为：1234567bin		包含mvn运行的脚本，用来配置Java命令boot 	只有一个plexus-classworlds-*.jar的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，maven使用该框架加载自己的类库。conf 	包含重要的文件settings.">
+<meta property="og:updated_time" content="2015-07-25T05:34:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习maven">
 <meta name="twitter:description" content="maven是项目自动化构建与依赖管理工具
-maven的安装和配置具体的安装步骤就不细说了，可以参考官方文档。安装后的目录结构为：1234567bin	包含mvn运行的脚本，用来配置Java命令boot 只有一个plexus-classworlds-*.jar的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，maven使用该框架加载自己的类库。conf 包含重要的文件settings.xml">
+maven的安装和配置具体的安装步骤就不细说了，可以参考官方文档。安装后的目录结构为：1234567bin		包含mvn运行的脚本，用来配置Java命令boot 	只有一个plexus-classworlds-*.jar的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，maven使用该框架加载自己的类库。conf 	包含重要的文件settings.">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -85,7 +85,7 @@ maven的安装和配置具体的安装步骤就不细说了，可以参考官方
     <div class="article-entry" itemprop="articleBody">
       
         <p>maven是项目自动化构建与依赖管理工具</p>
-<h4 id="maven的安装和配置">maven的安装和配置</h4><p>具体的安装步骤就不细说了，可以参考<a href="https://maven.apache.org/install.html" target="_blank" rel="external">官方文档</a>。<br>安装后的目录结构为：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">bin</span>	包含<span class="tag">mvn</span>运行的脚本，用来配置<span class="tag">Java</span>命令</span><br><span class="line"><span class="tag">boot</span> 只有一个<span class="tag">plexus-classworlds-</span>*<span class="class">.jar</span>的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，<span class="tag">maven</span>使用该框架加载自己的类库。</span><br><span class="line"><span class="tag">conf</span> 包含重要的文件<span class="tag">settings</span><span class="class">.xml</span>.可以全局定制<span class="tag">maven</span>的行为。</span><br><span class="line"><span class="tag">lib</span>	包含<span class="tag">maven</span>运行时需要的<span class="tag">Java</span>类库。</span><br><span class="line"><span class="tag">LICENSE</span><span class="class">.txt</span>	<span class="tag">maven</span>使用的软件许可证 <span class="tag">Apache</span> <span class="tag">Licence</span> <span class="tag">Version</span> 2<span class="class">.0</span></span><br><span class="line"><span class="tag">NOTICE</span><span class="class">.txt</span></span><br><span class="line"><span class="tag">README</span><span class="class">.txt</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="maven的安装和配置">maven的安装和配置</h4><p>具体的安装步骤就不细说了，可以参考<a href="https://maven.apache.org/install.html" target="_blank" rel="external">官方文档</a>。<br>安装后的目录结构为：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">bin</span>		包含<span class="tag">mvn</span>运行的脚本，用来配置<span class="tag">Java</span>命令</span><br><span class="line"><span class="tag">boot</span> 	只有一个<span class="tag">plexus-classworlds-</span>*<span class="class">.jar</span>的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，<span class="tag">maven</span>使用该框架加载自己的类库。</span><br><span class="line"><span class="tag">conf</span> 	包含重要的文件<span class="tag">settings</span><span class="class">.xml</span>.可以全局定制<span class="tag">maven</span>的行为。</span><br><span class="line"><span class="tag">lib</span>		包含<span class="tag">maven</span>运行时需要的<span class="tag">Java</span>类库。</span><br><span class="line"><span class="tag">LICENSE</span><span class="class">.txt</span>		<span class="tag">maven</span>使用的软件许可证 <span class="tag">Apache</span> <span class="tag">Licence</span> <span class="tag">Version</span> 2<span class="class">.0</span></span><br><span class="line"><span class="tag">NOTICE</span><span class="class">.txt</span></span><br><span class="line"><span class="tag">README</span><span class="class">.txt</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="maven使用入门">maven使用入门</h4><p>就像Make的Makefile,Ant的build.xml一样，Maven项目的核心是pom.xml。POM(Project Object Model,项目对象模型)定义了项目的基本信息，用于描述项目如何构建，声明项目依赖等等。</p>
 <ol>
 <li>编写POM<br>POM文件中重要的三个元素: groupId, artifactId, version, 这三个元素定义了一个项目基本的坐标。</li>
