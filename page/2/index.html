@@ -311,9 +311,9 @@
 
 
   
-    <article id="post-Android中的单位和尺寸" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android屏幕适配" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2013/12/29/Android中的单位和尺寸/" class="article-date">
+    <a href="/2013/12/29/Android屏幕适配/" class="article-date">
   <time datetime="2013-12-29T06:22:32.000Z" itemprop="datePublished">2013-12-29</time>
 </a>
     
@@ -325,7 +325,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2013/12/29/Android中的单位和尺寸/">Android中的单位和尺寸</a>
+      <a class="article-title" href="/2013/12/29/Android屏幕适配/">Android屏幕适配</a>
     </h1>
   
 
@@ -333,26 +333,78 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>由于Android手机有着各种尺寸和屏幕分辩率，在开发UI界面的时候，px和pt尺寸单位已经不能满足需要了。为了能够让界面在不同的手机上观感保持一致，Android引入了一套新的单位dp和sp.</p>
+        <h4 id="Android屏幕适配出现原因">Android屏幕适配出现原因</h4><p>支持Android的设备尺寸大小不同，屏幕尺寸大小也不尽相同，即存在屏幕的碎片化。<br>目前主流的Android设备的屏幕分辨是1280*720, 800*480, 854*480, 1920*1080, 960*540, 1184*720, 480*320.具体数据来自<a href="http://www.umindex.com/devices/android_resolutions" target="_blank" rel="external">友盟指数</a>。我们尽量适配这几种分辨率，就可以在大部分的手机上正常运行了。</p>
+<h4 id="相关概念">相关概念</h4><p>屏幕尺寸：屏幕对角线长度，1英寸=2.54厘米。比如小米4屏幕尺寸为5英寸。<br>屏幕分辨率：横纵方向上的像素点数，单位是px。1px为1个像素点，如小米4的屏幕分辨率为1920*1080.<br>屏幕像素密度：每英寸上的像素点数，单位是dpi.即”dot per inch”. 我之前一直把它与dip混淆掉==</p>
+<h5 id="px,_dp,_dip,_dpi,_sp">px, dp, dip, dpi, sp</h5><ul>
+<li><p>px像素的意思。</p>
+</li>
+<li><p>dip和dp是一个意思，都是Density Independent Pixels的缩写，即密度无关像素，上面我们说过，dpi是屏幕像素密度，假如一英寸里面有160个像素，这个屏幕的像素密度就是160dpi，那么在这种情况下，dp和px如何换算呢？在Android中，规定以160dpi为基准，1dip=1px，如果密度是320dpi，则1dip=2px，以此类推。</p>
+</li>
+<li><p>sp，即scale-independent pixels，与dp类似，但是可以根据文字大小首选项进行放缩，是设置字体大小的御用单位。</p>
+</li>
+</ul>
+<h5 id="mdpi,_hdpi,_xdpi,_xxdpi">mdpi, hdpi, xdpi, xxdpi</h5><p>mdpi,hdpi,xdpi,xxdpi用来修饰Android中的drawable文件夹及values文件夹，用来区分不同像素密度下的图片和dimen值。<br>那么如何区分呢？Google官方指定按照下列标准进行区分：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th style="text-align:right">像素密度范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mdpi</td>
+<td style="text-align:right">120dpi~160dpi</td>
+</tr>
+<tr>
+<td>hdpi</td>
+<td style="text-align:right">160dpi~240dpi</td>
+</tr>
+<tr>
+<td>xhdpi</td>
+<td style="text-align:right">240dpi~320dpi</td>
+</tr>
+<tr>
+<td>xxhdpi</td>
+<td style="text-align:right">320dpi~480dpi</td>
+</tr>
+<tr>
+<td>xxxhdpi</td>
+<td style="text-align:right">480dpi~640dpi</td>
+</tr>
+</tbody>
+</table>
+<h4 id="屏幕适配解决方案">屏幕适配解决方案</h4><ol>
+<li>使用wrap_content, match_parent, weight<br>如果使用”wrap_content”和”match_parent”尺寸值而不是硬编码的尺寸，视图就会相应地仅使用自身所需的空间或展开以填满可用空间。此方法可让布局正确适应各种屏幕尺寸和屏幕方向。</li>
+<li>使用相对布局，禁用绝对布局</li>
+<li>使用限定符<br> (1)尺寸限定符。res/layout/main.xml和res/layout-large/main.xml,系统会在较大屏幕(如平板)的设备上选择此布局<br> (2)最小宽度限定符。res/layout-sw600dp/main.xml指明最小宽度为600dp的屏幕。(PS:Android版本低于3.2设备不支持此技术，设备无法将sw600dp识别为尺寸限定符，因此仍需使用large限定符)</li>
+<li>使用布局别名</li>
+<li>使用自动拉伸位图(.9.png)</li>
+<li>使用dp和sp</li>
+</ol>
+<p>关于第6点，有个细节被忽视了。虽然dp可以去除不同像素密度的问题，是的1dp在不同像素密度上面的显示效果相同，但是由于Android屏幕设备多样性，<font color="red"><strong>并非所有的屏幕的宽度都是相同的dp长度</strong></font>。</p>
+<p>所以，我们尽量使用warp_content和match_parent，少用dp来指定控件的具体长宽，结合权重，大部分情况我们都是可以做到适配的。</p>
 <hr>
-<h3 id="px和pt">px和pt</h3><h4 id="px">px</h4><p>即pixel，像素的意思。屏幕上可以显示的最小元素单元。比如相同大小的两个手机，屏幕分辨率不同，则用px会使UI在两个手机上显示不同大小。</p>
-<h4 id="pt">pt</h4><p>即Point，磅数的意思。72 pt = 1 inch。一般作为字体的单位使用。</p>
-<p>在PC上，这两个单位可以很好的使用。但是，手机由于存在各种<strong>分辩率</strong>的问题，会导致UI显示极度不一致。</p>
-<hr>
-<h3 id="dp和sp">dp和sp</h3><h4 id="dp">dp</h4><p>即Density-independent Pixels，密度无关像素的意思。Android<a href="http://developer.android.com/guide/topics/resources/more-resources.html#Dimension" target="_blank" rel="external">开发者文档中</a>规定，这些单位与160dp相关。比如160px的屏幕，1dp = 1px. 而320px的屏幕，1dp = 2px。<br>Android应用一般提供了几个通用目录如drawable-ldpi, drawable-mdpi, drawable-hdpi等供存放不同分辨率的图片。<br>一般有如下的性质：<br>ldpi     120dp<br>mdpi     160dp<br>hdpi     240dp<br>xhdpi    320dp<br>xxhdpi     480dp<br>xxxhdpi 640dp</p>
-<h4 id="sp">sp</h4><p>即Scale-independent Pixels，缩放无关的像素的意思。与sp类似，不过主要是针对字体的大小。</p>
-<h3 id="使用法则">使用法则</h3><p>sp用作指定<strong>文字</strong>大小的单位，其余用dp.</p>
+<p>上面的内容对于日常开发而言其实已经足够了。 目前还是有两种方法尝试更彻底解决屏幕适配问题，下面就讲一下大概原理。</p>
+<ol>
+<li><p>假设手机屏幕的宽度都是320单位长度，我们将每个屏幕宽度总像素平均分成320份，每一份对应具体的像素就可以了。<br>缺点：使用这个方案必须包含所有的分辨率，如果分辨率缺少，有出错的风险。同时这也会增加软件包大小和维护难度。</p>
+</li>
+<li><p>上面的方法想法很好，但是不太现实。幸运的是，Google已经为我们考虑了我们的这种担忧。最近Google开发出了一个android-percent-support库，基本可以解决屏幕适配的问题了。这个库提供了两个布局供大家使用：<br>PercentRelativeLayout、PercentFrameLayout他们继承自RelativeLayout和FrameLayout容器。支持的属性有：<br>layout_widthPercent、layout_heightPercent、<br>layout_marginPercent、layout_marginLeftPercent、<br>layout_marginTopPercent、layout_marginRightPercent、<br>layout_marginBottomPercent、layout_marginStartPercent、layout_marginEndPercent。</p>
+</li>
+</ol>
+<p>对这个库的具体分析以后给出 ==</p>
 <hr>
 <p>参考文献</p>
 <ol>
 <li><a href="http://developer.android.com/guide/topics/resources/more-resources.html#Dimension" target="_blank" rel="external">http://developer.android.com/guide/topics/resources/more-resources.html#Dimension</a></li>
 <li><a href="http://stackoverflow.com/questions/2025282/difference-between-px-dp-dip-and-sp-in-android" target="_blank" rel="external">http://stackoverflow.com/questions/2025282/difference-between-px-dp-dip-and-sp-in-android</a></li>
+<li><a href="http://blog.csdn.net/zhaokaiqiang1992/article/details/45419023" target="_blank" rel="external">http://blog.csdn.net/zhaokaiqiang1992/article/details/45419023</a></li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wjk20120522.github.io/2013/12/29/Android中的单位和尺寸/" data-id="cibzqmumq000kyeoigwutfhlw" class="article-share-link">Share</a>
+      <a data-url="http://wjk20120522.github.io/2013/12/29/Android屏幕适配/" data-id="ciciiww150000c8oih0i55ua6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
