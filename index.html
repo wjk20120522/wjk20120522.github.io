@@ -104,6 +104,11 @@
 </ul>
 <p>maven最主要的命令：mvn clean compile, mvn clean test, mvn clean package, mvn clean install.<br>test之前是会先执行compile的，执行package之前是会先执行test的，而类似地，install之前会执行package。</p>
 <h4 id="坐标和依赖">坐标和依赖</h4><p>maven坐标为各种构建引入了秩序，任何一个构建都必须明确定义自己的坐标，而一组maven坐标是通过一些元素定义的，如groupId, artifactId, version, packaging, classifier. </p>
+<h4 id="多个模块的依赖配置">多个模块的依赖配置</h4><ol>
+<li>消除多模块依赖配置重复<br>比如A，B模块都依赖了log4j,则需要在A，B的pom里面引入依赖如：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">artifactid</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">artifactid</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">version</span>&gt;</span>4.8.2<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>A,B在各自模块引入log4j依赖，可能会出现版本不一致等问题。maven提供了解决办法，使用继承机制以及dependencyManagement元素就能解决这个问题。<strong>dependencyManagement只会影响现有依赖的配置，但不会引入依赖</strong>。</p>
 
       
     </div>

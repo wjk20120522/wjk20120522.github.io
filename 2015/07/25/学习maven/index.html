@@ -21,7 +21,7 @@ maven的安装和配置具体的安装步骤就不细说了，可以参考官方
 bin        包含mvn运行的脚本，用来配置Java命令
 boot     只有一个plexus-classworlds-*.jar的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，maven使用该框架加载自己的类库。
 conf     包含重要的文件">
-<meta property="og:updated_time" content="2015-07-25T05:38:49.000Z">
+<meta property="og:updated_time" content="2015-07-25T06:27:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习maven">
 <meta name="twitter:description" content="maven是项目自动化构建与依赖管理工具
@@ -118,6 +118,11 @@ conf     包含重要的文件">
 </ul>
 <p>maven最主要的命令：mvn clean compile, mvn clean test, mvn clean package, mvn clean install.<br>test之前是会先执行compile的，执行package之前是会先执行test的，而类似地，install之前会执行package。</p>
 <h4 id="坐标和依赖">坐标和依赖</h4><p>maven坐标为各种构建引入了秩序，任何一个构建都必须明确定义自己的坐标，而一组maven坐标是通过一些元素定义的，如groupId, artifactId, version, packaging, classifier. </p>
+<h4 id="多个模块的依赖配置">多个模块的依赖配置</h4><ol>
+<li>消除多模块依赖配置重复<br>比如A，B模块都依赖了log4j,则需要在A，B的pom里面引入依赖如：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">artifactid</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">artifactid</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">version</span>&gt;</span>4.8.2<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>A,B在各自模块引入log4j依赖，可能会出现版本不一致等问题。maven提供了解决办法，使用继承机制以及dependencyManagement元素就能解决这个问题。<strong>dependencyManagement只会影响现有依赖的配置，但不会引入依赖</strong>。</p>
 
       
     </div>
