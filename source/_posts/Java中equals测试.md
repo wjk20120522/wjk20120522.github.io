@@ -26,3 +26,7 @@ Java语言规范要求equals方法具有下面的特性：
 
 **Note**: 如果在子类中重新定义了equals， 就要在其中包含调用super.equals(other)
 
+equals与hashcode的联系与区别：
+* 如果两个对象相等，即a.equals(b) == true. 则两者的hashcode一定相等。反之则不成立。
+
+
