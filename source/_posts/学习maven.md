@@ -1,6 +1,6 @@
 title: 学习maven
 date: 2015-07-25 13:26:00
-tags: Android Java
+tags: Java
 ---
 
 maven是项目自动化构建与依赖管理工具
