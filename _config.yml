@@ -5,9 +5,9 @@
 # Site
 title: Learn By Doing
 subtitle: Android Lover
-description: Android | C++ | Python | USTC | security | Walle's blog
+description: Android | Python | USTC | Android Security | Walle's blog
 author: Jiankang Wang
-language: zh-CN
+language: zh-Hans
 timezone:
 
 # URL
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
