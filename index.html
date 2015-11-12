@@ -264,15 +264,13 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>动力：在Android真机调试的时候，总是需要将USB线连接到电脑，有时候这样很不方便。于是便尝试在Google了下看看是否不需要USB线可以调试真机。</p>
-<p>刚开始找到的便是比较出名的AirDroid.<br>AirDroid是一款运行在安卓手机上的免费软件，它能让你直接在浏览器中管理你的手机，传图传歌装软件发信息神马都行！你不需在电脑端安装软件，也不需找数据线，你需要的就是WiFi+浏览器而已。先将 AirDroid 安装到手机中，确保电脑和手机在同一个无线局域网内，那么你就从此可以跟数据线/PC端管理软件说拜拜了！<br><a href="https://www.airdroid.com/zh-cn/" target="_blank" rel="external">项目网址</a></p>
-<p>偶然间发现了可以通过adb命令来在局域网调试真机。<a href="http://stormzhang.com/android/2014/08/27/adb-over-wifi/" target="_blank" rel="external">博客</a><br>小米4测试可行。<br>现在就可以通过adb命令在wifi下调试你的应用了。<br>比如手机截图：<br>adb shell screencap -p | perl -pe ‘s/\x0D\x0A/\x0A/g’ &gt; screen.png<br>也可以录制手机屏幕的视频：<br>adb shell screenrecord /sdcard/movie.mp4    （随时按control-c终止）</p>
-<p>看到上面，你是不是觉得可以做些小坏事^_^</p>
-
-            
-          </span>
+          <p>动力：在Android真机调试的时候，总是需要将USB线连接到电脑，有时候这样很不方便。于是便尝试在Google了下看看是否不需要USB线可以调试真机。</p>
+<p>刚开始找到的便是比较出名的AirDroid.<br>AirDroid是一款运行在安卓手机上的免费软件，它能让你直接在浏览器中管理你的手机，传图传歌装软件发信息神马都行！你不需在电脑端安装软件，也不需找数据线，你需要的就是WiFi+浏览器而已。先将 AirDroid 安装到手机中，确保电脑和手机在同一个无线局域网内，那么你就从此可以跟数据线/PC端管理软件说拜拜了！<br><a href="https://www.airdroid.com/zh-cn/">项目网址</a></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/15/Android屏幕视频录制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -355,33 +353,17 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>项目主页：<a href="https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh" target="_blank" rel="external">android-Ultra-Pull-To-Refresh</a></p>
-<p>源码分析：<a href="http://www.codekk.com/open-source-project-analysis/detail/Android/Grumoon/android-Ultra-Pull-To-Refresh%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90" target="_blank" rel="external">android-Ultra-Pull-To-Refresh 源码解析</a></p>
+          <p>项目主页：<a href="https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh">android-Ultra-Pull-To-Refresh</a></p>
+<p>源码分析：<a href="http://www.codekk.com/open-source-project-analysis/detail/Android/Grumoon/android-Ultra-Pull-To-Refresh%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90">android-Ultra-Pull-To-Refresh 源码解析</a></p>
 <h5 id="如何运用到项目中">如何运用到项目中</h5><ul>
-<li><p>gradle中引入依赖：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span> <span class="string">'in.srain.cube:ultra-ptr:1.0.10'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将需要可以下拉刷新的View用PtrFrameLayout控件包住，比如如下的xml配置：</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">in</span>.srain.cube.views.ptr.PtrFrameLayout</span><br><span class="line">    android:<span class="variable">id=</span><span class="string">"@+id/store_house_ptr_frame"</span></span><br><span class="line">    xmlns:<span class="variable">cube_ptr=</span><span class="string">"http://schemas.android.com/apk/res-auto"</span></span><br><span class="line">    android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span></span><br><span class="line">    android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span></span><br><span class="line"></span><br><span class="line">    cube_ptr:<span class="variable">ptr_resistance=</span><span class="string">"1.7"</span></span><br><span class="line">    cube_ptr:<span class="variable">ptr_ratio_of_header_height_to_refresh=</span><span class="string">"1.2"</span></span><br><span class="line">    cube_ptr:<span class="variable">ptr_duration_to_close=</span><span class="string">"300"</span></span><br><span class="line">    cube_ptr:<span class="variable">ptr_duration_to_close_header=</span><span class="string">"2000"</span></span><br><span class="line">    cube_ptr:<span class="variable">ptr_keep_header_when_refresh=</span><span class="string">"true"</span></span><br><span class="line">    cube_ptr:<span class="variable">ptr_pull_to_fresh=</span><span class="string">"false"</span> &gt;</span><br><span class="line"></span><br><span class="line">    &lt;ImageView</span><br><span class="line">    	android:<span class="variable">id=</span><span class="string">"@+id/ptr_image_content"</span></span><br><span class="line">        android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span></span><br><span class="line">        android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span></span><br><span class="line">    		/&gt;</span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:<span class="variable">id=</span><span class="string">"@+id/store_house_ptr_image_content"</span></span><br><span class="line">        android:<span class="variable">layout_width=</span><span class="string">"match_parent"</span></span><br><span class="line">        android:<span class="variable">layout_height=</span><span class="string">"match_parent"</span></span><br><span class="line">        android:<span class="variable">background=</span><span class="string">"@color/cube_mints_333333"</span></span><br><span class="line">        android:<span class="variable">clickable=</span><span class="string">"true"</span></span><br><span class="line">        android:<span class="variable">padding=</span><span class="string">"10dp"</span>&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">&lt;/<span class="keyword">in</span>.srain.cube.views.ptr.PtrFrameLayout&gt;</span><br></pre></td></tr></table></figure>
+<li>gradle中引入依赖：<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span> <span class="string">'in.srain.cube:ultra-ptr:1.0.10'</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>这里需要注意，PtrFrameLayout只能包含两个子View，第一个是下拉刷新相关的View，第二个则是业务相关的具体的View.<br>在代码中需要实现两个接口，PtrHandler接口和PtrUIHandler接口。</p>
-<ol>
-<li>PtrHandler接口代表下拉刷新的功能接口，包含刷新功能回调方法以及判断是否可以下拉的方法。<br>两个方法具体为：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PtrHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * Check can do refresh or not. For example the content is empty or the first child is in view.</span><br><span class="line">     * &lt;p/&gt;</span><br><span class="line">     * &#123;<span class="doctag">@link</span> in.srain.cube.views.ptr.PtrDefaultHandler#checkContentCanBePulledDown&#125;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkCanDoRefresh</span><span class="params">(<span class="keyword">final</span> PtrFrameLayout frame, <span class="keyword">final</span> View content, <span class="keyword">final</span> View header)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * When refresh begin</span><br><span class="line">     *</span><br><span class="line">     * <span class="doctag">@param</span> frame</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRefreshBegin</span><span class="params">(<span class="keyword">final</span> PtrFrameLayout frame)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>作者已经帮我们实现了一个通用的Handler名为PtrDefaultHandler.一般情况下都可以使用，如果存在自定义的View则需要自己实现对应的checkCanDoRefresh方法。</p>
-<ol>
-<li>PtrUIHandler接口代表下拉刷新UI接口，是对下拉刷新UI变化的抽象。一般需要实现对应的5个方法：<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">PtrUIHandler</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * When the content view has reached top and refresh has been completed, view will be reset.</span><br><span class="line">     *</span><br><span class="line">     * @param frame</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUIReset</span>(<span class="params">PtrFrameLayout frame</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * prepare for loading</span><br><span class="line">     *</span><br><span class="line">     * @param frame</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUIRefreshPrepare</span>(<span class="params">PtrFrameLayout frame</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * perform refreshing UI</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUIRefreshBegin</span>(<span class="params">PtrFrameLayout frame</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * perform UI after refresh</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUIRefreshComplete</span>(<span class="params">PtrFrameLayout frame</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUIPositionChange</span>(<span class="params">PtrFrameLayout frame, boolean isUnderTouch, <span class="keyword">byte</span> status, <span class="keyword">int</span> oldPosition, <span class="keyword">int</span> currentPosition, <span class="keyword">float</span> oldPercent, <span class="keyword">float</span> currentPercent</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>我们在具体用的时候自己封装了下默认的PtrFrameLayout，比如成为PtrClassicFrameLayout,它自身已经带了一个默认的下拉刷新头部。<br>所以我们在自己的xml中只要在PtrClassicFrameLayout控件中包含自己的业务页面即可。并且实现PtrClassicFrameLayout的PtrHandler接口，由于含有默认的下拉刷新头部，故不需要实现PtrUIHandler接口。</p>
-<p>具体的例子可以参考作者的demo。</p>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/08/09/下拉刷新控件/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -552,10 +534,8 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>maven是项目自动化构建与依赖管理工具</p>
-<h4 id="maven的安装和配置">maven的安装和配置</h4><p>具体的安装步骤就不细说了，可以参考<a href="https://maven.apache.org/install.html" target="_blank" rel="external">官方文档</a>。<br>安装后的目录结构为：</p>
+          <p>maven是项目自动化构建与依赖管理工具</p>
+<h4 id="maven的安装和配置">maven的安装和配置</h4><p>具体的安装步骤就不细说了，可以参考<a href="https://maven.apache.org/install.html">官方文档</a>。<br>安装后的目录结构为：</p>
 <ul>
 <li>bin        包含mvn运行的脚本，用来配置Java命令</li>
 <li>boot     只有一个plexus-classworlds-*.jar的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，maven使用该框架加载自己的类库。</li>
@@ -565,25 +545,11 @@
 <li>NOTICE.txt</li>
 <li>README.txt</li>
 </ul>
-<h4 id="maven使用入门">maven使用入门</h4><p>就像Make的Makefile,Ant的build.xml一样，Maven项目的核心是pom.xml。POM(Project Object Model,项目对象模型)定义了项目的基本信息，用于描述项目如何构建，声明项目依赖等等。</p>
-<ol>
-<li>编写POM<br>POM文件中重要的三个元素: groupId, artifactId, version, 这三个元素定义了一个项目基本的坐标。</li>
-</ol>
-<ul>
-<li>groupId定义项目属于哪个组，一般与所在组织或公司关联</li>
-<li>定义当前maven项目在组中唯一的ID</li>
-<li>项目版本，SNAPSHOT说明还处于开发中，是不稳定版本</li>
-</ul>
-<p>maven最主要的命令：mvn clean compile, mvn clean test, mvn clean package, mvn clean install.<br>test之前是会先执行compile的，执行package之前是会先执行test的，而类似地，install之前会执行package。</p>
-<h4 id="坐标和依赖">坐标和依赖</h4><p>maven坐标为各种构建引入了秩序，任何一个构建都必须明确定义自己的坐标，而一组maven坐标是通过一些元素定义的，如groupId, artifactId, version, packaging, classifier. </p>
-<h4 id="多个模块的依赖配置">多个模块的依赖配置</h4><ol>
-<li>消除多模块依赖配置重复<br>比如A，B模块都依赖了log4j,则需要在A，B的pom里面引入依赖如：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">artifactid</span>&gt;</span>log4j<span class="tag">&lt;/<span class="title">artifactid</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">version</span>&gt;</span>4.8.2<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>A,B在各自模块引入log4j依赖，可能会出现版本不一致等问题。maven提供了解决办法，使用继承机制以及dependencyManagement元素就能解决这个问题。<strong>dependencyManagement只会影响现有依赖的配置，但不会引入依赖</strong>。这样子模块可以按需引入依赖。</p>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/25/学习maven/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -666,46 +632,13 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>本文主要总结下自己在实习期间使用的一些工具，具体在使用过程碰到的一些问题以及自己的解决办法。</p>
-<h4 id="git以及sourceTree">git以及sourceTree</h4><p>git的操作基本以前也学过，基本可以参考<a href="http://www.bootcss.com/p/git-guide/" target="_blank" rel="external">git使用简易指南</a><br>以前在命令行下用的最多的几条命令就是：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> clone</span><br><span class="line"><span class="label">git</span> <span class="keyword">add </span>*</span><br><span class="line"><span class="label">git</span> commit -m <span class="string">"message"</span></span><br><span class="line"><span class="label">git</span> <span class="keyword">push </span></span><br><span class="line"><span class="label">git</span> checkout</span><br></pre></td></tr></table></figure></p>
-<p>我觉得要想了解Git的工作原理，我们需要知道工作区(Working dir)，缓存区(Index)和Head之间的联系与区别。<br>由于我们使用了sourceTree图形工具来简便Git操作，好多命令都已经封装好了，只要知道基本的用法在GUI上操作也比较方便。</p>
-<h4 id="maven,_gradle">maven, gradle</h4><p>现在Android Studio采用了gradle脚本进行构建，Gradle结合了Ant和maven的优点。但是，工作环境中仍然有使用maven进行远程打包。所以，便在空闲时间学习了相关的知识内容。</p>
-<p>maven是项目自动化构建与依赖管理工具</p>
-<h6 id="maven的安装和配置">maven的安装和配置</h6><p>具体的安装步骤就不细说了，可以参考<a href="https://maven.apache.org/install.html" target="_blank" rel="external">官方文档</a>。<br>安装后的目录结构为：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">bin</span>	包含<span class="tag">mvn</span>运行的脚本，用来配置<span class="tag">Java</span>命令</span><br><span class="line"><span class="tag">boot</span> 只有一个<span class="tag">plexus-classworlds-</span>*<span class="class">.jar</span>的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，<span class="tag">maven</span>使用该框架加载自己的类库。</span><br><span class="line"><span class="tag">conf</span> 包含重要的文件<span class="tag">settings</span><span class="class">.xml</span>.可以全局定制<span class="tag">maven</span>的行为。</span><br><span class="line"><span class="tag">lib</span>	包含<span class="tag">maven</span>运行时需要的<span class="tag">Java</span>类库。</span><br><span class="line"><span class="tag">LICENSE</span><span class="class">.txt</span>	<span class="tag">maven</span>使用的软件许可证 <span class="tag">Apache</span> <span class="tag">Licence</span> <span class="tag">Version</span> 2<span class="class">.0</span></span><br><span class="line"><span class="tag">NOTICE</span><span class="class">.txt</span></span><br><span class="line"><span class="tag">README</span><span class="class">.txt</span></span><br></pre></td></tr></table></figure></p>
-<h6 id="maven使用入门">maven使用入门</h6><p>就像Make的Makefile,Ant的build.xml一样，Maven项目的核心是pom.xml。POM(Project Object Model,项目对象模型)定义了项目的基本信息，用于描述项目如何构建，声明项目依赖等等。</p>
-<ol>
-<li>编写POM<br>POM文件中重要的三个元素: groupId, artifactId, version, 这三个元素定义了一个项目基本的坐标。</li>
-</ol>
-<ul>
-<li>groupId定义项目属于哪个组，一般与所在组织或公司关联</li>
-<li>定义当前maven项目在组中唯一的ID</li>
-<li>项目版本，SNAPSHOT说明还处于开发中，是不稳定版本</li>
-</ul>
-<p>maven最主要的命令：mvn clean compile, mvn clean test, mvn clean package, mvn clean install.<br>test之前是会先执行compile的，执行package之前是会先执行test的，而类似地，install之前会执行package。</p>
-<h6 id="坐标和依赖">坐标和依赖</h6><p>maven坐标为各种构建引入了秩序，任何一个构建都必须明确定义自己的坐标，而一组maven坐标是通过一些元素定义的，如groupId, artifactId, version, packaging, classifier. </p>
-<h4 id="android_studio">android studio</h4><ul>
-<li>Android Studio是Google开发d基于IDEA的IDE，所以理所当然继承它的很多功能，比如代码补全，超强但重构功能和超强的代码分析等非常nice的feature。它使用Gradle管理依赖项，方便第三方库的引用和升级。</li>
-<li><p>对于那些刚从Eclipse转到Android Studio的程序员来说，必须要弄清楚两个概念，Project和Module。<br>(1)在Android Studio中，Project真实含义是工作空间，Module为一个具体的项目。<br>(2)在Eclipse中，我们可以同时对多个Project进行编辑，这些Project在同一个workspace中；在AS中，我们可以同时对多个Module进行编辑，这些Module在同一个Project中。<br>故Eclipse的Project相当于AS中的Module，Eclipse中的Workspace相当于AS中的Project。</p>
-</li>
-<li><p>我自己常用的一些快捷键如下：(Windows)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctrl + N 			快速打开某个类 </span><br><span class="line"><span class="built_in">shift</span> 双击			快速打开某个文件</span><br><span class="line">ctrl ＋ Q			查看某个API的说明文档</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>对了，可以开启自动import功能。<br>提供Android Studio编译速度的几个小技巧：</p>
-<ul>
-<li>在项目根目录下的gradle.properties里面加入下面配置：<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">org<span class="class">.gradle</span><span class="class">.daemon</span>=true</span><br><span class="line">org<span class="class">.gradle</span><span class="class">.parallel</span>=true</span><br><span class="line">org<span class="class">.gradle</span><span class="class">.jvmargs</span>=-Xmx1024m</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>其中jvmargs根据各自机器可以调整。</p>
-<ul>
-<li>打开增量编译。在项目主Module下的build.gradle中加入：<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">dexOptions</span> &#123;</span><br><span class="line">	<span class="title">incremental</span> <span class="built_in">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-            
-          </span>
+          <p>本文主要总结下自己在实习期间使用的一些工具，具体在使用过程碰到的一些问题以及自己的解决办法。</p>
+<h4 id="git以及sourceTree">git以及sourceTree</h4><p>git的操作基本以前也学过，基本可以参考<a href="http://www.bootcss.com/p/git-guide/">git使用简易指南</a><br>以前在命令行下用的最多的几条命令就是：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> clone</span><br><span class="line"><span class="label">git</span> <span class="keyword">add </span>*</span><br><span class="line"><span class="label">git</span> commit -m <span class="string">"message"</span></span><br><span class="line"><span class="label">git</span> <span class="keyword">push </span></span><br><span class="line"><span class="label">git</span> checkout</span><br></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/13/Android开发中常用工具的使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -788,78 +721,17 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>由于目前的项目中用到了EventBus，想深入了解下，在网上查找了相关的资料，结合了自己的一点理解，整理了一下。如有错误，还请指出。</p>
+          <p>由于目前的项目中用到了EventBus，想深入了解下，在网上查找了相关的资料，结合了自己的一点理解，整理了一下。如有错误，还请指出。</p>
 <h4 id="概述">概述</h4><ol>
-<li>EventBus的项目主页<a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">https://github.com/greenrobot/EventBus</a></li>
+<li>EventBus的项目主页<a href="https://github.com/greenrobot/EventBus">https://github.com/greenrobot/EventBus</a></li>
 <li>EventBus是一款针对Android优化的发布/订阅事件总线，采用了观察者模式。主要功能是替代Intent，Handler，Broadcast在Fragment，Activity，Service，线程之间传递消息。优点是开销小，代码更优雅，发送者和接受者<strong>解耦</strong>。</li>
-<li>整体的<a href="https://github.com/greenrobot/EventBus/blob/master/EventBus-Publish-Subscribe.png" target="_blank" rel="external">框架图</a></li>
+<li>整体的<a href="https://github.com/greenrobot/EventBus/blob/master/EventBus-Publish-Subscribe.png">框架图</a></li>
 </ol>
-<hr>
-<h4 id="如何使用">如何使用</h4><ol>
-<li><p>Android Studio中添加依赖，在自己的Module下的build.gradle文件中添加依赖：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span> <span class="string">'de.greenrobot:eventbus:2.4.0'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定义基本的Events。观察者可以订阅某些Event，当发布者发布了对应的Event时，系统变会通知订阅了这个Event的观察者，以便执行相应的动作。Event没有特别的继承要求，如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageEvent</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">final</span> String message;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MessageEvent</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.message = message;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建订阅者。订阅者需要实现对应的处理函数onEvent来处理接受到的不同类型的Event。当然，前提是他们在EventBus订阅过，当不需要订阅时，记得要取消订阅。观察者订阅的例子如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onStart();</span><br><span class="line">    EventBus.getDefault().register(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onStop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    EventBus.getDefault().unregister(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">super</span>.onStop();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This methd will be called when a MessageEvent is posted</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">    Toast.makeText(<span class="keyword">this</span>, event.message, Toast.LENGTH_LONG).show();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This method will be called when a SomeOtherEvent is posted</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEvent</span><span class="params">(SomeOtherEvent event)</span> </span>&#123;</span><br><span class="line">    doSomethingWith(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>事件发布者。在代码的任何部分都可以post一个Event。所以订阅了这个类型事件的订阅者都可以接收到。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> MessageEvent(<span class="string">"hello"</span>));</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><a href="https://github.com/greenrobot/EventBus/blob/master/HOWTO.md" target="_blank" rel="external">Read More:</a><br>大致的使用方法就是这样，但是处理事件究竟在哪个线程执行呢？UI线程还是新的子线程？EventBus提供了四种不同的处理函数，这四个函数指定了该函数执行时需要在的线程：</p>
-<ul>
-<li>onEvent. 事件在哪个线程post出来的，onEvent处理函数便会在这个线程中运行</li>
-<li>onEventMainThread. 不论是在哪个线程中post出Event，处理函数都会在UI线程中执行。</li>
-<li>onEventBackgroundThread. 如果事件是UI发布出来的，则在子线程中执行，如果事件在子线程中发布出来的，则直接在该子线程中执行</li>
-<li>onEventAsyncThread. 处理函数只在新创建的子线程中执行。</li>
-</ul>
-<hr>
-<h4 id="源码分析">源码分析</h4><p>我们针对上面的使用过程结合源码看看EventBus究竟是如何工作的：</p>
-<ol>
-<li>EventBus入口<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">register</span><span class="params">(Object subscriber)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">register</span>(subscriber, <span class="keyword">false</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>入口函数又调用了重载函数，它的三个参数分别代表：</p>
-<ul>
-<li>subscriber: 订阅者</li>
-<li>sticky: false, 是否有粘性，默认是false. 调用registerSticky函数可以设置。sticky事件不同之处在于，当事件发布后，再有订阅者开始订阅该类型事件，依然能收到该类型事件最近一个Sticky事件。</li>
-<li>priority: 事件的优先级，默认是0. 高优先级的订阅者可以取消事件继续向低优先级的订阅者分发。(有点像Android中的有序广播)<br>PS：旧版本的EventBus还有一个DEFAULT_METHOD_NAME参数(onEvent)，允许自定义事件响应函数名称，新版已经去除。</li>
-</ul>
-<ol>
-<li>真正调用的register<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">private</span> synchronized void register(Object <span class="keyword">subscriber, </span><span class="keyword">boolean </span>sticky, int priority) &#123;</span><br><span class="line">    List&lt;<span class="keyword">SubscriberMethod&gt; </span><span class="keyword">subscriberMethods </span>= <span class="keyword">subscriberMethodFinder.findSubscriberMethods(subscriber.getClass());</span><br><span class="line"></span>    for (<span class="keyword">SubscriberMethod </span><span class="keyword">subscriberMethod </span>: <span class="keyword">subscriberMethods) </span>&#123;</span><br><span class="line">        <span class="keyword">subscribe(subscriber, </span><span class="keyword">subscriberMethod, </span>sticky, priority)<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>通过subscriberMethodFinder方法找到一个订阅者的所有订阅方法。具体的查找过程如下：</p>
-<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">List&lt;SubscriberMethod&gt; findSubscriberMethods<span class="params">(Class&lt;?&gt; subscriberClass)</span> &#123;</span><br><span class="line">    String key = subscriberClass.getName<span class="params">()</span>;</span><br><span class="line">    List&lt;SubscriberMethod&gt; subscriberMethods;</span><br><span class="line">    synchronized <span class="params">(methodCache)</span> &#123;</span><br><span class="line">    	<span class="comment">// 判断是否有缓存，有缓存就直接返回缓存的内容</span></span><br><span class="line">        subscriberMethods = methodCache.get<span class="params">(key)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> <span class="params">(subscriberMethods != null)</span> &#123;</span><br><span class="line">        return subscriberMethods;</span><br><span class="line">    &#125;</span><br><span class="line">    subscriberMethods = new ArrayList&lt;SubscriberMethod&gt;<span class="params">()</span>;</span><br><span class="line">    Class&lt;?&gt; clazz = subscriberClass;</span><br><span class="line">    HashSet&lt;String&gt; eventTypesFound = new HashSet&lt;String&gt;<span class="params">()</span>;</span><br><span class="line">    StringBuilder methodKeyBuilder = new StringBuilder<span class="params">()</span>;</span><br><span class="line">    while <span class="params">(clazz != null)</span> &#123;</span><br><span class="line">        String name = clazz.getName<span class="params">()</span>;</span><br><span class="line">        <span class="keyword">if</span> <span class="params">(name.startsWith<span class="params">(<span class="string">"java."</span>)</span> || name.startsWith<span class="params">(<span class="string">"javax."</span>)</span> || name.startsWith<span class="params">(<span class="string">"android."</span>)</span>)</span> &#123;</span><br><span class="line">            <span class="comment">// Skip system classes, this just degrades performance</span></span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Starting with EventBus 2.2 we enforced methods to be public (might change with annotations again)</span></span><br><span class="line">        <span class="comment">// 通过反射，获取到订阅者的所有方法</span></span><br><span class="line">        Method[] methods = clazz.getDeclaredMethods<span class="params">()</span>;</span><br><span class="line">        <span class="keyword">for</span> <span class="params">(Method method : methods)</span> &#123;</span><br><span class="line">            String methodName = method.getName<span class="params">()</span>;</span><br><span class="line">            <span class="keyword">if</span> <span class="params">(methodName.startsWith<span class="params">(ON_EVENT_METHOD_NAME)</span>)</span> &#123;</span><br><span class="line">                int modifiers = method.getModifiers<span class="params">()</span>;</span><br><span class="line">                <span class="keyword">if</span> <span class="params">(<span class="params">(modifiers &amp; Modifier.PUBLIC)</span> != <span class="number">0</span> &amp;&amp; <span class="params">(modifiers &amp; MODIFIERS_IGNORE)</span> == <span class="number">0</span>)</span> &#123;</span><br><span class="line">                    Class&lt;?&gt;[] parameterTypes = method.getParameterTypes<span class="params">()</span>;</span><br><span class="line">                    <span class="comment">// 订阅函数参数只能为1个</span></span><br><span class="line">                    <span class="keyword">if</span> <span class="params">(parameterTypes.length == <span class="number">1</span>)</span> &#123;</span><br><span class="line">                        String modifierString = methodName.substring<span class="params">(ON_EVENT_METHOD_NAME.length<span class="params">()</span>)</span>;</span><br><span class="line">                        ThreadMode threadMode;</span><br><span class="line">                        <span class="comment">// 根据订阅函数的名称设置订阅函数的threadMode</span></span><br><span class="line">                        <span class="keyword">if</span> <span class="params">(modifierString.length<span class="params">()</span> == <span class="number">0</span>)</span> &#123;</span><br><span class="line">                            threadMode = ThreadMode.PostThread;</span><br><span class="line">                        &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="params">(modifierString.equals<span class="params">(<span class="string">"MainThread"</span>)</span>)</span> &#123;</span><br><span class="line">                            threadMode = ThreadMode.MainThread;</span><br><span class="line">                        &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="params">(modifierString.equals<span class="params">(<span class="string">"BackgroundThread"</span>)</span>)</span> &#123;</span><br><span class="line">                            threadMode = ThreadMode.BackgroundThread;</span><br><span class="line">                        &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="params">(modifierString.equals<span class="params">(<span class="string">"Async"</span>)</span>)</span> &#123;</span><br><span class="line">                            threadMode = ThreadMode.Async;</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="keyword">if</span> <span class="params">(skipMethodVerificationForClasses.containsKey<span class="params">(clazz)</span>)</span> &#123;</span><br><span class="line">                                continue;</span><br><span class="line">                            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                throw new EventBusException<span class="params">(<span class="string">"Illegal onEvent method, check for typos: "</span> + method)</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                        Class&lt;?&gt; eventType = parameterTypes[<span class="number">0</span>];</span><br><span class="line">                        methodKeyBuilder.setLength<span class="params">(<span class="number">0</span>)</span>;</span><br><span class="line">                        methodKeyBuilder.append<span class="params">(methodName)</span>;</span><br><span class="line">                        methodKeyBuilder.append<span class="params">('&gt;')</span>.append<span class="params">(eventType.getName<span class="params">()</span>)</span>;</span><br><span class="line">                        String methodKey = methodKeyBuilder.toString<span class="params">()</span>;</span><br><span class="line">                        <span class="keyword">if</span> <span class="params">(eventTypesFound.add<span class="params">(methodKey)</span>)</span> &#123;</span><br><span class="line">                            <span class="comment">// Only add if not already found in a sub class</span></span><br><span class="line">                            <span class="comment">// 一个订阅方法对象包含Method对象，threadMode对象，eventType对象</span></span><br><span class="line">                            subscriberMethods.add<span class="params">(new SubscriberMethod<span class="params">(method, threadMode, eventType)</span>)</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="params">(!skipMethodVerificationForClasses.containsKey<span class="params">(clazz)</span>)</span> &#123;</span><br><span class="line">                    Log.d<span class="params">(EventBus.TAG, <span class="string">"Skipping method (not public, static or abstract): "</span> + clazz + <span class="string">"."</span></span><br><span class="line">                            + methodName)</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 遍历父类的订阅函数</span></span><br><span class="line">        clazz = clazz.getSuperclass<span class="params">()</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> <span class="params">(subscriberMethods.isEmpty<span class="params">()</span>)</span> &#123;</span><br><span class="line">        throw new EventBusException<span class="params">(<span class="string">"Subscriber "</span> + subscriberClass + <span class="string">" has no public methods called "</span></span><br><span class="line">                + ON_EVENT_METHOD_NAME)</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    	<span class="comment">// 将该订阅者的所有订阅方法放入缓存，第二次直接从缓存取</span></span><br><span class="line">        synchronized <span class="params">(methodCache)</span> &#123;</span><br><span class="line">            methodCache.put<span class="params">(key, subscriberMethods)</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        return subscriberMethods;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>回到register方法，在获得了一个订阅者的所有订阅方法后，对于每一个订阅方法，调用subscribe方法。具体的调用过程为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Must be called in synchronized block</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(Object subscriber, SubscriberMethod subscriberMethod, <span class="keyword">boolean</span> sticky, <span class="keyword">int</span> priority)</span> </span>&#123;</span><br><span class="line">    Class&lt;?&gt; eventType = subscriberMethod.eventType;</span><br><span class="line">    <span class="comment">// 通过订阅事件类型，查找所有的订阅Subscription,每个Subscription包含订阅者，订阅方法</span></span><br><span class="line">    CopyOnWriteArrayList&lt;Subscription&gt; subscriptions = subscriptionsByEventType.get(eventType);</span><br><span class="line">    Subscription newSubscription = <span class="keyword">new</span> Subscription(subscriber, subscriberMethod, priority);</span><br><span class="line">    <span class="keyword">if</span> (subscriptions == <span class="keyword">null</span>) &#123;</span><br><span class="line">    	<span class="comment">// 该事件目前没有订阅列表，新建一个</span></span><br><span class="line">        subscriptions = <span class="keyword">new</span> CopyOnWriteArrayList&lt;Subscription&gt;();</span><br><span class="line">        subscriptionsByEventType.put(eventType, subscriptions);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (subscriptions.contains(newSubscription)) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> EventBusException(<span class="string">"Subscriber "</span> + subscriber.getClass() + <span class="string">" already registered to event "</span></span><br><span class="line">                    + eventType);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Starting with EventBus 2.2 we enforced methods to be public (might change with annotations again)</span></span><br><span class="line">    <span class="comment">// subscriberMethod.method.setAccessible(true);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> size = subscriptions.size();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= size; i++) &#123;</span><br><span class="line">    	<span class="comment">// 将订阅按照优先级插入到订阅列表中</span></span><br><span class="line">        <span class="keyword">if</span> (i == size || newSubscription.priority &gt; subscriptions.get(i).priority) &#123;</span><br><span class="line">            subscriptions.add(i, newSubscription);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将订阅事件添加到订阅事件列表中</span></span><br><span class="line">    List&lt;Class&lt;?&gt;&gt; subscribedEvents = typesBySubscriber.get(subscriber);</span><br><span class="line">    <span class="keyword">if</span> (subscribedEvents == <span class="keyword">null</span>) &#123;</span><br><span class="line">        subscribedEvents = <span class="keyword">new</span> ArrayList&lt;Class&lt;?&gt;&gt;();</span><br><span class="line">        typesBySubscriber.put(subscriber, subscribedEvents);</span><br><span class="line">    &#125;</span><br><span class="line">    subscribedEvents.add(eventType);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (sticky) &#123;</span><br><span class="line">        Object stickyEvent;</span><br><span class="line">        <span class="keyword">synchronized</span> (stickyEvents) &#123;</span><br><span class="line">            stickyEvent = stickyEvents.get(eventType);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (stickyEvent != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// If the subscriber is trying to abort the event, it will fail (event is not tracked in posting state)</span></span><br><span class="line">            <span class="comment">// --&gt; Strange corner case, which we don't take care of here.</span></span><br><span class="line">            postToSubscription(newSubscription, stickyEvent, Looper.getMainLooper() == Looper.myLooper());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个函数中有两个数据结构需要关注：</p>
-<ul>
-<li>subscriptionsByEventType. 根据事件类型得到所有的订阅信息，每个订阅包含订阅者，订阅函数以及优先级。</li>
-<li>typesBySubscriber. 根据订阅者查找事件类型<br>所以，任何一个订阅者，我们可以得到它的订阅事件类型列表。通过这个订阅事件类型，可以找到所有的订阅信息。这样在post的时候便可以针对这些所有的订阅信息，去依次执行对应的订阅函数。</li>
-</ul>
-<p>最后便是post函数了。<br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Posts the given event to the event bus. */</span></span><br><span class="line">public void post<span class="params">(Object event)</span> &#123;</span><br><span class="line">    PostingThreadState postingState = currentPostingThreadState.get<span class="params">()</span>;</span><br><span class="line">    List&lt;Object&gt; eventQueue = postingState.eventQueue;</span><br><span class="line">    eventQueue.add<span class="params">(event)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="params">(!postingState.isPosting)</span> &#123;</span><br><span class="line">        postingState.isMainThread = Looper.getMainLooper<span class="params">()</span> == Looper.myLooper<span class="params">()</span>;</span><br><span class="line">        postingState.isPosting = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span> <span class="params">(postingState.canceled)</span> &#123;</span><br><span class="line">            throw new EventBusException<span class="params">(<span class="string">"Internal error. Abort state was not reset"</span>)</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        try &#123;</span><br><span class="line">            while <span class="params">(!eventQueue.isEmpty<span class="params">()</span>)</span> &#123;</span><br><span class="line">            	<span class="comment">// 分发事件</span></span><br><span class="line">                postSingleEvent<span class="params">(eventQueue.remove<span class="params">(<span class="number">0</span>)</span>, postingState)</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            postingState.isPosting = <span class="literal">false</span>;</span><br><span class="line">            postingState.isMainThread = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>我们来查看具体的分发事件的逻辑：<br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">private void postSingleEvent<span class="params">(Object event, PostingThreadState postingState)</span> throws Error &#123;</span><br><span class="line">    Class&lt;?&gt; eventClass = event.getClass<span class="params">()</span>;</span><br><span class="line">    boolean subscriptionFound = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> <span class="params">(eventInheritance)</span> &#123;</span><br><span class="line">    	<span class="comment">// 查找eventClass以及父类和接口所对应动所有事件类型</span></span><br><span class="line">        List&lt;Class&lt;?&gt;&gt; eventTypes = lookupAllEventTypes<span class="params">(eventClass)</span>;</span><br><span class="line">        int countTypes = eventTypes.size<span class="params">()</span>;</span><br><span class="line">        <span class="keyword">for</span> <span class="params">(int h = <span class="number">0</span>; h &lt; countTypes; h++)</span> &#123;</span><br><span class="line">            Class&lt;?&gt; clazz = eventTypes.get<span class="params">(h)</span>;</span><br><span class="line">            subscriptionFound |= postSingleEventForEventType<span class="params">(event, postingState, clazz)</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        subscriptionFound = postSingleEventForEventType<span class="params">(event, postingState, eventClass)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果没有订阅发现，那么会Post一个NoSubsribeEvent事件</span></span><br><span class="line">    <span class="keyword">if</span> <span class="params">(!subscriptionFound)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="params">(logNoSubscriberMessages)</span> &#123;</span><br><span class="line">            Log.d<span class="params">(TAG, <span class="string">"No subscribers registered for event "</span> + eventClass)</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> <span class="params">(sendNoSubscriberEvent &amp;&amp; eventClass != NoSubscriberEvent.class &amp;&amp;</span><br><span class="line">                eventClass != SubscriberExceptionEvent.class)</span> &#123;</span><br><span class="line">            post<span class="params">(new NoSubscriberEvent<span class="params">(this, event)</span>)</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>postSingleEventForEventType将每个事件类型post出去，的代码如下：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> boolean <span class="title">postSingleEventForEventType</span>(<span class="params">Object <span class="keyword">event</span>, PostingThreadState postingState, Class&lt;?&gt; eventClass</span>) </span>&#123;</span><br><span class="line">    CopyOnWriteArrayList&lt;Subscription&gt; subscriptions;</span><br><span class="line">    synchronized (<span class="keyword">this</span>) &#123;</span><br><span class="line">    	<span class="comment">// 根据订阅事件查找对应的订阅(参看之前的两个数据结构)</span></span><br><span class="line">        subscriptions = subscriptionsByEventType.<span class="keyword">get</span>(eventClass);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (subscriptions != <span class="keyword">null</span> &amp;&amp; !subscriptions.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">for</span> (Subscription subscription : subscriptions) &#123;</span><br><span class="line">            postingState.<span class="keyword">event</span> = <span class="keyword">event</span>;</span><br><span class="line">            postingState.subscription = subscription;</span><br><span class="line">            boolean aborted = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">            	<span class="comment">// 对每个订阅调用此方法，postingState.isMainThread表示当前线程是否是主线程</span></span><br><span class="line">                postToSubscription(subscription, <span class="keyword">event</span>, postingState.isMainThread);</span><br><span class="line">                aborted = postingState.canceled;</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                postingState.<span class="keyword">event</span> = <span class="keyword">null</span>;</span><br><span class="line">                postingState.subscription = <span class="keyword">null</span>;</span><br><span class="line">                postingState.canceled = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 如果某个高优先级的订阅者选择取消进一步传播，则aborted为true</span></span><br><span class="line">            <span class="keyword">if</span> (aborted) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>postToSubscription便是具体的某个订阅需要执行的函数了。算是一个<strong>核心</strong>方法吧。<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">postToSubscription</span>(<span class="params">Subscription subscription, Object <span class="keyword">event</span>, boolean isMainThread &#123;</span><br><span class="line">    <span class="keyword">switch</span> (subscription.subscriberMethod.threadMode</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">case</span> PostThread:</span><br><span class="line">        	<span class="comment">// 直接当前线程调用此订阅函数</span></span><br><span class="line">            invokeSubscriber(subscription, <span class="keyword">event</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> MainThread:</span><br><span class="line">            <span class="keyword">if</span> (isMainThread) &#123;</span><br><span class="line">            	<span class="comment">// 如果当前线程是主线程，则直接在当前线程调用</span></span><br><span class="line">                invokeSubscriber(subscription, <span class="keyword">event</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            	<span class="comment">// 否则通过Handler将事件放入主线程队列中执行</span></span><br><span class="line">                mainThreadPoster.enqueue(subscription, <span class="keyword">event</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> BackgroundThread:</span><br><span class="line">            <span class="keyword">if</span> (isMainThread) &#123;</span><br><span class="line">            	<span class="comment">// 如果是主线程，创建一个runnable丢入线程池中</span></span><br><span class="line">                backgroundPoster.enqueue(subscription, <span class="keyword">event</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            	<span class="comment">// 在当前线程执行</span></span><br><span class="line">                invokeSubscriber(subscription, <span class="keyword">event</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Async:</span><br><span class="line">        	<span class="comment">// 在子线程中执行</span></span><br><span class="line">            asyncPoster.enqueue(subscription, <span class="keyword">event</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Unknown thread mode: "</span> + subscription.subscriberMethod.threadMode);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>mainThreadPoster，backgroundPoster， asyncPoster代码分析就不具体分析了。具体的可以参考：<a href="http://www.cnblogs.com/angeldevil/p/3715934.html" target="_blank" rel="external">快速Android开发系列通信篇之EventBus</a><br>invokeSubscriber函数直接在当前线程执行.<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> invokeSubscriber(<span class="type">Subscription</span> subscription, <span class="type">Object</span> event) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">    	// 通过反射，调用subscription.subscriber的<span class="keyword">method</span>，参数为event</span><br><span class="line">        subscription.subscriberMethod.<span class="keyword">method</span>.invoke(subscription.subscriber, event);</span><br><span class="line">    &#125; catch (<span class="type">InvocationTargetException</span> e) &#123;</span><br><span class="line">        handleSubscriberException(subscription, event, e.getCause());</span><br><span class="line">    &#125; catch (<span class="type">IllegalAccessException</span> e) &#123;</span><br><span class="line">        throw new <span class="type">IllegalStateException</span>(<span class="string">"Unexpected exception"</span>, e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>总结一下post的流程，从currentPostingThreadState得到当前线程的Post信息PostingThreadState，其中包含事件队列。将当前事件添加到线程的事件队列中。循环事件队列中每个事件，如果事件可以继承，获得父类及接口的事件。对每个事件，查找其所有订阅者。循环每个订阅者，根据ThreadMode，在不同的线程中调用订阅者的事件响应函数。   </p>
-<p>哈呼……</p>
-<hr>
-<h4 id="参考文献">参考文献</h4><ol>
-<li><a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">https://github.com/greenrobot/EventBus</a></li>
-<li><a href="http://blog.csdn.net/yuanzeyao/article/details/38174537" target="_blank" rel="external">http://blog.csdn.net/yuanzeyao/article/details/38174537</a></li>
-<li><a href="http://www.codekk.com/open-source-project-analysis/detail/Android/Trinea/EventBus%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90" target="_blank" rel="external">http://www.codekk.com/open-source-project-analysis/detail/Android/Trinea/EventBus%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90</a></li>
-<li><a href="http://www.cnblogs.com/angeldevil/p/3715934.html" target="_blank" rel="external">快速Android开发系列通信篇之EventBus</a></li>
-</ol>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/12/深入理解EventBus/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -942,42 +814,18 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>记录下在Ubuntu14.04 LTS 64位系统下，下载并编译Android4.4中遇到的问题，方便自己以后查阅和给别人提供一些帮助。</p>
+          <p>记录下在Ubuntu14.04 LTS 64位系统下，下载并编译Android4.4中遇到的问题，方便自己以后查阅和给别人提供一些帮助。</p>
 <h6 id="下载Android源码">下载Android源码</h6><p>(1)在下载之前，查看自己系统是否<a href="source.android.com/source/building.html">符合要求</a>。<br>其中值得注意的是：</p>
 <ul>
 <li>JDK 7编译最新Android源码,<strong>JDK 6</strong>编译 Gingerbread至KitKat,JDK 5编译Cupcake至Froyo.</li>
 <li>编译Android2.3.x或以上系统需要<strong> 64位系统 </strong></li>
 <li>Python 2.6-2.7</li>
 </ul>
-<p>(2)安装各种必须<a href="http://source.android.com/source/initializing.html#setting-up-a-linux-build-environment" target="_blank" rel="external">软件</a></p>
-<pre><code>$ sudo apt-<span class="preprocessor">get</span> install <span class="keyword">bison </span>g++-<span class="keyword">multilib </span>git gperf libxml2-utils
-</code></pre><p>(3)下载Android源码到具体目录</p>
-<ul>
-<li><p><a href="http://source.android.com/source/downloading.html" target="_blank" rel="external">安装repo</a><br></p>
-<figure class="highlight smalltalk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="char">$ </span>mkdir ~/bin</span><br><span class="line"><span class="char">$ </span><span class="class">PATH</span>=~/<span class="method">bin:</span><span class="char">$P</span>ATH</span><br><span class="line"><span class="char">$ </span>curl <span class="method">https:</span>//storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo</span><br><span class="line"><span class="char">$ </span>chmod a+x ~/bin/repo</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下载对应版本源码，我下载的是4.4的，故命令为：<br></p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">repo</span> init -u https://<span class="keyword">android.googlesource.com/platform/manifest </span>-<span class="keyword">b </span><span class="keyword">android-4.4_r1.2</span><br><span class="line"></span><span class="label">repo</span> sync</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这里，我遇到的一个问题是： repo init 时总是将.repo放在/home/your host name/目录下，看了下repo相关的内容发现，repo是封装了git功能的脚本，而我在对应目录的上层目录中已经有了一个.repo，故不再会在对应目录创建.repo.<br>其实.repo于.git类似。</p>
-<h6 id="编译Android源码">编译Android源码</h6><ul>
-<li><p>初始化</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">source</span> build/envsetup.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>选择合适的Target,如</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>lunch aosp_x86-eng</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编译代码</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make -<span class="function"><span class="title">j4</span><span class="params">(这里的<span class="number">4</span>可以根据自己系统的cpu调整，一般是核数*<span class="number">2</span>)</span></span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这里，我遇到的问题是： 编译开始报各种错误，原因是安装必须软件时，有的软件没有安装完全造成的。在安装g++-multilib<br>时，总是出现依赖不满足的问题。使用-f 仍然没有用，后来将官方的源换成了国内的源后解决。</p>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1060,77 +908,13 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>主要介绍Dalvik指令集的一些基础知识，以后别人以及自己以后查阅.<br>先介绍下Dalvik字节码的类型、方法与字段表示方法.</p>
+          <p>主要介绍Dalvik指令集的一些基础知识，以后别人以及自己以后查阅.<br>先介绍下Dalvik字节码的类型、方法与字段表示方法.</p>
 <h6 id="类型">类型</h6><p>Dalvik字节码只包含两种类型，基本类型与引用类型.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">语法</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">V</td>
-<td style="text-align:center">void</td>
-</tr>
-<tr>
-<td style="text-align:center">Z</td>
-<td style="text-align:center">boolean</td>
-</tr>
-<tr>
-<td style="text-align:center">B</td>
-<td style="text-align:center">byte</td>
-</tr>
-<tr>
-<td style="text-align:center">S</td>
-<td style="text-align:center">short</td>
-</tr>
-<tr>
-<td style="text-align:center">C</td>
-<td style="text-align:center">char</td>
-</tr>
-<tr>
-<td style="text-align:center">I</td>
-<td style="text-align:center">int</td>
-</tr>
-<tr>
-<td style="text-align:center">J</td>
-<td style="text-align:center">long</td>
-</tr>
-<tr>
-<td style="text-align:center">F</td>
-<td style="text-align:center">float</td>
-</tr>
-<tr>
-<td style="text-align:center">D</td>
-<td style="text-align:center">double</td>
-</tr>
-<tr>
-<td style="text-align:center">L</td>
-<td style="text-align:center">Java类类型</td>
-</tr>
-<tr>
-<td style="text-align:center">[</td>
-<td style="text-align:center">数组类型</td>
-</tr>
-</tbody>
-</table>
-<h6 id="方法">方法</h6><p>方法的格式如下:<br>Lpackage/name/ObjectName;-&gt;MethodName(III)Z<br>其中,Lpackage/name/ObjectName是对应类的类型，与方法名MethodName用;相隔.括号中为函数参数，最后的Z为函数返回类型.</p>
-<h5 id="字段">字段</h5><p>与方法类似,格式如下:<br>Lpackage/name/ObjectName;-&gt;FieldName:Ljava/lang/String;</p>
-<h4 id="Dalvik指令集">Dalvik指令集</h4><p>下面介绍具体类型的指令。在介绍之前，先熟悉下指令特点</p>
-<ul>
-<li>参数从目标（destination）到源（source）的方式</li>
-<li>64位常规类型字节码添加 -wide后缀</li>
-<li>根据字节码布局与选项不同，一些字节码添加了字节码后缀以消除歧义。这些后缀通过在字节码主名称后添加斜杠“／”来分割开。</li>
-</ul>
-<h6 id="空指令">空指令</h6><p>无实际操作，一般用于指令对齐</p>
-<h6 id="数据操作指令">数据操作指令</h6><p>move vA, vB<br>move/from16 vAA, VBBBB<br>move/16  VAAAA,VBBBB<br>move-wide VA,VB<br>move-object VA,VB<br>move-result VAA<br>move-result-wide VAA<br>move-result-object VAA<br>move-exception VAA</p>
-<h6 id="返回指令">返回指令</h6>
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/05/10/Dalvik指令集/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1213,30 +997,17 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>记录在初学Android开发时遇到的问题以及一些知识点，方便自己查阅.</p>
+          <p>记录在初学Android开发时遇到的问题以及一些知识点，方便自己查阅.</p>
 <h6 id="adb相关">adb相关</h6><ol>
 <li>记得将adb所在目录添加到Path中;</li>
 <li>adb是一个C/S模式的程序。client和server运行在开发机器上，daemon运行在emulator设备上。</li>
-<li>adb常用命令: adb pull <remote> <local>, adb push <local> <remote>, adb install -r **.apk</remote></local></local></remote></li>
+<li>adb常用命令: adb pull <remote> <local>, adb push <local> <remote>, adb install -r **.apk</li>
 </ol>
-<h6 id="4大组件相关">4大组件相关</h6><p>四大组件：Activity, Service, Content Provider, BroadcastReceiver.</p>
-<ul>
-<li>Activity主要是用来显示UI界面的，用户可以看见并与之交互的</li>
-<li>Service主要是在后台，处理些耗时之类的任务</li>
-<li>Content Provider主要是提供应用程序间数据的共享</li>
-<li>BroadcastReceiver接受来自系统的指定类型的广播，从而进行相应的处理</li>
-</ul>
-<h6 id="Activity">Activity</h6><ol>
-<li>生命周期： onCreate-&gt; onStart-&gt; onResume-&gt; onPause-&gt; onStop-&gt; onDestroy. Fragment也有类似的生命周期。</li>
-<li><p>四种启动模式：<br> standard: 默认模式，在这个模式下默认创建一个新的实例。<br> singleTop: 可以有多个实例，但是不允许有两个相邻相同Activity。创建与栈顶相同Activity时不会创建新的实例，而会调用其onNewIntent方法<br> singleTask: 只有一个实例。在同一个应用程序中启动时若Activity不存在，则会在当前task创建一个新的实例，若存在，则会把task中其上activity删除掉并调用onNewIntent方法；若在别的应用程序中启动它，则会创建一个task，并在该task中启动这个Activity，并且这个Activity允许别的Activity与其共在一个task中。</p>
-<p> singleInstance: 只有一个实例，并且这个实例独自运行在一个task中，不允许有别的Activity存在。</p>
-</li>
-</ol>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/04/26/Android开发基础知识总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1319,9 +1090,7 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>类从被加载到虚拟机内存中开始到从内存中卸载，主要的生命周期有：加载、验证、准备、解析、初始化、使用和卸载这七个阶段。</p>
+          <p>类从被加载到虚拟机内存中开始到从内存中卸载，主要的生命周期有：加载、验证、准备、解析、初始化、使用和卸载这七个阶段。</p>
 <h5 id="加载时机">加载时机</h5><ul>
 <li>加载<br>  Java虚拟机没有进行强制约束，可由具体实现自己把握</li>
 <li>初始化<br>  Java虚拟机严格规定了有且只有五种情形必须立即对类进行初始化:<pre><code><span class="params">(<span class="number">1</span>)</span>遇到new,getstatic,putstatic,invokestatic这４条指令时，如果类没有进行初始化则进行初始化
@@ -1332,28 +1101,11 @@
 </code></pre>  这5种行为称为对一个类进行主动引用，其余称为被动引用。被动引用不会引发类的初始化。</li>
 </ul>
 <hr>
-<h5 id="加载过程">加载过程</h5><hr>
-<ul>
-<li>加载<br>加载主要完成下面３件事:<pre><code><span class="params">(<span class="number">1</span>)</span>通过类的全限定名来获取定义此类的二进制字节流
-<span class="params">(<span class="number">2</span>)</span>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构
-<span class="params">(<span class="number">3</span>)</span>在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口
-</code></pre></li>
-<li>验证<br>这一阶段的目的是确保Class文件的字节流中包含的信息符合虚拟机的要求,不会危害虚拟机的安全<pre><code><span class="comment">(1)</span>文件格式验证:<span class="number">0</span>xCAFEBABE，主次版本号是否在虚拟机处理范围内...
-<span class="comment">(2)</span>元数据验证:这个类是否有父类，这个类是否继承了不允许继承的类...
-<span class="comment">(3)</span>字节码验证：通过数据流和控制流分析，确定程序语义是合法的，符合逻辑的
-<span class="comment">(4)</span>符号引用验证
-</code></pre></li>
-<li>准备<br>为类变量分配内存并设置类变量初始值的阶段</li>
-<li>解析<br>虚拟机将常量池内符号引用替换为直接引用的过程<pre><code><span class="comment">(1)</span>类或接口的解析
-<span class="comment">(2)</span>字段解析
-<span class="comment">(3)</span>类方法解析
-<span class="comment">(4)</span>接口方法解析
-</code></pre></li>
-<li>初始化<br>前面类加载过程中，除了在加载阶段用户应用程序可以通过自定义类加载器参与之外，其余动作完全由虚拟机主导和控制。到了初始化阶段，才真正开始执行类中定义的Java程序代码</li>
-</ul>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/04/05/虚拟机类加载机制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1436,45 +1188,18 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>Java是一门面向对象语言。程序中对象的创建(eg. 克隆，反序列化)非常常见。在语言层面上创建对象通常仅仅通过一个new关键字而已，而在虚拟机中，对象创建又是怎样的呢？</p>
+          <p>Java是一门面向对象语言。程序中对象的创建(eg. 克隆，反序列化)非常常见。在语言层面上创建对象通常仅仅通过一个new关键字而已，而在虚拟机中，对象创建又是怎样的呢？</p>
 <p>主要过程有三个部分:</p>
 <ul>
 <li>对象的创建  </li>
 <li>对象的内存布局  </li>
 <li>对象的访问定位  </li>
 </ul>
-<h3 id="对象的创建">对象的创建</h3><p>(1)<strong>执行类的加载过程</strong><br>虚拟机遇到一条new指令时，首先检查指令参数是否在常量池中，如果有一个类的符号引用则代表类被加载、解析过。如果没有，则先执行类的加载过程。具体的类加载过程可以查看<a href="http://wjk20120522.github.io/2015/04/05/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">虚拟机类加载机制</a><br>(2)<strong>为新生对象分配内存</strong><br>对象所需内存大小在类加载完成后可完全确定。<br>假设Java堆中内存绝对规整，那么分配内存就仅仅把用于分隔可用内存和已用内存指针挪动一段距离(Bump the Pointer);<br>如果Java内存并不规整，虚拟机必须维护一个列表记录哪些内存块可用(Free List)。<br><strong>Note:</strong>Java堆是否规整由所采用的垃圾回收器是否带有压缩整理功能决定。<br>分配内存时，需要考虑到修改指针的线程安全性.两种方案:</p>
-<ul>
-<li>在分配内存空间代码处进行同步处理</li>
-<li>把内存分配划分在各自线程的空间中，即每个线程预先在堆中分配一小块内存，成为本地线程分配缓冲(TLAB)</li>
-</ul>
-<p>(3)<strong>初始化内存空间</strong></p>
-<ul>
-<li>将除对象头的内存空间初始化为零值</li>
-<li>将类的元数据，对象hashcode，对象的gc分代年龄等信息放在对象头中(Object Header)</li>
-</ul>
-<p>上述工作完成后，便会执行<init>方法</init></p>
-<hr>
-<h3 id="对象的内存布局">对象的内存布局</h3><p>对象内存中存储的布局可以分为3块区域:对象头(Object Header)，实例数据(Instance Data)，对齐填充(Padding)</p>
-<ul>
-<li>对象头包括两部分信息。第一部分是存储对象自身运行时数据，如HashCode, GC分代年龄，偏向线程ID等。这部分成为“Mark Word”。第二部分是类型指针，即对象指向它的类元数据指针。如果是一个Java数组，还需要有块记录长度的数据。 </li>
-<li>实例数据存储顺序会受到虚拟机分配策略和字段定义顺序影响。虚拟机分配策略为:longs/doubles, ints, shorts/chars, bytes/booleans, oops(Ordinary Object Pointers). 满足这个前提下，父类定义变量灰出现在子类之前。</li>
-<li>HotSpot VM要求对象起始地址必须是8字节整数倍。</li>
-</ul>
-<hr>
-<h3 id="对象的访问定位">对象的访问定位</h3><p>目前主流的访问方式有使用句柄和直接指针两种</p>
-<ul>
-<li>使用句柄，Java会划出一块内存来作为句柄池。reference存储的就是对象的句柄地址。句柄中包含对象的实例数据和类型数据各自的地址信息。</li>
-<li>直接指针访问，reference存储的直接就是对象地址</li>
-</ul>
-<p>这两种访问各有优势。使用句柄最大好处是对象移动(垃圾回收时对象移动非常普遍)时只会改变句柄中的实例数据指针，而reference不需要修改。使用直接指针访问方式的最大好处就是速度更快。由于对象访问在Java中非常频繁，因此这类开销积少成多也是一项非常可观的执行成本。</p>
-<hr>
-<p>参考文献<br>深入理解Java虚拟机-周志明</p>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1557,9 +1282,7 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>摘自Core Java<br>Java语言规范要求equals方法具有下面的特性：</p>
+          <p>摘自Core Java<br>Java语言规范要求equals方法具有下面的特性：</p>
 <ul>
 <li>自反性：对应任何<strong>非空</strong>引用x, x.equals(x)返回true</li>
 <li>对称性：对应任何引用x和y,当且仅当y.equals(x)返回true, x.equals(y)才应该返回true</li>
@@ -1567,24 +1290,11 @@
 <li>一致性： 如果x和y引用的对象没有发生变化，返回调用x.equals(y)都一样返回同样的结果</li>
 <li>对应任何非空x, x.equals(null)应该返回false</li>
 </ul>
-<p>比如只用instanceof就会出现问题。Employee.equals(Manager)用instanceof可能会返回true,但是Manager.equals(Employee)会返回false. 不满足对称性。</p>
-<p>书中给出了一个完美的equals方法建议：</p>
-<ul>
-<li>显示参数命名为otherObject, 稍后需要将它转换成另一个叫做other的变量</li>
-<li>检测this与otherObject是否引用同一个对象.  (优化)</li>
-<li>检测otherObject是否为null.  (优化)</li>
-<li>比较this与otherObject是否同属于一个类<br>  <strong>如果equals语义在每个子类中有所改变，使用getClass检测</strong><br>  <strong>如果所有子类都拥有统一的语义，就使用instanceof检测</strong></li>
-<li>将otherObject转换成相应的类类型变量</li>
-<li>最后对所有需要比较的域进行比较，基本域用==,对象域用equals.</li>
-</ul>
-<p><strong>Note</strong>: 如果在子类中重新定义了equals， 就要在其中包含调用super.equals(other)</p>
-<p>equals与hashcode的联系与区别：</p>
-<ul>
-<li>如果两个对象相等，即a.equals(b) == true. 则两者的hashcode一定相等。反之则不成立。</li>
-</ul>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/02/11/Java中equals测试/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1667,27 +1377,17 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p><a href="developer.android.com/training/basics/fragments">官方文档</a>上的内容：</p>
+          <p><a href="developer.android.com/training/basics/fragments">官方文档</a>上的内容：</p>
 <ul>
 <li>创建一个Fragment</li>
 <li>创建灵活UI</li>
 <li>与其它Fragment交互</li>
 </ul>
-<h6 id="创建一个Fragment">创建一个Fragment</h6><p>[Note]若应用需要运行在3.0版本一下，需要导入Support Library.<br>主要创建步骤：<br>(1)创建一个继承Fragment的类，就像是Activity.<br>(2)在XML中将Fragment添加在activity.<br>(3)在activity中加载这个布局.<br>这里,我们需要了解下Fragment的生命周期。如下图所示：<br><img src="http://7u2ido.com1.z0.glb.clouddn.com/Fragment_LifeCycle.png" alt="Fragment_LifeCycle"></p>
-<h6 id="创建灵活UI">创建灵活UI</h6><p>如果APP需要指出不同屏幕之间的适配，则需要重用fragment来优化用户体验。如在手机设备上一次只有一个fragment而Tablet上则可以放两个fragment.如下图：<br><img src="http://7u2ido.com1.z0.glb.clouddn.com/fragments-screen-mock.png" alt="Tablet VS phone"><br>FragmentManager提供了Activity运行时的Fragment的添加、删除、替换等操作。即通过FragmentManager对象获得一个FragmentTransaction对象，通过该对象的API进行各种操作。<br>值得注意的一点是：如果想在按Back按键后返回上一个碎片，则需要在commit之前调用addToBackStack()。</p>
-<h6 id="与其他Fragment交互">与其他Fragment交互</h6><p>两个Fragment之间不应直接通信，最好用他们所在的Activity作为沟通的桥梁。<br>Fragment与Activity通信：</p>
-<ul>
-<li>FragmentManager可以通过findFragmentById()获取对应Fragment</li>
-<li>Fragment可以通过调用getActivity()得知相关联的Activity</li>
-</ul>
-<h6 id="参考文献">参考文献</h6><ul>
-<li><a href="http://developer.android.com/training/basics/fragments/" target="_blank" rel="external">http://developer.android.com/training/basics/fragments/</a></li>
-</ul>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/01/13/对Fragment的一点理解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1770,78 +1470,12 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <h4 id="Android屏幕适配出现原因">Android屏幕适配出现原因</h4><p>支持Android的设备尺寸大小不同，屏幕尺寸大小也不尽相同，即存在屏幕的碎片化。<br>目前主流的Android设备的屏幕分辨是1280*720, 800*480, 854*480, 1920*1080, 960*540, 1184*720, 480*320.具体数据来自<a href="http://www.umindex.com/devices/android_resolutions" target="_blank" rel="external">友盟指数</a>。我们尽量适配这几种分辨率，就可以在大部分的手机上正常运行了。</p>
-<h4 id="相关概念">相关概念</h4><p>屏幕尺寸：屏幕对角线长度，1英寸=2.54厘米。比如小米4屏幕尺寸为5英寸。<br>屏幕分辨率：横纵方向上的像素点数，单位是px。1px为1个像素点，如小米4的屏幕分辨率为1920*1080.<br>屏幕像素密度：每英寸上的像素点数，单位是dpi.即”dot per inch”. 我之前一直把它与dip混淆掉==</p>
-<h5 id="px,_dp,_dip,_dpi,_sp">px, dp, dip, dpi, sp</h5><ul>
-<li><p>px像素的意思。</p>
-</li>
-<li><p>dip和dp是一个意思，都是Density Independent Pixels的缩写，即密度无关像素，上面我们说过，dpi是屏幕像素密度，假如一英寸里面有160个像素，这个屏幕的像素密度就是160dpi，那么在这种情况下，dp和px如何换算呢？在Android中，规定以160dpi为基准，1dip=1px，如果密度是320dpi，则1dip=2px，以此类推。</p>
-</li>
-<li><p>sp，即scale-independent pixels，与dp类似，但是可以根据文字大小首选项进行放缩，是设置字体大小的御用单位。</p>
-</li>
-</ul>
-<h5 id="mdpi,_hdpi,_xdpi,_xxdpi">mdpi, hdpi, xdpi, xxdpi</h5><p>mdpi,hdpi,xdpi,xxdpi用来修饰Android中的drawable文件夹及values文件夹，用来区分不同像素密度下的图片和dimen值。<br>那么如何区分呢？Google官方指定按照下列标准进行区分：</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th style="text-align:right">像素密度范围</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>mdpi</td>
-<td style="text-align:right">120dpi~160dpi</td>
-</tr>
-<tr>
-<td>hdpi</td>
-<td style="text-align:right">160dpi~240dpi</td>
-</tr>
-<tr>
-<td>xhdpi</td>
-<td style="text-align:right">240dpi~320dpi</td>
-</tr>
-<tr>
-<td>xxhdpi</td>
-<td style="text-align:right">320dpi~480dpi</td>
-</tr>
-<tr>
-<td>xxxhdpi</td>
-<td style="text-align:right">480dpi~640dpi</td>
-</tr>
-</tbody>
-</table>
-<h4 id="屏幕适配解决方案">屏幕适配解决方案</h4><ol>
-<li>使用wrap_content, match_parent, weight<br>如果使用”wrap_content”和”match_parent”尺寸值而不是硬编码的尺寸，视图就会相应地仅使用自身所需的空间或展开以填满可用空间。此方法可让布局正确适应各种屏幕尺寸和屏幕方向。</li>
-<li>使用相对布局，禁用绝对布局</li>
-<li>使用限定符<br> (1)尺寸限定符。res/layout/main.xml和res/layout-large/main.xml,系统会在较大屏幕(如平板)的设备上选择此布局<br> (2)最小宽度限定符。res/layout-sw600dp/main.xml指明最小宽度为600dp的屏幕。(PS:Android版本低于3.2设备不支持此技术，设备无法将sw600dp识别为尺寸限定符，因此仍需使用large限定符)</li>
-<li>使用布局别名</li>
-<li>使用自动拉伸位图(.9.png)</li>
-<li>使用dp和sp</li>
-</ol>
-<p>关于第6点，有个细节被忽视了。虽然dp可以去除不同像素密度的问题，是的1dp在不同像素密度上面的显示效果相同，但是由于Android屏幕设备多样性，<font color="red"><strong>并非所有的屏幕的宽度都是相同的dp长度</strong></font>。</p>
-<p>所以，我们尽量使用warp_content和match_parent，少用dp来指定控件的具体长宽，结合权重，大部分情况我们都是可以做到适配的。</p>
-<hr>
-<p>上面的内容对于日常开发而言其实已经足够了。 目前还是有两种方法尝试更彻底解决屏幕适配问题，下面就讲一下大概原理。</p>
-<ol>
-<li><p>假设手机屏幕的宽度都是320单位长度，我们将每个屏幕宽度总像素平均分成320份，每一份对应具体的像素就可以了。<br>缺点：使用这个方案必须包含所有的分辨率，如果分辨率缺少，有出错的风险。同时这也会增加软件包大小和维护难度。</p>
-</li>
-<li><p>上面的方法想法很好，但是不太现实。幸运的是，Google已经为我们考虑了我们的这种担忧。最近Google开发出了一个android-percent-support库，基本可以解决屏幕适配的问题了。这个库提供了两个布局供大家使用：<br>PercentRelativeLayout、PercentFrameLayout他们继承自RelativeLayout和FrameLayout容器。支持的属性有：<br>layout_widthPercent、layout_heightPercent、<br>layout_marginPercent、layout_marginLeftPercent、<br>layout_marginTopPercent、layout_marginRightPercent、<br>layout_marginBottomPercent、layout_marginStartPercent、layout_marginEndPercent。</p>
-</li>
-</ol>
-<p>对这个库的具体分析以后给出 ==</p>
-<hr>
-<p>参考文献</p>
-<ol>
-<li><a href="http://developer.android.com/guide/topics/resources/more-resources.html#Dimension" target="_blank" rel="external">http://developer.android.com/guide/topics/resources/more-resources.html#Dimension</a></li>
-<li><a href="http://stackoverflow.com/questions/2025282/difference-between-px-dp-dip-and-sp-in-android" target="_blank" rel="external">http://stackoverflow.com/questions/2025282/difference-between-px-dp-dip-and-sp-in-android</a></li>
-<li><a href="http://blog.csdn.net/zhaokaiqiang1992/article/details/45419023" target="_blank" rel="external">http://blog.csdn.net/zhaokaiqiang1992/article/details/45419023</a></li>
-</ol>
-
-            
-          </span>
+          <h4 id="Android屏幕适配出现原因">Android屏幕适配出现原因</h4><p>支持Android的设备尺寸大小不同，屏幕尺寸大小也不尽相同，即存在屏幕的碎片化。<br>目前主流的Android设备的屏幕分辨是1280*720, 800*480, 854*480, 1920*1080, 960*540, 1184*720, 480*320.具体数据来自<a href="http://www.umindex.com/devices/android_resolutions">友盟指数</a>。我们尽量适配这几种分辨率，就可以在大部分的手机上正常运行了。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2013/12/29/Android屏幕适配/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1924,20 +1558,13 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>Welcome to My world! This is supported by <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. The baic instructions are follows:</p>
+          <p>Welcome to My world! This is supported by <a href="http://hexo.io/">Hexo</a>. Check <a href="http://hexo.io/docs/">documentation</a> for more info. The baic instructions are follows:</p>
 <h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2013/12/19/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

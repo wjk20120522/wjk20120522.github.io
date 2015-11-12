@@ -67,7 +67,7 @@
 加载  Java虚拟机没有进行强制约束，可由具体实现自己把握
 初始化  Java虚拟机严格规定了有且只有五种情形必须立即对类进行初始化:(1)遇到new,getstatic,putstatic,invokestatic这４条指令时，如果类没有进行初始化则进行初始化
 (2)">
-<meta property="og:updated_time" content="2015-04-17T02:35:36.000Z">
+<meta property="og:updated_time" content="2015-11-12T02:28:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟机类加载机制">
 <meta name="twitter:description" content="类从被加载到虚拟机内存中开始到从内存中卸载，主要的生命周期有：加载、验证、准备、解析、初始化、使用和卸载这七个阶段。
@@ -267,6 +267,7 @@
 </code></pre>  这5种行为称为对一个类进行主动引用，其余称为被动引用。被动引用不会引发类的初始化。</li>
 </ul>
 <hr>
+<a id="more"></a>
 <h5 id="加载过程">加载过程</h5><hr>
 <ul>
 <li>加载<br>加载主要完成下面３件事:<pre><code><span class="params">(<span class="number">1</span>)</span>通过类的全限定名来获取定义此类的二进制字节流

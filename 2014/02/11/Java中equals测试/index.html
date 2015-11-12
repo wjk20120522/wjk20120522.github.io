@@ -67,7 +67,7 @@
 自反性：对应任何非空引用x, x.equals(x)返回true
 对称性：对应任何引用x和y,当且仅当y.equals(x)返回true, x.equals(y)才应该返回true
 传递性：对于任何引用x、y、和z，如果x.equals(y)返回true，y.equals(z)返回true， x.equals(z)也应该">
-<meta property="og:updated_time" content="2015-08-01T13:12:26.000Z">
+<meta property="og:updated_time" content="2015-11-12T02:29:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中equals测试">
 <meta name="twitter:description" content="摘自Core JavaJava语言规范要求equals方法具有下面的特性：
@@ -264,6 +264,7 @@
 <li>一致性： 如果x和y引用的对象没有发生变化，返回调用x.equals(y)都一样返回同样的结果</li>
 <li>对应任何非空x, x.equals(null)应该返回false</li>
 </ul>
+<a id="more"></a>
 <p>比如只用instanceof就会出现问题。Employee.equals(Manager)用instanceof可能会返回true,但是Manager.equals(Employee)会返回false. 不满足对称性。</p>
 <p>书中给出了一个完美的equals方法建议：</p>
 <ul>
