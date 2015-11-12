@@ -56,7 +56,7 @@
 <meta name="description" content="Android | Python | USTC | Android Security | Walle&apos;s blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Learn By Doing">
-<meta property="og:url" content="http://wjk20120522.github.io/index.html">
+<meta property="og:url" content="http://wjk20120522.github.io/page/2/index.html">
 <meta property="og:site_name" content="Learn By Doing">
 <meta property="og:description" content="Android | Python | USTC | Android Security | Walle&apos;s blog">
 <meta name="twitter:card" content="summary">
@@ -191,10 +191,6 @@
     
       
       
-        
-        
-        
-      
 
       
     
@@ -221,8 +217,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/09/15/Android屏幕视频录制/" itemprop="url">
-                  Android屏幕视频录制
+                <a class="post-title-link" href="/2015/07/12/深入理解EventBus/" itemprop="url">
+                  深入理解EventBus
                 </a>
               
             
@@ -232,8 +228,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-09-15T09:56:04+08:00" content="2015-09-15">
-              2015-09-15
+            <time itemprop="dateCreated" datetime="2015-07-12T09:00:10+08:00" content="2015-07-12">
+              2015-07-12
             </time>
           </span>
 
@@ -243,8 +239,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/15/Android屏幕视频录制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/15/Android屏幕视频录制/" itemprop="commentsCount"></span>
+                <a href="/2015/07/12/深入理解EventBus/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/12/深入理解EventBus/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -264,10 +260,14 @@
 
       
         
-          <p>动力：在Android真机调试的时候，总是需要将USB线连接到电脑，有时候这样很不方便。于是便尝试在Google了下看看是否不需要USB线可以调试真机。</p>
-<p>刚开始找到的便是比较出名的AirDroid.<br>AirDroid是一款运行在安卓手机上的免费软件，它能让你直接在浏览器中管理你的手机，传图传歌装软件发信息神马都行！你不需在电脑端安装软件，也不需找数据线，你需要的就是WiFi+浏览器而已。先将 AirDroid 安装到手机中，确保电脑和手机在同一个无线局域网内，那么你就从此可以跟数据线/PC端管理软件说拜拜了！<br><a href="https://www.airdroid.com/zh-cn/">项目网址</a></p>
+          <p>由于目前的项目中用到了EventBus，想深入了解下，在网上查找了相关的资料，结合了自己的一点理解，整理了一下。如有错误，还请指出。</p>
+<h4 id="概述">概述</h4><ol>
+<li>EventBus的项目主页<a href="https://github.com/greenrobot/EventBus">https://github.com/greenrobot/EventBus</a></li>
+<li>EventBus是一款针对Android优化的发布/订阅事件总线，采用了观察者模式。主要功能是替代Intent，Handler，Broadcast在Fragment，Activity，Service，线程之间传递消息。优点是开销小，代码更优雅，发送者和接受者<strong>解耦</strong>。</li>
+<li>整体的<a href="https://github.com/greenrobot/EventBus/blob/master/EventBus-Publish-Subscribe.png">框架图</a></li>
+</ol>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/15/Android屏幕视频录制/#more" rel="contents">
+            <a class="btn" href="/2015/07/12/深入理解EventBus/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -310,8 +310,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/08/09/下拉刷新控件/" itemprop="url">
-                  下拉刷新控件
+                <a class="post-title-link" href="/2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/" itemprop="url">
+                  Ubuntu14.04 LTS 64下载并编译Android源码
                 </a>
               
             
@@ -321,8 +321,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-08-09T21:18:00+08:00" content="2015-08-09">
-              2015-08-09
+            <time itemprop="dateCreated" datetime="2015-01-26T20:22:30+08:00" content="2015-01-26">
+              2015-01-26
             </time>
           </span>
 
@@ -332,8 +332,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/09/下拉刷新控件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/09/下拉刷新控件/" itemprop="commentsCount"></span>
+                <a href="/2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -353,200 +353,15 @@
 
       
         
-          <p>项目主页：<a href="https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh">android-Ultra-Pull-To-Refresh</a></p>
-<p>源码分析：<a href="http://www.codekk.com/open-source-project-analysis/detail/Android/Grumoon/android-Ultra-Pull-To-Refresh%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90">android-Ultra-Pull-To-Refresh 源码解析</a></p>
-<h5 id="如何运用到项目中">如何运用到项目中</h5><ul>
-<li>gradle中引入依赖：<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span> <span class="string">'in.srain.cube:ultra-ptr:1.0.10'</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/08/09/下拉刷新控件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/02/Learning RxJava/" itemprop="url">
-                  Learning RxJava
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-08-02T10:33:00+08:00" content="2015-08-02">
-              2015-08-02
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/02/Learning RxJava/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/02/Learning RxJava/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>项目主页：<a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="external">https://github.com/ReactiveX/RxJava</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/25/学习maven/" itemprop="url">
-                  学习maven
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-07-25T13:26:00+08:00" content="2015-07-25">
-              2015-07-25
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/25/学习maven/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/25/学习maven/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>maven是项目自动化构建与依赖管理工具</p>
-<h4 id="maven的安装和配置">maven的安装和配置</h4><p>具体的安装步骤就不细说了，可以参考<a href="https://maven.apache.org/install.html">官方文档</a>。<br>安装后的目录结构为：</p>
+          <p>记录下在Ubuntu14.04 LTS 64位系统下，下载并编译Android4.4中遇到的问题，方便自己以后查阅和给别人提供一些帮助。</p>
+<h6 id="下载Android源码">下载Android源码</h6><p>(1)在下载之前，查看自己系统是否<a href="source.android.com/source/building.html">符合要求</a>。<br>其中值得注意的是：</p>
 <ul>
-<li>bin        包含mvn运行的脚本，用来配置Java命令</li>
-<li>boot     只有一个plexus-classworlds-*.jar的文件，它是一个类加载器框架，提供了丰富的语法已方便配置，maven使用该框架加载自己的类库。</li>
-<li>conf     包含重要的文件settings.xml.可以全局定制maven的行为。</li>
-<li>lib        包含maven运行时需要的Java类库。</li>
-<li>LICENSE.txt        maven使用的软件许可证 Apache Licence Version 2.0</li>
-<li>NOTICE.txt</li>
-<li>README.txt</li>
+<li>JDK 7编译最新Android源码,<strong>JDK 6</strong>编译 Gingerbread至KitKat,JDK 5编译Cupcake至Froyo.</li>
+<li>编译Android2.3.x或以上系统需要<strong> 64位系统 </strong></li>
+<li>Python 2.6-2.7</li>
 </ul>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/25/学习maven/#more" rel="contents">
+            <a class="btn" href="/2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -589,8 +404,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/07/13/Android开发中常用工具的使用/" itemprop="url">
-                  Android开发中常用工具的使用
+                <a class="post-title-link" href="/2014/05/10/Dalvik指令集/" itemprop="url">
+                  Dalvik指令集
                 </a>
               
             
@@ -600,8 +415,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-07-13T10:28:04+08:00" content="2015-07-13">
-              2015-07-13
+            <time itemprop="dateCreated" datetime="2014-05-10T22:44:47+08:00" content="2014-05-10">
+              2014-05-10
             </time>
           </span>
 
@@ -611,8 +426,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/07/13/Android开发中常用工具的使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/13/Android开发中常用工具的使用/" itemprop="commentsCount"></span>
+                <a href="/2014/05/10/Dalvik指令集/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/10/Dalvik指令集/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -632,10 +447,201 @@
 
       
         
-          <p>本文主要总结下自己在实习期间使用的一些工具，具体在使用过程碰到的一些问题以及自己的解决办法。</p>
-<h4 id="git以及sourceTree">git以及sourceTree</h4><p>git的操作基本以前也学过，基本可以参考<a href="http://www.bootcss.com/p/git-guide/">git使用简易指南</a><br>以前在命令行下用的最多的几条命令就是：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> clone</span><br><span class="line"><span class="label">git</span> <span class="keyword">add </span>*</span><br><span class="line"><span class="label">git</span> commit -m <span class="string">"message"</span></span><br><span class="line"><span class="label">git</span> <span class="keyword">push </span></span><br><span class="line"><span class="label">git</span> checkout</span><br></pre></td></tr></table></figure></p>
+          <p>主要介绍Dalvik指令集的一些基础知识，以后别人以及自己以后查阅.<br>先介绍下Dalvik字节码的类型、方法与字段表示方法.</p>
+<h6 id="类型">类型</h6><p>Dalvik字节码只包含两种类型，基本类型与引用类型.</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/13/Android开发中常用工具的使用/#more" rel="contents">
+            <a class="btn" href="/2014/05/10/Dalvik指令集/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/04/26/Android开发基础知识总结/" itemprop="url">
+                  Android开发基础知识总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-04-26T10:22:21+08:00" content="2014-04-26">
+              2014-04-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/04/26/Android开发基础知识总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/26/Android开发基础知识总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>记录在初学Android开发时遇到的问题以及一些知识点，方便自己查阅.</p>
+<h6 id="adb相关">adb相关</h6><ol>
+<li>记得将adb所在目录添加到Path中;</li>
+<li>adb是一个C/S模式的程序。client和server运行在开发机器上，daemon运行在emulator设备上。</li>
+<li>adb常用命令: adb pull <remote> <local>, adb push <local> <remote>, adb install -r **.apk</li>
+</ol>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/04/26/Android开发基础知识总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/04/05/虚拟机类加载机制/" itemprop="url">
+                  虚拟机类加载机制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-04-05T16:23:04+08:00" content="2014-04-05">
+              2014-04-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/04/05/虚拟机类加载机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/05/虚拟机类加载机制/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>类从被加载到虚拟机内存中开始到从内存中卸载，主要的生命周期有：加载、验证、准备、解析、初始化、使用和卸载这七个阶段。</p>
+<h5 id="加载时机">加载时机</h5><ul>
+<li>加载<br>  Java虚拟机没有进行强制约束，可由具体实现自己把握</li>
+<li>初始化<br>  Java虚拟机严格规定了有且只有五种情形必须立即对类进行初始化:<pre><code><span class="params">(<span class="number">1</span>)</span>遇到new,getstatic,putstatic,invokestatic这４条指令时，如果类没有进行初始化则进行初始化
+<span class="params">(<span class="number">2</span>)</span>使用reflect包进行反射调用时，如果类没有初始化则进行初始化
+<span class="params">(<span class="number">3</span>)</span>如果类初始化时发现父类还没有过初始化，则需要先触发父类初始化
+<span class="params">(<span class="number">4</span>)</span>虚拟机启动时，用户制定一个要执行的类，虚拟机先初始化这个主类
+<span class="params">(<span class="number">5</span>)</span>当使用JDK1.<span class="number">7</span>动态语言支持时，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic,REF_putStatic,REF_invokeStatic方法句柄，并且这个方法句柄所对应的类没有进行过初始化，则需要先触发其初始化。
+</code></pre>  这5种行为称为对一个类进行主动引用，其余称为被动引用。被动引用不会引发类的初始化。</li>
+</ul>
+<hr>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/04/05/虚拟机类加载机制/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -662,7 +668,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
