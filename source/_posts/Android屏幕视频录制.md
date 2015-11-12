@@ -9,6 +9,7 @@ tags: Android
 AirDroid是一款运行在安卓手机上的免费软件，它能让你直接在浏览器中管理你的手机，传图传歌装软件发信息神马都行！你不需在电脑端安装软件，也不需找数据线，你需要的就是WiFi+浏览器而已。先将 AirDroid 安装到手机中，确保电脑和手机在同一个无线局域网内，那么你就从此可以跟数据线/PC端管理软件说拜拜了！
 [项目网址](https://www.airdroid.com/zh-cn/)
 
+<!--more-->
 
 偶然间发现了可以通过adb命令来在局域网调试真机。[博客](http://stormzhang.com/android/2014/08/27/adb-over-wifi/)
 小米4测试可行。

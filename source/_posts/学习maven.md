@@ -17,6 +17,8 @@ maven是项目自动化构建与依赖管理工具
 * NOTICE.txt
 * README.txt
 
+<!--more-->
+
 #### maven使用入门
 就像Make的Makefile,Ant的build.xml一样，Maven项目的核心是pom.xml。POM(Project Object Model,项目对象模型)定义了项目的基本信息，用于描述项目如何构建，声明项目依赖等等。
 1. 编写POM

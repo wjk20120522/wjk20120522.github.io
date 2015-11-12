@@ -14,6 +14,7 @@ git commit -m "message"
 git push 
 git checkout
 ```
+<!--more-->
 我觉得要想了解Git的工作原理，我们需要知道工作区(Working dir)，缓存区(Index)和Head之间的联系与区别。
 由于我们使用了sourceTree图形工具来简便Git操作，好多命令都已经封装好了，只要知道基本的用法在GUI上操作也比较方便。
 #### maven, gradle

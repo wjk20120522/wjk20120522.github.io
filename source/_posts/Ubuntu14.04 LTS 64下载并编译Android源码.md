@@ -14,7 +14,7 @@ tags: Android
 * 编译Android2.3.x或以上系统需要** 64位系统 **
 * Python 2.6-2.7
 
-
+<!--more-->
 (2)安装各种必须[软件](http://source.android.com/source/initializing.html#setting-up-a-linux-build-environment)
 
     $ sudo apt-get install bison g++-multilib git gperf libxml2-utils

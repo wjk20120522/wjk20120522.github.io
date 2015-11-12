@@ -10,6 +10,8 @@ tags: Android
 2. EventBus是一款针对Android优化的发布/订阅事件总线，采用了观察者模式。主要功能是替代Intent，Handler，Broadcast在Fragment，Activity，Service，线程之间传递消息。优点是开销小，代码更优雅，发送者和接受者**解耦**。
 3. 整体的[框架图](https://github.com/greenrobot/EventBus/blob/master/EventBus-Publish-Subscribe.png)
 
+<!--more-->
+
 -----
 #### 如何使用
 1. Android Studio中添加依赖，在自己的Module下的build.gradle文件中添加依赖：

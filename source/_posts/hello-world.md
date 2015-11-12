@@ -11,6 +11,7 @@ Welcome to My world! This is supported by [Hexo](http://hexo.io/). Check [docume
 $ hexo new "My New Post"
 ```
 
+<!--more-->
 More info: [Writing](http://hexo.io/docs/writing.html)
 
 ### Run server

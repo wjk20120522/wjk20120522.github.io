@@ -8,6 +8,8 @@ tags: Android
 * 创建灵活UI
 * 与其它Fragment交互
 
+<!--more-->
+
 ######创建一个Fragment
 [Note]若应用需要运行在3.0版本一下，需要导入Support Library.
 主要创建步骤：

@@ -12,6 +12,8 @@ Java语言规范要求equals方法具有下面的特性：
 * 一致性： 如果x和y引用的对象没有发生变化，返回调用x.equals(y)都一样返回同样的结果
 * 对应任何非空x, x.equals(null)应该返回false
 
+<!--more-->
+
 比如只用instanceof就会出现问题。Employee.equals(Manager)用instanceof可能会返回true,但是Manager.equals(Employee)会返回false. 不满足对称性。
 
 书中给出了一个完美的equals方法建议：

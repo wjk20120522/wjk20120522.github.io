@@ -10,6 +10,8 @@ tags: Android
 2. adb是一个C/S模式的程序。client和server运行在开发机器上，daemon运行在emulator设备上。
 3. adb常用命令: adb pull <remote> <local>, adb push <local> <remote>, adb install -r **.apk
 
+<!--more-->
+
 ######4大组件相关
 四大组件：Activity, Service, Content Provider, BroadcastReceiver.
 * Activity主要是用来显示UI界面的，用户可以看见并与之交互的
