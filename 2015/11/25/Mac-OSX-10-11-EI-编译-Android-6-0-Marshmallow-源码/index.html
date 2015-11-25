@@ -53,16 +53,19 @@
 
 
 
-<meta name="description" content="Android | Python | USTC | Android Security | Walle&apos;s blog">
+<meta name="description" content="想在Android Studio上看Android源码，于是便尝试着编译源码导入AS中，遇到了些问题，记录与此。
+Mac平台设置由于Mac的文件系统默认是Case insensitive的，即不区分大小写。(可尝试在同一个目录下创建字母相同的，大小写不同的文件，看看是否可以创建两个文件)在编译Android源码的时候会出现问题。故需要新创建一个case-sensitive的disk image.具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac OSX 10.11 EI 编译 Android 6.0 Marshmallow 源码">
 <meta property="og:url" content="http://wjk20120522.github.io/2015/11/25/Mac-OSX-10-11-EI-编译-Android-6-0-Marshmallow-源码/index.html">
 <meta property="og:site_name" content="Learn By Doing">
-<meta property="og:description" content="Android | Python | USTC | Android Security | Walle&apos;s blog">
-<meta property="og:updated_time" content="2015-11-25T02:34:05.000Z">
+<meta property="og:description" content="想在Android Studio上看Android源码，于是便尝试着编译源码导入AS中，遇到了些问题，记录与此。
+Mac平台设置由于Mac的文件系统默认是Case insensitive的，即不区分大小写。(可尝试在同一个目录下创建字母相同的，大小写不同的文件，看看是否可以创建两个文件)在编译Android源码的时候会出现问题。故需要新创建一个case-sensitive的disk image.具">
+<meta property="og:updated_time" content="2015-11-25T02:57:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac OSX 10.11 EI 编译 Android 6.0 Marshmallow 源码">
-<meta name="twitter:description" content="Android | Python | USTC | Android Security | Walle&apos;s blog">
+<meta name="twitter:description" content="想在Android Studio上看Android源码，于是便尝试着编译源码导入AS中，遇到了些问题，记录与此。
+Mac平台设置由于Mac的文件系统默认是Case insensitive的，即不区分大小写。(可尝试在同一个目录下创建字母相同的，大小写不同的文件，看看是否可以创建两个文件)在编译Android源码的时候会出现问题。故需要新创建一个case-sensitive的disk image.具">
 
 
 
@@ -244,7 +247,16 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>想在Android Studio上看Android源码，于是便尝试着编译源码导入AS中，遇到了些问题，记录与此。</p>
+<h6 id="Mac平台设置">Mac平台设置</h6><p>由于Mac的文件系统默认是Case insensitive的，即不区分大小写。(可尝试在同一个目录下创建字母相同的，大小写不同的文件，看看是否可以创建两个文件)在编译Android源码的时候会出现问题。故需要新创建一个case-sensitive的disk image.具体命令为：<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdiutil <span class="keyword">create</span> -<span class="keyword">type</span> SPARSE -fs <span class="string">'Case-sensitive Journaled HFS+'</span> -size <span class="number">55</span>g ~/放在某个目录下的文件.dmg</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>，官方文档上命令是创建40g的磁盘镜像文件，但是实际在编译时即使删除.repo文件夹空间扔不够用。</p>
+<a id="more"></a>
+<h6 id="下载源码">下载源码</h6><p>按照<a href="https://source.android.com/source/downloading.html" target="_blank" rel="external">官方教程</a>下载源码。<br>由于某种大众皆知的原因，我们可以去国内的镜像网站去下取。这里推荐<a href="https://lug.ustc.edu.cn/wiki/mirrors/help/aosp" target="_blank" rel="external">中国科技大学的镜像</a>下载，速度比较快。</p>
+<h6 id="编译源码">编译源码</h6><p>Mac OSX 的EI Capitan，新于代码的配置文件，因此要修改配置文件。它位于build/core/combo/mac_version.mk，其中有一个 mac_sdk_versions_supported 变量，修改为我目前的版本10.11。</p>
+<p>参考官方指南<a href="https://source.android.com/source/building.html" target="_blank" rel="external">Building the System</a>编译系统。</p>
+<p>具体安装细节可参考<a href="http://wjk20120522.github.io/2015/01/26/Ubuntu14.04%20LTS%2064%E4%B8%8B%E8%BD%BD%E5%B9%B6%E7%BC%96%E8%AF%91Android%E6%BA%90%E7%A0%81/">Ubuntu14.04 LTS 64下载并编译Android源码</a></p>
+<h6 id="参考文献">参考文献</h6><p><a href="http://www.iteye.com/news/31146" target="_blank" rel="external">Android 6.0 源代码编译实践</a></p>
+</span>
       
     </div>
 
@@ -379,7 +391,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#Mac平台设置"><span class="nav-number">1.</span> <span class="nav-text">Mac平台设置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#下载源码"><span class="nav-number">2.</span> <span class="nav-text">下载源码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#编译源码"><span class="nav-number">3.</span> <span class="nav-text">编译源码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

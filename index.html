@@ -189,6 +189,15 @@
 
     
     
+      
+      
+        
+        
+        
+      
+
+      
+    
 
     
       
@@ -255,11 +264,14 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
+          <p>想在Android Studio上看Android源码，于是便尝试着编译源码导入AS中，遇到了些问题，记录与此。</p>
+<h6 id="Mac平台设置">Mac平台设置</h6><p>由于Mac的文件系统默认是Case insensitive的，即不区分大小写。(可尝试在同一个目录下创建字母相同的，大小写不同的文件，看看是否可以创建两个文件)在编译Android源码的时候会出现问题。故需要新创建一个case-sensitive的disk image.具体命令为：<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdiutil <span class="keyword">create</span> -<span class="keyword">type</span> SPARSE -fs <span class="string">'Case-sensitive Journaled HFS+'</span> -size <span class="number">55</span>g ~/放在某个目录下的文件.dmg</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>，官方文档上命令是创建40g的磁盘镜像文件，但是实际在编译时即使删除.repo文件夹空间扔不够用。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/25/Mac-OSX-10-11-EI-编译-Android-6-0-Marshmallow-源码/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
