@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -53,28 +53,16 @@
 
 
 
-<meta name="description" content="记录下在Ubuntu14.04 LTS 64位系统下，下载并编译Android4.4中遇到的问题，方便自己以后查阅和给别人提供一些帮助。
-下载Android源码(1)在下载之前，查看自己系统是否符合要求。其中值得注意的是：
-
-JDK 7编译最新Android源码,JDK 6编译 Gingerbread至KitKat,JDK 5编译Cupcake至Froyo.
-编译Android2.3.x或以上系统">
+<meta name="description" content="Android | Python | USTC | Android Security | Walle&apos;s blog">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu14.04 LTS 64下载并编译Android源码">
-<meta property="og:url" content="http://wjk20120522.github.io/2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/index.html">
+<meta property="og:title" content="Mac OSX 10.11 EI 编译 Android 6.0 Marshmallow 源码">
+<meta property="og:url" content="http://wjk20120522.github.io/2015/11/25/Mac-OSX-10-11-EI-编译-Android-6-0-Marshmallow-源码/index.html">
 <meta property="og:site_name" content="Learn By Doing">
-<meta property="og:description" content="记录下在Ubuntu14.04 LTS 64位系统下，下载并编译Android4.4中遇到的问题，方便自己以后查阅和给别人提供一些帮助。
-下载Android源码(1)在下载之前，查看自己系统是否符合要求。其中值得注意的是：
-
-JDK 7编译最新Android源码,JDK 6编译 Gingerbread至KitKat,JDK 5编译Cupcake至Froyo.
-编译Android2.3.x或以上系统">
-<meta property="og:updated_time" content="2015-11-12T02:29:45.000Z">
+<meta property="og:description" content="Android | Python | USTC | Android Security | Walle&apos;s blog">
+<meta property="og:updated_time" content="2015-11-25T02:34:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu14.04 LTS 64下载并编译Android源码">
-<meta name="twitter:description" content="记录下在Ubuntu14.04 LTS 64位系统下，下载并编译Android4.4中遇到的问题，方便自己以后查阅和给别人提供一些帮助。
-下载Android源码(1)在下载之前，查看自己系统是否符合要求。其中值得注意的是：
-
-JDK 7编译最新Android源码,JDK 6编译 Gingerbread至KitKat,JDK 5编译Cupcake至Froyo.
-编译Android2.3.x或以上系统">
+<meta name="twitter:title" content="Mac OSX 10.11 EI 编译 Android 6.0 Marshmallow 源码">
+<meta name="twitter:description" content="Android | Python | USTC | Android Security | Walle&apos;s blog">
 
 
 
@@ -86,7 +74,7 @@ JDK 7编译最新Android源码,JDK 6编译 Gingerbread至KitKat,JDK 5编译Cupca
   };
 </script>
 
-  <title> Ubuntu14.04 LTS 64下载并编译Android源码 | Learn By Doing </title>
+  <title> Mac OSX 10.11 EI 编译 Android 6.0 Marshmallow 源码 | Learn By Doing </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -216,7 +204,7 @@ JDK 7编译最新Android源码,JDK 6编译 Gingerbread至KitKat,JDK 5编译Cupca
             
             
               
-                Ubuntu14.04 LTS 64下载并编译Android源码
+                Mac OSX 10.11 EI 编译 Android 6.0 Marshmallow 源码
               
             
           </h1>
@@ -225,8 +213,8 @@ JDK 7编译最新Android源码,JDK 6编译 Gingerbread至KitKat,JDK 5编译Cupca
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-01-26T20:22:30+08:00" content="2015-01-26">
-              2015-01-26
+            <time itemprop="dateCreated" datetime="2015-11-25T10:29:10+08:00" content="2015-11-25">
+              2015-11-25
             </time>
           </span>
 
@@ -236,8 +224,8 @@ JDK 7编译最新Android源码,JDK 6编译 Gingerbread至KitKat,JDK 5编译Cupca
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/" itemprop="commentsCount"></span>
+                <a href="/2015/11/25/Mac-OSX-10-11-EI-编译-Android-6-0-Marshmallow-源码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/25/Mac-OSX-10-11-EI-编译-Android-6-0-Marshmallow-源码/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -256,66 +244,24 @@ JDK 7编译最新Android源码,JDK 6编译 Gingerbread至KitKat,JDK 5编译Cupca
       
 
       
-        <span itemprop="articleBody"><p>记录下在Ubuntu14.04 LTS 64位系统下，下载并编译Android4.4中遇到的问题，方便自己以后查阅和给别人提供一些帮助。</p>
-<h6 id="下载Android源码">下载Android源码</h6><p>(1)在下载之前，查看自己系统是否<a href="source.android.com/source/building.html">符合要求</a>。<br>其中值得注意的是：</p>
-<ul>
-<li>JDK 7编译最新Android源码,<strong>JDK 6</strong>编译 Gingerbread至KitKat,JDK 5编译Cupcake至Froyo.</li>
-<li>编译Android2.3.x或以上系统需要<strong> 64位系统 </strong></li>
-<li>Python 2.6-2.7</li>
-</ul>
-<a id="more"></a>
-<p>(2)安装各种必须<a href="http://source.android.com/source/initializing.html#setting-up-a-linux-build-environment" target="_blank" rel="external">软件</a></p>
-<pre><code>$ sudo apt-<span class="preprocessor">get</span> install <span class="keyword">bison </span>g++-<span class="keyword">multilib </span>git gperf libxml2-utils
-</code></pre><p>(3)下载Android源码到具体目录</p>
-<ul>
-<li><p><a href="http://source.android.com/source/downloading.html" target="_blank" rel="external">安装repo</a><br></p>
-<figure class="highlight smalltalk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="char">$ </span>mkdir ~/bin</span><br><span class="line"><span class="char">$ </span><span class="class">PATH</span>=~/<span class="method">bin:</span><span class="char">$P</span>ATH</span><br><span class="line"><span class="char">$ </span>curl <span class="method">https:</span>//storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo</span><br><span class="line"><span class="char">$ </span>chmod a+x ~/bin/repo</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下载对应版本源码，我下载的是4.4的，故命令为：<br></p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">repo</span> init -u https://<span class="keyword">android.googlesource.com/platform/manifest </span>-<span class="keyword">b </span><span class="keyword">android-4.4_r1.2</span><br><span class="line"></span><span class="label">repo</span> sync</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这里，我遇到的一个问题是： repo init 时总是将.repo放在/home/your host name/目录下，看了下repo相关的内容发现，repo是封装了git功能的脚本，而我在对应目录的上层目录中已经有了一个.repo，故不再会在对应目录创建.repo.<br>其实.repo于.git类似。</p>
-<h6 id="编译Android源码">编译Android源码</h6><ul>
-<li><p>初始化</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">source</span> build/envsetup.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>选择合适的Target,如</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>lunch aosp_x86-eng</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编译代码</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make -<span class="function"><span class="title">j4</span><span class="params">(这里的<span class="number">4</span>可以根据自己系统的cpu调整，一般是核数*<span class="number">2</span>)</span></span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这里，我遇到的问题是： 编译开始报各种错误，原因是安装必须软件时，有的软件没有安装完全造成的。在安装g++-multilib<br>时，总是出现依赖不满足的问题。使用-f 仍然没有用，后来将官方的源换成了国内的源后解决。</p>
-</span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Android/" rel="tag">#Android</a>
-          
-        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/05/10/Dalvik指令集/" rel="next" title="Dalvik指令集">
-                <i class="fa fa-chevron-left"></i> Dalvik指令集
+              <a href="/2015/09/15/Android屏幕视频录制/" rel="next" title="Android屏幕视频录制">
+                <i class="fa fa-chevron-left"></i> Android屏幕视频录制
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/07/12/深入理解EventBus/" rel="prev" title="深入理解EventBus">
-                深入理解EventBus <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -342,8 +288,8 @@ JDK 7编译最新Android源码,JDK 6编译 Gingerbread至KitKat,JDK 5编译Cupca
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/"
-           data-title="Ubuntu14.04 LTS 64下载并编译Android源码" data-url="http://wjk20120522.github.io/2015/01/26/Ubuntu14.04 LTS 64下载并编译Android源码/">
+      <div class="ds-thread" data-thread-key="2015/11/25/Mac-OSX-10-11-EI-编译-Android-6-0-Marshmallow-源码/"
+           data-title="Mac OSX 10.11 EI 编译 Android 6.0 Marshmallow 源码" data-url="http://wjk20120522.github.io/2015/11/25/Mac-OSX-10-11-EI-编译-Android-6-0-Marshmallow-源码/">
       </div>
     
   </div>
@@ -433,7 +379,7 @@ JDK 7编译最新Android源码,JDK 6编译 Gingerbread至KitKat,JDK 5编译Cupca
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#下载Android源码"><span class="nav-number">1.</span> <span class="nav-text">下载Android源码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#编译Android源码"><span class="nav-number">2.</span> <span class="nav-text">编译Android源码</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

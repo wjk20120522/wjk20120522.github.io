@@ -217,8 +217,8 @@
             
               
                 
-                <a class="post-title-link" href="/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/" itemprop="url">
-                  HotSpot在Java堆中对象分配、布局和访问的过程
+                <a class="post-title-link" href="/2014/04/05/虚拟机类加载机制/" itemprop="url">
+                  虚拟机类加载机制
                 </a>
               
             
@@ -228,8 +228,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2014-03-06T20:51:12+08:00" content="2014-03-06">
-              2014-03-06
+            <time itemprop="dateCreated" datetime="2014-04-05T16:23:04+08:00" content="2014-04-05">
+              2014-04-05
             </time>
           </span>
 
@@ -239,8 +239,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/" itemprop="commentsCount"></span>
+                <a href="/2014/04/05/虚拟机类加载机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/05/虚拟机类加载机制/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -260,380 +260,19 @@
 
       
         
-          <p>Java是一门面向对象语言。程序中对象的创建(eg. 克隆，反序列化)非常常见。在语言层面上创建对象通常仅仅通过一个new关键字而已，而在虚拟机中，对象创建又是怎样的呢？</p>
-<p>主要过程有三个部分:</p>
-<ul>
-<li>对象的创建  </li>
-<li>对象的内存布局  </li>
-<li>对象的访问定位  </li>
+          <p>类从被加载到虚拟机内存中开始到从内存中卸载，主要的生命周期有：加载、验证、准备、解析、初始化、使用和卸载这七个阶段。</p>
+<h5 id="加载时机">加载时机</h5><ul>
+<li>加载<br>  Java虚拟机没有进行强制约束，可由具体实现自己把握</li>
+<li>初始化<br>  Java虚拟机严格规定了有且只有五种情形必须立即对类进行初始化:<pre><code><span class="params">(<span class="number">1</span>)</span>遇到new,getstatic,putstatic,invokestatic这４条指令时，如果类没有进行初始化则进行初始化
+<span class="params">(<span class="number">2</span>)</span>使用reflect包进行反射调用时，如果类没有初始化则进行初始化
+<span class="params">(<span class="number">3</span>)</span>如果类初始化时发现父类还没有过初始化，则需要先触发父类初始化
+<span class="params">(<span class="number">4</span>)</span>虚拟机启动时，用户制定一个要执行的类，虚拟机先初始化这个主类
+<span class="params">(<span class="number">5</span>)</span>当使用JDK1.<span class="number">7</span>动态语言支持时，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic,REF_putStatic,REF_invokeStatic方法句柄，并且这个方法句柄所对应的类没有进行过初始化，则需要先触发其初始化。
+</code></pre>  这5种行为称为对一个类进行主动引用，其余称为被动引用。被动引用不会引发类的初始化。</li>
 </ul>
+<hr>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2014/03/06/HotSpot在Java堆中对象分配、布局和访问的过程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/02/11/Java中equals测试/" itemprop="url">
-                  Java中equals测试
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-02-11T13:07:22+08:00" content="2014-02-11">
-              2014-02-11
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/02/11/Java中equals测试/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/11/Java中equals测试/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>摘自Core Java<br>Java语言规范要求equals方法具有下面的特性：</p>
-<ul>
-<li>自反性：对应任何<strong>非空</strong>引用x, x.equals(x)返回true</li>
-<li>对称性：对应任何引用x和y,当且仅当y.equals(x)返回true, x.equals(y)才应该返回true</li>
-<li>传递性：对于任何引用x、y、和z，如果x.equals(y)返回true，y.equals(z)返回true， x.equals(z)也应该返回true</li>
-<li>一致性： 如果x和y引用的对象没有发生变化，返回调用x.equals(y)都一样返回同样的结果</li>
-<li>对应任何非空x, x.equals(null)应该返回false</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/02/11/Java中equals测试/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/01/13/对Fragment的一点理解/" itemprop="url">
-                  对Fragment的一点理解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-01-13T16:23:04+08:00" content="2014-01-13">
-              2014-01-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/01/13/对Fragment的一点理解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/01/13/对Fragment的一点理解/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p><a href="developer.android.com/training/basics/fragments">官方文档</a>上的内容：</p>
-<ul>
-<li>创建一个Fragment</li>
-<li>创建灵活UI</li>
-<li>与其它Fragment交互</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/01/13/对Fragment的一点理解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/12/29/Android屏幕适配/" itemprop="url">
-                  Android屏幕适配
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2013-12-29T14:22:32+08:00" content="2013-12-29">
-              2013-12-29
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/12/29/Android屏幕适配/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/12/29/Android屏幕适配/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h4 id="Android屏幕适配出现原因">Android屏幕适配出现原因</h4><p>支持Android的设备尺寸大小不同，屏幕尺寸大小也不尽相同，即存在屏幕的碎片化。<br>目前主流的Android设备的屏幕分辨是1280*720, 800*480, 854*480, 1920*1080, 960*540, 1184*720, 480*320.具体数据来自<a href="http://www.umindex.com/devices/android_resolutions">友盟指数</a>。我们尽量适配这几种分辨率，就可以在大部分的手机上正常运行了。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2013/12/29/Android屏幕适配/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/12/19/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2013-12-19T09:12:52+08:00" content="2013-12-19">
-              2013-12-19
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/12/19/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/12/19/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>Welcome to My world! This is supported by <a href="http://hexo.io/">Hexo</a>. Check <a href="http://hexo.io/docs/">documentation</a> for more info. The baic instructions are follows:</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2013/12/19/hello-world/#more" rel="contents">
+            <a class="btn" href="/2014/04/05/虚拟机类加载机制/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -660,7 +299,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -701,7 +340,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
