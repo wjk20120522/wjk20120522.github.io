@@ -61,7 +61,7 @@ Mac平台设置由于Mac的文件系统默认是Case insensitive的，即不区�
 <meta property="og:site_name" content="Learn By Doing">
 <meta property="og:description" content="想在Android Studio上看Android源码，于是便尝试着编译源码导入AS中，遇到了些问题，记录与此。
 Mac平台设置由于Mac的文件系统默认是Case insensitive的，即不区分大小写。(可尝试在同一个目录下创建字母相同的，大小写不同的文件，看看是否可以创建两个文件)在编译Android源码的时候会出现问题。故需要新创建一个case-sensitive的disk image.具">
-<meta property="og:updated_time" content="2015-11-25T02:57:43.000Z">
+<meta property="og:updated_time" content="2015-11-25T03:19:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac OSX 10.11 EI 编译 Android 6.0 Marshmallow 源码">
 <meta name="twitter:description" content="想在Android Studio上看Android源码，于是便尝试着编译源码导入AS中，遇到了些问题，记录与此。
@@ -255,6 +255,9 @@ Mac平台设置由于Mac的文件系统默认是Case insensitive的，即不区�
 <h6 id="编译源码">编译源码</h6><p>Mac OSX 的EI Capitan，新于代码的配置文件，因此要修改配置文件。它位于build/core/combo/mac_version.mk，其中有一个 mac_sdk_versions_supported 变量，修改为我目前的版本10.11。</p>
 <p>参考官方指南<a href="https://source.android.com/source/building.html" target="_blank" rel="external">Building the System</a>编译系统。</p>
 <p>具体安装细节可参考<a href="http://wjk20120522.github.io/2015/01/26/Ubuntu14.04%20LTS%2064%E4%B8%8B%E8%BD%BD%E5%B9%B6%E7%BC%96%E8%AF%91Android%E6%BA%90%E7%A0%81/">Ubuntu14.04 LTS 64下载并编译Android源码</a></p>
+<h6 id="代码导入Android_Studio">代码导入Android Studio</h6><p>进入Android源码主目录然后执行下面命令<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mmm development<span class="regexp">/tools/</span>idegen/</span><br><span class="line">sh .<span class="regexp">/development/</span>tools<span class="regexp">/idegen/</span>idegen.sh</span><br></pre></td></tr></table></figure></p>
+<p>执行完成后，打开AS，新建项目，选择Android源码根目录，导入即可。<br>如果提示case-sensitive相关的warning可以在/Applications/Android\ Studio.app/Contents/bin/idea.properties文件中添加一行：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">idea<span class="class">.case</span><span class="class">.sensitive</span><span class="class">.fs</span>=true</span><br></pre></td></tr></table></figure></p>
+<p>重启ok</p>
 <h6 id="参考文献">参考文献</h6><p><a href="http://www.iteye.com/news/31146" target="_blank" rel="external">Android 6.0 源代码编译实践</a></p>
 </span>
       
@@ -391,7 +394,7 @@ Mac平台设置由于Mac的文件系统默认是Case insensitive的，即不区�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#Mac平台设置"><span class="nav-number">1.</span> <span class="nav-text">Mac平台设置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#下载源码"><span class="nav-number">2.</span> <span class="nav-text">下载源码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#编译源码"><span class="nav-number">3.</span> <span class="nav-text">编译源码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#Mac平台设置"><span class="nav-number">1.</span> <span class="nav-text">Mac平台设置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#下载源码"><span class="nav-number">2.</span> <span class="nav-text">下载源码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#编译源码"><span class="nav-number">3.</span> <span class="nav-text">编译源码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#代码导入Android_Studio"><span class="nav-number">4.</span> <span class="nav-text">代码导入Android Studio</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
