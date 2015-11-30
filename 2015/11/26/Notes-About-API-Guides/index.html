@@ -53,34 +53,19 @@
 
 
 
-<meta name="description" content="IntroductionApps provide multiple entry pointsApps adapt to different devices
-
-App Fundamentalsthe Android system implements the principle of least privilege.
-
-App Components
-
-Activities: single scree">
+<meta name="description" content="Google API Guide的阅读笔记，温故知新！
+IntroductionApps provide multiple entry pointsApps adapt to different devices">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Notes About API Guides">
 <meta property="og:url" content="http://wjk20120522.github.io/2015/11/26/Notes-About-API-Guides/index.html">
 <meta property="og:site_name" content="Learn By Doing">
-<meta property="og:description" content="IntroductionApps provide multiple entry pointsApps adapt to different devices
-
-App Fundamentalsthe Android system implements the principle of least privilege.
-
-App Components
-
-Activities: single scree">
-<meta property="og:updated_time" content="2015-11-26T03:19:00.000Z">
+<meta property="og:description" content="Google API Guide的阅读笔记，温故知新！
+IntroductionApps provide multiple entry pointsApps adapt to different devices">
+<meta property="og:updated_time" content="2015-11-30T07:05:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Notes About API Guides">
-<meta name="twitter:description" content="IntroductionApps provide multiple entry pointsApps adapt to different devices
-
-App Fundamentalsthe Android system implements the principle of least privilege.
-
-App Components
-
-Activities: single scree">
+<meta name="twitter:description" content="Google API Guide的阅读笔记，温故知新！
+IntroductionApps provide multiple entry pointsApps adapt to different devices">
 
 
 
@@ -262,7 +247,9 @@ Activities: single scree">
       
 
       
-        <span itemprop="articleBody"><h4 id="Introduction">Introduction</h4><p>Apps provide multiple entry points<br>Apps adapt to different devices</p>
+        <span itemprop="articleBody"><p>Google API Guide的阅读笔记，温故知新！</p>
+<h4 id="Introduction">Introduction</h4><p>Apps provide multiple entry points<br>Apps adapt to different devices</p>
+<a id="more"></a>
 <ul>
 <li><p><strong>App Fundamentals</strong><br>the Android system implements the principle of least privilege.</p>
 <ul>
@@ -284,8 +271,46 @@ Activities: single scree">
 </li>
 </ul>
 </li>
+<li><p><strong>Device Compatibility</strong><br>Do not need consider about device compatible(pass the CTS), but consider app compatible.</p>
+<ul>
+<li>Device features</li>
+<li>Platform version</li>
+<li>Screen configuration</li>
 </ul>
-<h4 id="App_Components">App Components</h4><h4 id="App_Resources">App Resources</h4></span>
+</li>
+<li><p><strong>System Permissions</strong><br>A particular permission may be enforced at a number of places during your program’s operation:</p>
+<ul>
+<li>At the time of a call into the system, to prevent an application from executing certain functions.</li>
+<li>When starting an activity, to prevent applications from launching activities of other applications.</li>
+<li>Both sending and receiving broadcasts, to control who can receive your broadcast or who can send a broadcast to you.</li>
+<li>When accessing and operating on a content provider.</li>
+<li>Binding to or starting a service.</li>
+</ul>
+</li>
+</ul>
+<h4 id="App_Components">App Components</h4><ul>
+<li><strong>Intents and Intent Filters</strong><br>The primary information contained in an Intent is: Component name, Action, Data, Category, Extras, Flags<br>An implicit intent is tested against a filter by comparing the intent to each of the three elements:<action>, <data>, <category></category></data></action></li>
+<li><p><strong>Activities</strong><br>onPause() is the last method that’s guaranteed to be called before the process can be killed—if the system must recover memory in an emergency, then onStop() and onDestroy() might not be called.</p>
+<ul>
+<li>Fragments<br>lifecycle methods: onAttach(), onCreate(), onCreateView(), onActivityCreated(), onStart(), onResume(), onPause(), onStop(), onDestroyView(), onDetroy(), onDetach()</li>
+<li>Loaders<br>LoaderManager + Loader</li>
+<li>Tasks and Back Stack<br>multitasking on Android</li>
+<li>Overview Screen</li>
+</ul>
+</li>
+<li><p><strong>Services</strong></p>
+</li>
+</ul>
+<ul>
+<li><strong>Content Providers</strong></li>
+</ul>
+<ul>
+<li><strong>App Widets</strong></li>
+</ul>
+<ul>
+<li><strong>Processes and Threads</strong></li>
+</ul>
+<h4 id="App_Resources">App Resources</h4></span>
       
     </div>
 
